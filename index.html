@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lexar | Sistema de Cálculo Previsional</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <script src="./script.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <img class="logo-principal" src="./resources/Logo.png" alt="LEXAR">
+        <h3 class="titulo">Sistema de Cálculo Previsional | Determinación de Derecho</h3>
+    </header>
+
+    <div class="datos">
+
+        <div class="befenac">
+            <div class="beneficio-box">
+                <label for="beneficio">Beneficio a calcular:</label>
+                <select id="beneficio">
+                    <option value="Jubilacion-PBU-PC-PAP">Jubilación PBU-PC-PAP</option>
+                    <option value="Pension-Jubilado">Pensión por Fallecimiento de Jubilado</option>
+                    <option value="Pension-PBU">Pensión de PBU</option>
+                    <option value="RTI">RTI</option>
+                    <option value="Prestacion-Anticipada">Prestación Anticipada</option>
+                </select>
+            </div>
+
+            <div class="fecha-nacimiento">
+                <label for="fecha-nacimiento">Fecha de nacimiento:</label>
+                <input type="date" id="fecha-nacimiento">
+            </div>
+        </div>
+
+
+        <div class="edaños">
+
+            <div class="edad">
+                <label for="edad">Edad:</label>
+                <input type="text" id="edad" readonly>
+            </div>
+
+            <div class="c18años">
+                <label for="18años">Cumplió 18 años:</label>
+                <input type="text" id="18años" readonly>
+            </div>
+        </div>
+
+        <div class="senac">
+            <div class="sexo">
+                <label for="genero">Género:</label><br>
+                <input type="radio" id="masculino" name="genero" value="masculino">
+                <label for="masculino">Masculino</label><br>
+                <input type="radio" id="femenino" name="genero" value="femenino">
+                <label for="femenino">Femenino</label><br>
+            </div>
+
+            <div class="nacionalidad">
+                <label for="nacionalidad">Nacionalidad:</label><br>
+                <input type="radio" id="argentina" name="nacionalidad" value="argentina">
+                <label for="argentina">Argentina</label><br>
+                <input type="radio" id="extranjera" name="nacionalidad" value="extranjera">
+                <label for="extranjera">Extranjera</label><br>
+            </div>
+        </div>
+
+    
+    
+        <div class="tarfecing">
+            <div class="tareas-cuidado">
+                <div class="tarea-cuidado-item">
+                    <label for="input-hijos">hijos:</label>
+                    <input type="number" id="input-hijos" min="0" value="0">
+                </div>
+
+                <div class="tarea-cuidado-item">
+                    <label for="input-hijos-adoptados">adop:</label>
+                    <input type="number" id="input-hijos-adoptados" min="0" value="0">
+                </div>
+
+                <div class="tarea-cuidado-item">
+                    <label for="input-hijos-auh">AUH:</label>
+                    <input type="number" id="input-hijos-auh" min="0" value="0">
+                </div>
+
+                <div class="tarea-cuidado-item">
+                    <label for="input-hijos-discapacidad">disc:</label>
+                    <input type="number" id="input-hijos-discapacidad" min="0" value="0">
+                </div>
+            </div>
+
+            <div class="fec-ingreso">
+                <label for="fec-ingreso">Fecha de ingreso al país:</label>
+                <input type="date" id="fec-ingreso">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="medio">
+        <div class="agregar-fila">
+            <label for="input-desde">Desde (Fecha):</label>
+            <input type="date" id="input-desde">
+            <label for="input-hasta">Hasta (Fecha):</label>
+            <input type="date" id="input-hasta">
+            <label for="input-razon-social">Razón Social:</label>
+            <input type="text" id="input-razon-social" placeholder="Ingrese la razón social">
+            <label for="input-caja">Caja:</label>
+            <select id="input-caja">
+                <option value="ANSES">ANSES</option>
+                <option value="Provincia">Provincia</option>
+                <option value="Otro">Otro</option>
+            </select>
+            <label for="input-servicio">Servicio:</label>
+            <select id="input-servicio">
+                <option value="comunes">Comunes</option>
+                <option value="autonomo">Autónomo/Monotributista</option>
+                <option value="insalubre">Insalubre</option>
+            </select>
+            <button type="button" onclick="agregarFila()">Agregar Fila</button>
+
+
+        </div>
+
+        <div class="aportes">
+            <div class="tabla-aportes">
+                <h3 class="titulo-tabla">Cómputo de Aportes</h3>
+                <table id="tabla-info" border="1">
+                    <thead>
+                        <tr>
+                            <th>Desde (Fecha)</th>
+                            <th>Hasta (Fecha)</th>
+                            <th>Razón Social</th>
+                            <th>Caja</th>
+                            <th>Servicio</th>
+                            <th>Años</th>
+                            <th>Meses</th>
+                            <th>Días</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Las filas se agregarán aquí -->
+                    </tbody>
+                </table>
+
+            </div>
+            <button id="btnLey24476">Aplicar Ley 24.476</button>
+<button id="btnLey27705">Aplicar Ley 27.705</button>
+
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>
