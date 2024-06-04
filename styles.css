@@ -2,7 +2,7 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #d8d8d8;
+    background-color: #d7d7df;
     width: 100%; /* Se asegura de que el body use el 100% del ancho disponible */
     height: auto;
     box-sizing: border-box; /* Incluye padding y borde en el ancho y alto */
