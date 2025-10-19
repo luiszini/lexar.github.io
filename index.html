@@ -8,7 +8,7 @@
     body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background: #f8f7ff;
-  color: #4a3c99;
+  color: #202020;
   margin-left: 10px;
   margin-right: 10px;
   padding: 0;
@@ -24,8 +24,7 @@
       font-weight: 600;
       margin: 0;
       text-align: left;
-      color: white;
-      background: #8b7fff;
+      color: #575757;
       padding: 5px;
       border: 1px solid #b6b2ff;
       box-shadow: 0 2px 4px rgba(139, 127, 255, 0.2);
@@ -38,9 +37,9 @@
       left: 0;
       right: 0;
       width: 100%;
-      background: #8b7fff;
-      border: 1px solid #b6b2ff;
-      box-shadow: 0 2px 4px rgba(139, 127, 255, 0.2);
+      background: #e3e3e3;
+      background: linear-gradient(180deg, rgba(227, 227, 227, 1) 0%, rgba(255, 255, 255, 1) 100%);
+      border-bottom: 1px solid #858585;
       margin-bottom: 10px;
       z-index: 1000;
     }
@@ -50,7 +49,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 3px 10px;
-      max-height: 45px;
+      max-height: 30px;
     }
     
     .header-left {
@@ -80,7 +79,7 @@
       border: none;
       box-shadow: none;
       padding: 0;
-      font-size: 15px;
+      font-size: 16px;
     }
     
     /* Estilos de búsqueda */
@@ -88,31 +87,32 @@
     .search-input {
       flex: 1;
       padding: 4px 10px;
-      border: 1px solid #b6b2ff;
+      border: 1px solid #858585;
       border-radius: 4px 0 0 4px;
-      font-size: 11px;
-      background: white;
+      font-size: 12px;
+      background: #858585;
       outline: none;
-      height: 24px;
+      height: 25px;
       box-sizing: border-box;
       display: flex;
       align-items: center;
+      color: #858585;
     }
     
     .search-input:focus {
-      border-color: #8b7fff;
-      box-shadow: 0 0 0 2px rgba(139, 127, 255, 0.1);
+      background: #abcbda;
+      border-color: #4f6fc7;
     }
     
     .search-btn {
       padding: 4px 12px;
-      background: #8b7fff;
-      color: white;
-      border: 1px solid #b6b2ff;
+      background: #858585;
+      color: #858585;
+      border: 1px solid #858585;
       border-radius: 0 4px 4px 0;
       cursor: pointer;
       font-size: 11px;
-      height: 24px;
+      height: 25px;
       box-sizing: border-box;
       transition: background-color 0.2s;
       display: flex;
@@ -121,7 +121,8 @@
     }
     
     .search-btn:hover {
-      background: #6b5bff;
+      background: #abcbda;
+      border: 1px solid #4f6fc7;
     }
     
     /* Estilos de navegación */
@@ -137,17 +138,19 @@
     
     .dropdown-btn {
       background: transparent;
-      color: white;
+      color: #202020;
       border: none;
       padding: 8px 12px;
       cursor: pointer;
       font-size: 12px;
       font-weight: 500;
       transition: background-color 0.2s;
+      border: 1px solid transparent;
     }
     
     .dropdown-btn:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: #abcbda;
+      border: 1px solid #4f6fc7;
     }
     
     .dropdown-content {
@@ -155,9 +158,7 @@
       position: absolute;
       background: white;
       min-width: 180px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      border: 1px solid #313131;
-      border-radius: 4px;
+      border: 1px solid #858585;
       z-index: 1001; /* Por encima del header fijo */
       top: 100%;
       left: 0;
@@ -171,16 +172,18 @@
     }
     
     .dropdown-content a {
-      color: #1e293b;
+      color: #202020;
       padding: 8px 12px;
       text-decoration: none;
       display: block;
       font-size: 11px;
       transition: background-color 0.2s;
+      border: 1px solid transparent;
     }
     
     .dropdown-content a:hover {
-      background: #f1f5f9;
+      background: #abcbda;
+      border: 1px solid #4f6fc7;
     }
     
     .dropdown-content hr {
@@ -217,7 +220,7 @@
       }
     }
     fieldset {
-      border: 1px solid #b6b2ff;
+      border: 1px solid #858585;
       background: #ffffff;
       padding: 10px;
       margin: 5px;
@@ -225,14 +228,14 @@
     legend {
       font-weight: 600;
       font-size: 11px;
-      color: #4a3c99;
+      color: #202020;
       background: #f0efff;
-      border: 1px solid #b6b2ff;
+      border: 1px solid #858585;
     }
     label {
       display: block;
       font-size: 11px;
-      color: #4a3c99;
+      color: #202020;
       font-weight: 500;
       margin-bottom: 4px;
     }
@@ -240,14 +243,14 @@
       font-size: 11px;
       outline: none;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      border: 1px solid #b6b2ff;
+      border: 1px solid #b3b3b3;
       background: #fff;
-      color: #4a3c99;
+      color: #202020;
       padding: 3px 3px;
       transition: border-color 0.2s ease;
     }
     input:focus, select:focus {
-      border-color: #8b7fff;
+      border-color: #003399;
       background: #f8f7ff;
     }
     .fieldset-main .grid input,
@@ -275,17 +278,17 @@
       width: 100%;
       margin-top: 4px;
       background: #fff;
-      border: 1px solid #313131;
+      border: 1px solid #858585;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
     th, td {
-      border: 1px solid #313131;
+      border: 1px solid #858585;
       padding: 2px 4px;
       font-size: 11px;
     }
     th {
-      background: #8b7fff;
-      color: white;
+      background: #858585;
+      color: #202020;
       font-weight: 600;
       text-align: left;
       font-size: 11px;
@@ -302,9 +305,9 @@
     tfoot td { font-weight: 600; background: #e2e8f0; color: #1e293b; }
     
     .btn {
-      background: #d4d1ff;
-      color: #4a3c99;
-      border: 1px solid #b6b2ff;
+      background: #858585;
+      color: #202020;
+      border: 1px solid #858585;
       font-weight: 500;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       font-size: 11px;
@@ -314,11 +317,11 @@
       transition: background-color 0.2s ease;
     }
     .btn:hover {
-      background: #b6b2ff;
-      border: 1px solid #8b7fff;
+      background: #ffffff;
+      border: 1px solid #858585;
     }
     .btn:active {
-      background: #6b5bff;
+      background: #005a9e;
     }
     
     /* Estilos para indicadores de atajos de teclado */
@@ -363,7 +366,7 @@
       display: inline-block;
       padding: 4px 8px;
       background: #e2e8f0;
-      color: #1e293b;
+      color: #202020;
       font-size: 11px;
       margin-right: 6px;
       border: 1px solid #cbd5e1;
@@ -555,13 +558,13 @@
     /* Estilos específicos para modo claro - sobrescribir modo oscuro */
     select {
       background: white !important;
-      border: 1px solid #cbd5e1 !important;
-      color: #1e293b !important;
+      border: 1px solid #858585 !important;
+      color: #202020 !important;
     }
     
     select:focus {
-      border-color: #3b82f6 !important;
-      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
+      border-color: #003399 !important;
+      box-shadow: 0 0 0 2px #2563eb;
     }
     
     /* Barra de botones de acción */
@@ -573,7 +576,7 @@
       width: 100%;
       height: 60px;
       background: #f8fafc;
-      border-top: 1px solid #969696;
+      border-top: 1px solid #858585;
       display: flex;
       flex-direction: row;
       gap: 8px;
@@ -585,9 +588,9 @@
     .action-btn {
       width: 80px;
       height: 44px;
-      border: 1px solid #cbd5e1;
+      border: 1px solid #858585;
       background: #f1f5f9;
-      color: #475569;
+      color: #202020;
       cursor: pointer;
       display: flex;
       flex-direction: column;
@@ -619,13 +622,14 @@
     }
     
     .action-btn-primary {
-      background: #3b82f6;
+      background: #667eea;
       color: white;
       border-color: #2563eb;
     }
     
     .action-btn-primary:hover {
-      background: #2563eb;
+      background: #abcbda;
+      border: 1px solid #003399;
     }
     
     /* Ajustar margen del contenido principal */
@@ -1666,60 +1670,8 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
       const ini=fechaInicioMoratoria(), fin=capMoratoria(); if(!ini||!fin){ await showModal('Complete fecha de nacimiento (y de ingreso si es extranjera/o) y verifique tipo de moratoria.'); return }
       if(ini>fin){ await showModal(`La ventana de moratoria resulta vacía (desde ${fmtDMY2(ini)} hasta ${fmtDMY2(fin)}).`); return }
       
-      // Calcular aportes actuales (sin moratorias)
-      const aportesActuales = totalAportesYMD();
-      const beneficio = $('#beneficio').value;
-      
-      // Para Retiro por Invalidez, verificar si cumple 30 años o regularidad
-      if (beneficio === 'Retiro por Invalidez') {
-        const fechaSolicitud = parseISO($('#fSol').value) || new Date();
-        const requisitosTrabajador = validarRequisitosTrabajadorInvalidez(fechaSolicitud);
-        
-        // Si ya cumple los requisitos, no cargar moratoria
-        if (requisitosTrabajador.cumple) {
-          await showModal('Ya cumple con los requisitos de aportes para Retiro por Invalidez. No es necesario cargar moratoria.');
-          return;
-        }
-        
-        // Calcular cuánto falta para completar 30 años
-        const faltaAportes = calcularFaltanteAportes(aportesActuales.total, {y:30,m:0,d:0});
-        
-        // Si ya cumple 30 años, no cargar moratoria
-        if (faltaAportes.y === 0 && faltaAportes.m === 0 && faltaAportes.d === 0) {
-          await showModal('Ya cumple con 30 años de aportes. No es necesario cargar moratoria.');
-          return;
-        }
-      } else {
-        // Para otros beneficios, usar lógica normal
-        const aportesRequeridos = aportesRequeridosGlobal();
-        const faltaAportes = calcularFaltanteAportes(aportesActuales.total, aportesRequeridos);
-        
-        // Si ya cumple los aportes requeridos, no cargar moratoria
-        if (faltaAportes.y === 0 && faltaAportes.m === 0 && faltaAportes.d === 0) {
-          await showModal('Ya cumple con los aportes requeridos. No es necesario cargar moratoria.');
-          return;
-        }
-      }
-      
-      // Calcular cuántos años de moratoria necesitamos
-      let anosNecesarios;
-      if (beneficio === 'Retiro por Invalidez') {
-        const faltaAportes = calcularFaltanteAportes(aportesActuales.total, {y:30,m:0,d:0});
-        anosNecesarios = faltaAportes.y + (faltaAportes.m > 0 ? 1 : 0);
-      } else {
-        const aportesRequeridos = aportesRequeridosGlobal();
-        const faltaAportes = calcularFaltanteAportes(aportesActuales.total, aportesRequeridos);
-        anosNecesarios = faltaAportes.y + (faltaAportes.m > 0 ? 1 : 0);
-      }
-      
-      // Ajustar la fecha de fin para cargar solo lo necesario
-      const finAjustado = new Date(ini);
-      finAjustado.setFullYear(finAjustado.getFullYear() + anosNecesarios);
-      
-      // No exceder la fecha máxima de moratoria
-      const finFinal = finAjustado > fin ? fin : finAjustado;
-      
-      const base={desde:new Date(ini), hasta:new Date(finFinal)};
+      // Cargar toda la moratoria disponible sin importar si ya cumple los requisitos
+      const base={desde:new Date(ini), hasta:new Date(fin)};
   // blockers: sólo las aportaciones con fechas reales (no las computadas generadas)
   const blockers=state.aportes.filter(p=>!p.esMoratoria && !p.esCredito && p.desde && p.hasta).map(p=>({desde:new Date(p.desde), hasta:new Date(p.hasta)}));
   let piezas=subtractRanges(base, blockers); if(piezas.length===0){ await showModal('No hay tramos disponibles sin superposición con aportes existentes.'); return }
@@ -1732,7 +1684,7 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
         per.ymd=periodoYMD(per.desde, per.hasta); 
         state.aportes.push(per) 
       }
-      render(); await showModal(`Moratoria ${tipo} cargada en ${piezas.length} tramo(s). Solo se cargó lo necesario para completar los aportes requeridos.`);
+      render(); await showModal(`Moratoria ${tipo} cargada en ${piezas.length} tramo(s). Se cargó toda la moratoria disponible sin importar los aportes requeridos.`);
     }
     function quitarMoratorias(){ state.aportes = state.aportes.filter(p=>!p.esMoratoria); render(); }
 
@@ -1849,6 +1801,7 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
   // total: suma de todas las filas efectivas en la tabla (incluye beneficios generados) + compensación insalubre
       const total = state.aportes.reduce((acc,p)=>sumYMD(acc,p.ymd||{y:0,m:0,d:0}),{y:0,m:0,d:0});
       const totalConCompensacion = sumYMD(total, compensacionInsalubre);
+      
       
       return {base,ap475,apEx,total:totalConCompensacion,compensacionInsalubre};
     }
@@ -3256,6 +3209,7 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
       const edadHoy = fN ? diff360(fN, fS) : {y:0,m:0,d:0};
       const {base, ap475, apEx, total, compensacionInsalubre} = totalAportesYMD();
       
+      
       // Verificar si hay aportes en construcción y validar requisitos especiales
       const validacionConstruccion = validarConstruccion();
       const tieneConstruccion = validacionConstruccion.aportesConstruccion.length > 0;
@@ -3276,17 +3230,26 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
           } else if (prorrateoInfo.tipo === 'prorrateado_anses' || prorrateoInfo.tipo === 'prorrateado_anses_multi') {
             // Aplicar edad prorrateada según instructivo ANSES (simple o múltiple)
             edadRequeridaFinal = prorrateoInfo.edadProrrateada.años;
-            cumpleAportes = prorrateoInfo.cumple;
+            // Usar el total completo (con moratorias) para determinar si cumple aportes
+            const totalComputable = total; // total incluye moratorias y créditos
+            cumpleAportes = ymdGte(totalComputable, reqApo);
+            
           } else if (prorrateoInfo.tipo === 'prorrateado') {
             // Aplicar edad prorrateada (método anterior)
             edadRequeridaFinal = prorrateoInfo.edadProrrateada.años;
-            cumpleAportes = prorrateoInfo.cumple;
+            // Usar el total completo (con moratorias) para determinar si cumple aportes
+            const totalComputable = total; // total incluye moratorias y créditos
+            cumpleAportes = ymdGte(totalComputable, reqApo);
           }
         } else {
-          cumpleAportes = ymdGte(total, reqApo);
+          // Usar el total completo (con moratorias) para determinar si cumple
+          const totalComputable = total; // total incluye moratorias y créditos
+          cumpleAportes = ymdGte(totalComputable, reqApo);
         }
       } else {
-        cumpleAportes = ymdGte(total, reqApo);
+        // Usar el total completo (con moratorias) para determinar si cumple
+        const totalComputable = total; // total incluye moratorias y créditos
+        cumpleAportes = ymdGte(totalComputable, reqApo);
       }
       
       // Validación especial para construcción
@@ -3295,13 +3258,15 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
         const reqsConstruccion = getRequirementsConstruccion($('#sexo').value);
         edadRequeridaFinal = reqsConstruccion.edad;
         
-        // Verificar si cumple los requisitos de construcción
-        const cumpleConstruccion = validacionConstruccion.cumple && ymdGte(total, {y:25,m:0,d:0});
+        // Verificar si cumple los requisitos de construcción (usando total completo)
+        const totalComputable = total; // total incluye moratorias y créditos
+        const cumpleConstruccion = validacionConstruccion.cumple && ymdGte(totalComputable, {y:25,m:0,d:0});
         cumpleAportes = cumpleConstruccion;
       }
       
       // Calcular si cumple la edad requerida
       const cumpleEdad = edadHoy.y >= edadRequeridaFinal;
+      
 
       // Helper para mostrar Y/M/D con formato agradable
       const fmtYMD = (ymd) => `${ymd.y}a ${ymd.m}m ${ymd.d}d`;
@@ -3582,6 +3547,7 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
         const edadHoy = fN ? diff360(fN, fS) : {y:0,m:0,d:0};
         const {base, ap475, apEx, total, compensacionInsalubre} = totalAportesYMD();
         
+        
         // Verificar si hay aportes en construcción
         const validacionConstruccion = validarConstruccion();
         const tieneConstruccion = validacionConstruccion.aportesConstruccion.length > 0;
@@ -3597,25 +3563,36 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
             if (prorrateoInfo.tipo === 'completo') {
               cumpleAportes = true;
               edadRequeridaFinal = getRequirementsFor(prorrateoInfo.regimen, $('#sexo').value).edad;
-            } else if (prorrateoInfo.tipo === 'prorrateado_anses' || prorrateoInfo.tipo === 'prorrateado_anses_multi') {
-              edadRequeridaFinal = prorrateoInfo.edadProrrateada.años;
-              cumpleAportes = prorrateoInfo.cumple;
-            } else if (prorrateoInfo.tipo === 'prorrateado') {
-              edadRequeridaFinal = prorrateoInfo.edadProrrateada.años;
-              cumpleAportes = prorrateoInfo.cumple;
+          } else if (prorrateoInfo.tipo === 'prorrateado_anses' || prorrateoInfo.tipo === 'prorrateado_anses_multi') {
+            edadRequeridaFinal = prorrateoInfo.edadProrrateada.años;
+            // Usar el total completo (con moratorias) para determinar si cumple aportes
+            const totalComputable = total; // total incluye moratorias y créditos
+            cumpleAportes = ymdGte(totalComputable, reqApo);
+            
+          } else if (prorrateoInfo.tipo === 'prorrateado') {
+            edadRequeridaFinal = prorrateoInfo.edadProrrateada.años;
+            // Usar el total completo (con moratorias) para determinar si cumple aportes
+            const totalComputable = total; // total incluye moratorias y créditos
+            cumpleAportes = ymdGte(totalComputable, reqApo);
             }
           } else {
-            cumpleAportes = ymdGte(total, reqApo);
+            // Usar el total completo (con moratorias) para determinar si cumple aportes
+            const totalComputable = total; // total incluye moratorias y créditos
+            cumpleAportes = ymdGte(totalComputable, reqApo);
           }
         } else {
-          cumpleAportes = ymdGte(total, reqApo);
+          // Usar el total completo (con moratorias) para determinar si cumple aportes
+          const totalComputable = total; // total incluye moratorias y créditos
+          cumpleAportes = ymdGte(totalComputable, reqApo);
         }
         
         // Validación especial para construcción
         if(tieneConstruccion){
           const reqsConstruccion = getRequirementsConstruccion($('#sexo').value);
           edadRequeridaFinal = reqsConstruccion.edad;
-          const cumpleConstruccion = validacionConstruccion.cumple && ymdGte(total, {y:25,m:0,d:0});
+          // Usar el total completo (con moratorias) para determinar si cumple aportes
+          const totalComputable = total; // total incluye moratorias y créditos
+          const cumpleConstruccion = validacionConstruccion.cumple && ymdGte(totalComputable, {y:25,m:0,d:0});
           cumpleAportes = cumpleConstruccion;
         }
         
@@ -6175,9 +6152,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     .btn-primary {
-      background: #8b7fff;
-      color: white;
-      border: 1px solid #b6b2ff;
+      background: #cacaca;
+      color: #202020;
+      border: 1px solid #858585;
       padding: 8px 16px;
       border-radius: 4px;
       cursor: pointer;
@@ -6186,9 +6163,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     .btn-primary:hover {
-      background: #6b5bff;
-      border-color: #8b7fff;
-      box-shadow: 0 2px 4px rgba(139, 127, 255, 0.3);
+      background: #ffffff;
+      border-color: #858585;
     }
 
     .btn-secondary {
@@ -6269,7 +6245,7 @@ document.addEventListener('DOMContentLoaded', () => {
       gap: 12px;
       margin-bottom: 16px;
       padding: 12px 16px;
-      background: linear-gradient(135deg, #f0efff 0%, #e8e6ff 100%);
+      background: #b0b0b0;
       border: 2px solid #b6b2ff;
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(182, 178, 255, 0.15);
@@ -6306,23 +6282,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* Botones compactos estilo Windows */
     .btn {
-      padding: 8px 12px;
-      border: 2px solid #b6b2ff;
-      border-radius: 6px;
+      padding: 1px 4px;
+      border: 1px solid #858585;
       cursor: pointer;
-      font-size: 11px;
+      font-size: 12px;
       height: 32px;
-      background: linear-gradient(135deg, #d4d1ff 0%, #b6b2ff 100%);
-      color: #4a3c99;
+      background: #858585;
+      color: #202020;
       transition: all 0.2s ease;
       font-weight: 500;
     }
 
     .btn:hover {
-      background: linear-gradient(135deg, #b6b2ff 0%, #8b7fff 100%);
-      border-color: #8b7fff;
-      box-shadow: 0 4px 12px rgba(139, 127, 255, 0.3);
-      transform: translateY(-1px);
+      background: #abcbda;
+      border-color: #003399;
     }
 
     .btn-primary {
@@ -6836,13 +6809,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* Estilos para información del usuario */
     .user-info {
+      height: 35px;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
+      justify-content: center;
       gap: 15px;
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(68, 68, 68, 0.2);
-      padding: 5px;
+      border: 1px solid #858585;
     }
 
     .user-profile {
@@ -6852,14 +6826,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     .user-avatar {
-      width: 40px;
-      height: 40px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       background: linear-gradient(135deg, #4168ea 0%, #1e40af 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
+      color: #202020;
       font-weight: 600;
       font-size: 16px;
       position: relative;
@@ -6876,24 +6850,24 @@ document.addEventListener('DOMContentLoaded', () => {
     .user-details {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 1px;
     }
 
     .user-name {
       font-weight: 600;
-      color: white;
+      color: #202020;
       font-size: 14px;
     }
 
     .user-email {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 12px;
+      color: #202020;
+      font-size: 11px;
     }
 
     .user-menu-btn {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      color: white;
+      color: #202020;
       width: 30px;
       height: 30px;
       border-radius: 50%;
