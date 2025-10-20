@@ -7,7 +7,7 @@
   <style>
     body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background: #f8f7ff;
+  background: #a0a0a0;
   color: #202020;
   margin-left: 10px;
   margin-right: 10px;
@@ -87,10 +87,10 @@
     .search-input {
       flex: 1;
       padding: 4px 10px;
-      border: 1px solid #858585;
+      border: 1px solid #202020;
       border-radius: 4px 0 0 4px;
       font-size: 12px;
-      background: #858585;
+      background: #202020;
       outline: none;
       height: 25px;
       box-sizing: border-box;
@@ -220,24 +220,25 @@
       }
     }
     fieldset {
-      border: 1px solid #858585;
-      background: #ffffff;
+      background: #a0a0a0;
       padding: 10px;
       margin: 5px;
+      border: none;
+      border-top: 1px solid #202020;
     }
     legend {
       font-weight: 600;
       font-size: 11px;
       color: #202020;
-      background: #f0efff;
-      border: 1px solid #858585;
+      background: #a0a0a0;
+      
     }
     label {
       display: block;
       font-size: 11px;
       color: #202020;
       font-weight: 500;
-      margin-bottom: 4px;
+      
     }
     input, select {
       font-size: 11px;
@@ -282,13 +283,12 @@
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
     th, td {
-      border: 1px solid #858585;
-      padding: 2px 4px;
+      border-bottom: 1px solid #858585;
       font-size: 11px;
     }
     th {
-      background: #858585;
-      color: #202020;
+      background: #202020;
+      color: #fff;
       font-weight: 600;
       text-align: left;
       font-size: 11px;
@@ -308,7 +308,7 @@
       background: #858585;
       color: #202020;
       border: 1px solid #858585;
-      font-weight: 500;
+      font-weight: 600;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       font-size: 11px;
       padding: 6px;
@@ -575,7 +575,7 @@
       right: 0;
       width: 100%;
       height: 60px;
-      background: #f8fafc;
+      background: #202020;
       border-top: 1px solid #858585;
       display: flex;
       flex-direction: row;
@@ -757,6 +757,11 @@
 
   <!-- Barra de botones de acción -->
   <div class="action-buttons-bar" id="actionButtonsBar" style="display: none;">
+    <div class="pills-container">
+      <span class="pill" id="pill475">D. 475/2021: <b><span id="cred475Y">0</span></b> años</span>
+      <span class="pill" id="pillExceso">Art. 19: <b><span id="credExY">0</span> años</b> <b><span id="credExM">0</span> meses</b> <b><span id="credExD">0</span> días</b></span>
+      <span class="pill" id="pillInsalubre">Compensación insalubre: <b><span id="credInsY">0</span> años</b> <b><span id="credInsM">0</span> meses</b> <b><span id="credInsD">0</span> días</b></span>
+    </div>
     <button id="btnCalcular" type="button" class="action-btn action-btn-primary">
       <span class="icon">✅</span>
       <span class="text">Calcular</span>
@@ -936,6 +941,7 @@
   <button id="btnRestoreEX" type="button" class="btn" style="margin-left:6px">♻️ Restaurar Art. 19</button>
     </div>
 
+
     <table>
       <thead>
         <tr>
@@ -992,11 +998,7 @@
       </tfoot>
     </table>
 
-    <div class="pills-container">
-      <span class="pill" id="pill475">D. 475/2021: <b><span id="cred475Y">0</span></b> años</span>
-      <span class="pill" id="pillExceso">Art. 19: <b><span id="credExY">0</span> años</b> <b><span id="credExM">0</span> meses</b> <b><span id="credExD">0</span> días</b></span>
-      <span class="pill" id="pillInsalubre">Compensación insalubre: <b><span id="credInsY">0</span> años</b> <b><span id="credInsM">0</span> meses</b> <b><span id="credInsD">0</span> días</b></span>
-    </div>
+    
   </fieldset>
 
     <fieldset id="seccionDerecho" style="display: none;">
