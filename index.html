@@ -639,170 +639,6 @@
     }
     
     
-    /* Modo oscuro */
-    [data-theme="dark"] {
-      background: #0f172a;
-      color: #e2e8f0;
-    }
-    
-    /* Modo oscuro */
-    [data-theme="dark"] #main-container {
-      background: #1e293b;
-      border: 1px solid #334155;
-    }
-    
-    [data-theme="dark"] .main-header {
-      background: #1e293b;
-      border-bottom: 1px solid #334155;
-    }
-    
-    [data-theme="dark"] .logo-section h1 {
-      color: #e2e8f0;
-    }
-    
-    [data-theme="dark"] .search-input {
-      background: #334155;
-      border: 1px solid #475569;
-      color: #e2e8f0;
-    }
-    
-    [data-theme="dark"] .search-input::placeholder {
-      color: #94a3b8;
-    }
-    
-    [data-theme="dark"] .search-btn {
-      background: #475569;
-      border: 1px solid #64748b;
-      color: #e2e8f0;
-    }
-    
-    [data-theme="dark"] .search-btn:hover {
-      background: #64748b;
-    }
-    
-    [data-theme="dark"] .dropdown-btn {
-      background: #334155;
-      color: #e2e8f0;
-      border: 1px solid #475569;
-    }
-    
-    [data-theme="dark"] .dropdown-btn:hover {
-      background: #475569;
-    }
-    
-    [data-theme="dark"] .dropdown-content {
-      background: #1e293b;
-      border: 1px solid #334155;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    }
-    
-    [data-theme="dark"] .dropdown-content a {
-      color: #e2e8f0;
-    }
-    
-    [data-theme="dark"] .dropdown-content a:hover {
-      background: #334155;
-    }
-    
-    [data-theme="dark"] fieldset {
-      border: 1px solid #334155;
-      background: #1e293b;
-    }
-    
-    [data-theme="dark"] legend {
-      background: #334155;
-      color: #e2e8f0;
-    }
-    
-    [data-theme="dark"] label {
-      color: #cbd5e1;
-    }
-    
-    [data-theme="dark"] input, select {
-      background: #334155;
-      border: 1px solid #475569;
-      color: #e2e8f0;
-    }
-    
-    [data-theme="dark"] input:focus, select:focus {
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-    }
-    
-    [data-theme="dark"] .btn {
-      background: #475569;
-      color: #e2e8f0;
-      border: 1px solid #64748b;
-    }
-    
-    [data-theme="dark"] .btn:hover {
-      background: #64748b;
-    }
-    
-    [data-theme="dark"] .btn-main {
-      background: #3b82f6;
-      color: white;
-      border: 1px solid #2563eb;
-    }
-    
-    [data-theme="dark"] .btn-main:hover {
-      background: #2563eb;
-    }
-    
-    [data-theme="dark"] table {
-      background: #1e293b;
-      border: 1px solid #334155;
-    }
-    
-    [data-theme="dark"] th {
-      background: #334155;
-      color: #e2e8f0;
-      border: 1px solid #475569;
-    }
-    
-    [data-theme="dark"] td {
-      background: #1e293b;
-      color: #e2e8f0;
-      border: 1px solid #334155;
-    }
-    
-    [data-theme="dark"] .cell-input {
-      background: #334155;
-      border: 1px solid #475569;
-      color: #e2e8f0;
-    }
-    
-    [data-theme="dark"] .pill {
-      background: #334155;
-      color: #e2e8f0;
-      border: 1px solid #475569;
-    }
-    
-    /* Modo oscuro para barra de botones */
-    [data-theme="dark"] .action-buttons-bar {
-      background: #1e293b;
-      border-right: 1px solid #334155;
-    }
-    
-    [data-theme="dark"] .action-btn {
-      background: #334155;
-      color: #e2e8f0;
-      border: 1px solid #475569;
-    }
-    
-    [data-theme="dark"] .action-btn:hover {
-      background: #475569;
-    }
-    
-    [data-theme="dark"] .action-btn-primary {
-      background: #3b82f6;
-      color: white;
-      border-color: #2563eb;
-    }
-    
-    [data-theme="dark"] .action-btn-primary:hover {
-      background: #2563eb;
-    }
     
   </style>
 </head>
@@ -861,7 +697,6 @@
               <a href="#" id="zoomIn">Acercar</a>
               <a href="#" id="zoomOut">Alejar</a>
               <hr>
-              <a href="#" id="toggleTheme">🌙 Modo Oscuro</a>
               <a href="#" id="toggleShortcuts">⌨️ Comandos de Teclado</a>
             </div>
           </div>
@@ -1568,7 +1403,21 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
       fechaReq.setFullYear(fechaReq.getFullYear()+req); 
       if(fS<=fechaReq) return {y:0,m:0,d:0}; 
       const exc=diff360(fechaReq,fS); 
-      return {y:Math.floor(exc.y/2), m:Math.floor(exc.m/2), d:Math.floor(exc.d/2)} 
+      // Convertir excedente completo a días, dividir por 2, y convertir de vuelta
+      const totalDiasExcedente = (exc.y * 360) + (exc.m * 30) + exc.d;
+      const compensacionDias = Math.floor(totalDiasExcedente / 2);
+      
+      // Convertir días de compensación de vuelta a años, meses y días
+      const compensacionAños = Math.floor(compensacionDias / 360);
+      const diasRestantes = compensacionDias % 360;
+      const compensacionMeses = Math.floor(diasRestantes / 30);
+      const compensacionDiasFinal = diasRestantes % 30;
+      
+      return {
+        y: compensacionAños,
+        m: compensacionMeses,
+        d: compensacionDiasFinal
+      } 
     }
     function updateExcesoPill(){ const c=computeExcesoEdad(); $('#credExY').textContent=c.y; $('#credExM').textContent=c.m; $('#credExD').textContent=c.d }
     function updateInsalubrePill(){ const c=calcularCompensacionInsalubre(); $('#credInsY').textContent=c.y; $('#credInsM').textContent=c.m; $('#credInsD').textContent=c.d }
@@ -1990,11 +1839,20 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
         
         if (fSComp > fechaReq) {
           const excedente = diff360(fechaReq, fSComp);
-          // Compensación = excedente / 2
+          // Convertir excedente completo a días, dividir por 2, y convertir de vuelta
+          const totalDiasExcedente = (excedente.y * 360) + (excedente.m * 30) + excedente.d;
+          const compensacionDias = Math.floor(totalDiasExcedente / 2);
+          
+          // Convertir días de compensación de vuelta a años, meses y días
+          const compensacionAños = Math.floor(compensacionDias / 360);
+          const diasRestantes = compensacionDias % 360;
+          const compensacionMeses = Math.floor(diasRestantes / 30);
+          const compensacionDiasFinal = diasRestantes % 30;
+          
           compensacion = {
-            y: Math.floor(excedente.y / 2),
-            m: Math.floor(excedente.m / 2),
-            d: Math.floor(excedente.d / 2)
+            y: compensacionAños,
+            m: compensacionMeses,
+            d: compensacionDiasFinal
           };
         }
       }
@@ -3722,44 +3580,6 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
   // Llamar la función al cargar la página
   toggleSeccionAportes();
   
-  // Controlar el tema (modo oscuro/claro)
-  function toggleTheme() {
-    const body = document.body;
-    const themeToggle = document.getElementById('toggleTheme');
-    const currentTheme = body.getAttribute('data-theme');
-    
-    if (currentTheme === 'dark') {
-      body.removeAttribute('data-theme');
-      themeToggle.textContent = '🌙 Modo Oscuro';
-      localStorage.setItem('theme', 'light');
-    } else {
-      body.setAttribute('data-theme', 'dark');
-      themeToggle.textContent = '☀️ Modo Claro';
-      localStorage.setItem('theme', 'dark');
-    }
-  }
-  
-  // Cargar tema guardado
-  function loadTheme() {
-    const savedTheme = localStorage.getItem('theme');
-    const themeToggle = document.getElementById('toggleTheme');
-    
-    if (savedTheme === 'dark') {
-      document.body.setAttribute('data-theme', 'dark');
-      themeToggle.textContent = '☀️ Modo Claro';
-    } else {
-      themeToggle.textContent = '🌙 Modo Oscuro';
-    }
-  }
-  
-  // Event listener para el botón de tema
-  document.getElementById('toggleTheme').addEventListener('click', (e) => {
-    e.preventDefault();
-    toggleTheme();
-  });
-  
-  // Cargar tema al iniciar
-  loadTheme();
   
   // Event listener para el checkbox de prorrateo
   document.getElementById('chkProrrateo').addEventListener('change', ()=>{
@@ -5985,27 +5805,28 @@ document.addEventListener('DOMContentLoaded', () => {
       background-color: rgba(0,0,0,0.5);
     }
     
-    .modal-content {
-      background-color: #ffffff;
-      margin: 5% auto;
-      padding: 0;
-      border: 2px solid #b6b2ff;
-      width: 80%;
-      max-width: 800px;
-      border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(139, 127, 255, 0.2);
+      .modal-content {
+        background-color: #ffffff;
+        border: 1px solid #858585;
+        box-shadow: 0 8px 32px rgba(139, 127, 255, 0.2);
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        max-width: 1000px;
+        max-height: 90vh;
+        overflow-y: auto;
       backdrop-filter: blur(10px);
     }
     
     .modal-header {
-      background: linear-gradient(135deg, #8b7fff 0%, #6b5bff 100%);
+      background: #858585;
       color: white;
-      padding: 12px 16px;
-      border-radius: 10px 10px 0 0;
+      padding: 6px 8px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 4px 12px rgba(139, 127, 255, 0.3);
     }
     
     .modal-header h2 {
@@ -6021,7 +5842,6 @@ document.addEventListener('DOMContentLoaded', () => {
       font-weight: bold;
       cursor: pointer;
       padding: 4px 8px;
-      border-radius: 4px;
       transition: all 0.2s ease;
     }
     
@@ -6036,21 +5856,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     .search-section {
-      margin-bottom: 20px;
+      margin-bottom: 5px;
       display: flex;
       align-items: center;
     }
     
     .computations-list {
-      max-height: 400px;
+      max-height: 200px;
       overflow-y: auto;
-      border: 1px solid #b6b2ff;
-      border-radius: 6px;
+      border: 1px solid #858585;
     }
     
     .computation-item {
-      padding: 12px;
-      border-bottom: 1px solid #d4d1ff;
+      padding: 2px;
+      border-bottom: 1px solid #858585;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -6066,7 +5885,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     .computation-name {
       font-weight: 600;
-      color: #4a3c99;
+      color: #202020;
       margin-bottom: 4px;
       white-space: normal;
       word-wrap: break-word;
@@ -6075,7 +5894,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     .computation-details {
       font-size: 12px;
-      color: #6b5bff;
+      color: #202020;
     }
     
     .computation-actions {
@@ -6086,11 +5905,10 @@ document.addEventListener('DOMContentLoaded', () => {
     .action-btn-small {
       padding: 4px 8px;
       font-size: 11px;
-      border: 1px solid #cbd5e1;
+      border: 1px solid #858585;
       background: #f1f5f9;
-      color: #475569;
+      color: #202020;
       cursor: pointer;
-      border-radius: 4px;
     }
     
     .action-btn-small:hover {
@@ -6107,36 +5925,6 @@ document.addEventListener('DOMContentLoaded', () => {
       background: #fecaca;
     }
     
-    [data-theme="dark"] .modal-content {
-      background-color: #1e293b;
-      border-color: #334155;
-    }
-    
-    [data-theme="dark"] .modal-header {
-      background: #334155;
-    }
-    
-    [data-theme="dark"] .computation-item {
-      border-bottom-color: #334155;
-    }
-    
-    [data-theme="dark"] .computation-name {
-      color: #e2e8f0;
-    }
-    
-    [data-theme="dark"] .computation-details {
-      color: #94a3b8;
-    }
-    
-    [data-theme="dark"] .action-btn-small {
-      background: #334155;
-      color: #e2e8f0;
-      border-color: #475569;
-    }
-    
-    [data-theme="dark"] .action-btn-small:hover {
-      background: #475569;
-    }
 
     /* Estilos para modales personalizados */
     .alert-modal, .confirm-modal, .prompt-modal {
@@ -6152,13 +5940,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     .btn-primary {
-      background: #cacaca;
+      background: #b0b0b0;
       color: #202020;
-      border: 1px solid #858585;
+      border: 1px solid #b0b0b0;
       padding: 8px 16px;
-      border-radius: 4px;
       cursor: pointer;
-      font-size: 11px;
+      font-size: 12px;
       transition: all 0.2s ease;
     }
 
@@ -6168,26 +5955,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     .btn-secondary {
-      background: #d4d1ff;
-      color: #4a3c99;
-      border: 1px solid #b6b2ff;
+      background: #b0b0b0;
+      color: #202020;
+      border: 1px solid #b0b0b0;
       padding: 8px 16px;
-      border-radius: 4px;
       cursor: pointer;
-      font-size: 11px;
+      font-size: 12px;
       transition: all 0.2s ease;
     }
 
     .btn-secondary:hover {
-      background: #b6b2ff;
-      border-color: #8b7fff;
-      box-shadow: 0 2px 4px rgba(182, 178, 255, 0.3);
+      background: #ffffff;
+      border-color: #abcbda;
     }
 
     .prompt-input {
       width: 100%;
       padding: 8px 12px;
-      border: 1px solid #b6b2ff;
+      border: 1px solid #858585;
       border-radius: 4px;
       font-size: 11px;
       margin: 10px 0;
@@ -6196,59 +5981,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     .prompt-input:focus {
       outline: none;
-      border-color: #8b7fff;
+      border-color: #858585;
       box-shadow: 0 0 0 2px rgba(139, 127, 255, 0.1);
     }
 
-    /* Modo oscuro para modales personalizados */
-    [data-theme="dark"] .btn-primary {
-      background: #475569;
-      border-color: #475569;
-    }
 
-    [data-theme="dark"] .btn-primary:hover {
-      background: #374151;
-    }
-
-    [data-theme="dark"] .btn-secondary {
-      background: #4b5563;
-      border-color: #4b5563;
-    }
-
-    [data-theme="dark"] .btn-secondary:hover {
-      background: #374151;
-    }
-
-    [data-theme="dark"] .prompt-input {
-      background: #334155;
-      border-color: #475569;
-      color: #e2e8f0;
-    }
-
-    [data-theme="dark"] .prompt-input:focus {
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-    }
-
-    /* Estilos para el modal de gestión de cómputos - Estilo Explorador de Windows */
+    /* Estilos para el modal de gestión de cómputos - Consistente con el sitio */
     .computations-modal {
-      max-width: 1000px;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 90%;
-      max-height: 85vh;
-      margin: 7.5vh auto;
+      max-width: 1000px;
+      max-height: 90vh;
+      overflow-y: auto;
     }
 
-    /* Barra de herramientas - Estilo Windows */
+    /* Barra de herramientas - Consistente con el sitio */
     .toolbar-section {
       display: flex;
       align-items: center;
       gap: 12px;
       margin-bottom: 16px;
       padding: 12px 16px;
-      background: #b0b0b0;
-      border: 2px solid #b6b2ff;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(182, 178, 255, 0.15);
+      background: #f8f7ff;
+      border: 1px solid #858585;
     }
 
     .search-group {
@@ -6260,9 +6018,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     .search-group .search-input {
       flex: 1;
-      padding: 8px 12px;
-      border: 2px solid #b6b2ff;
-      border-radius: 6px;
+      padding: 4px;
+      border: 1px solid #858585;
       font-size: 12px;
       height: 32px;
       transition: all 0.2s ease;
@@ -6270,8 +6027,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     .search-group .search-input:focus {
-      border-color: #8b7fff;
-      box-shadow: 0 0 0 3px rgba(139, 127, 255, 0.1);
+      border-color: #003399;
       outline: none;
     }
 
@@ -6357,16 +6113,16 @@ document.addEventListener('DOMContentLoaded', () => {
       background: #e0e0e0;
     }
 
-    /* Filtros compactos */
+    /* Filtros compactos - Consistente con el sitio */
     .filters-section {
       display: flex;
       align-items: center;
       gap: 8px;
       margin-bottom: 8px;
       padding: 6px 8px;
-      background: #f8f8f8;
-      border: 1px solid #c0c0c0;
-      border-radius: 2px;
+      background: #f8f7ff;
+      border: 1px solid #858585;
+      border-radius: 4px;
       flex-wrap: wrap;
     }
 
@@ -6396,24 +6152,24 @@ document.addEventListener('DOMContentLoaded', () => {
       width: 80px;
     }
 
-    /* Estadísticas compactas */
+    /* Estadísticas compactas - Consistente con el sitio */
     .stats-section {
       display: flex;
       gap: 8px;
       margin-bottom: 8px;
       padding: 4px 8px;
-      background: #f0efff;
-      border: 1px solid #b6b2ff;
-      border-radius: 2px;
+      background: #f8f7ff;
+      border: 1px solid #858585;
+      border-radius: 4px;
     }
 
     .stat-card {
-      background: #e8e6ff;
-      color: #4a3c99;
+      background: #e3e3e3;
+      color: #202020;
       padding: 4px 8px;
-      border-radius: 2px;
+      border-radius: 4px;
       text-align: center;
-      border: 1px solid #b6b2ff;
+      border: 1px solid #858585;
       min-width: 60px;
     }
 
@@ -6428,14 +6184,12 @@ document.addEventListener('DOMContentLoaded', () => {
       color: #6b5bff;
     }
 
-    /* Lista de cómputos - Estilo tabla Windows */
+    /* Lista de cómputos - Consistente con el sitio */
     .computations-container {
       max-height: 350px;
       overflow-y: auto;
-      border: 2px solid #b6b2ff;
+      border: 1px solid #858585;
       background: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(182, 178, 255, 0.1);
     }
 
     .computations-list {
@@ -6443,20 +6197,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     .computation-item {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr auto;
-      gap: 12px;
-      align-items: center;
-      padding: 12px 16px;
-      border-bottom: 1px solid #d4d1ff;
+      display: flex;
+      align-items: space-between;
+      border-bottom: 1px solid #858585;
       transition: all 0.2s ease;
       font-size: 11px;
     }
 
     .computation-item:hover {
-      background: linear-gradient(135deg, #f8f7ff 0%, #f0efff 100%);
-      box-shadow: 0 2px 8px rgba(182, 178, 255, 0.15);
-      transform: translateY(-1px);
+      background: #e3e3e3;
     }
 
     .computation-item:last-child {
@@ -6465,27 +6214,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     .computation-info {
       display: flex;
-      flex-direction: column;
-      gap: 2px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2px;
     }
 
     .computation-name {
       font-weight: 600;
-      font-size: 10px;
-      color: #4a3c99;
+      font-size: 12px;
+      color: #202020;
       white-space: normal;
       word-wrap: break-word;
       overflow-wrap: break-word;
+      margin-right: 4px;
     }
 
     .computation-details {
       font-size: 8px;
-      color: #6b5bff;
+      color: #575757;
+      margin-right: 4px;
     }
 
     .computation-date {
       font-size: 8px;
-      color: #8b7fff;
+      color: #858585;
     }
 
     .computation-actions {
@@ -6494,65 +6246,67 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     .action-btn {
-      padding: 2px 6px;
       border: 1px solid #a0a0a0;
-      border-radius: 2px;
+      border-radius: 1px;
       cursor: pointer;
-      font-size: 8px;
+      font-size: 12px;
       transition: all 0.1s;
       background: #f0f0f0;
       color: #000;
     }
 
     .btn-view {
-      background: #8b7fff;
-      color: white;
-      border-color: #b6b2ff;
+      width: 100%;
+      height: 20%;
+      background: #a0a0a0;
+      color: #202020;
+      border-color: #a0a0a0;
       transition: all 0.2s ease;
     }
 
     .btn-view:hover {
-      background: #6b5bff;
-      border-color: #8b7fff;
-      box-shadow: 0 2px 4px rgba(139, 127, 255, 0.3);
+      background: #abcbda;
+      border-color: #003399;
     }
 
     .btn-edit {
-      background: #9c8bff;
-      color: white;
-      border-color: #8b7fff;
+      width: 100%;
+      height: 20%;
+      background: #a0a0a0;
+      color: #202020;
+      border-color: #a0a0a0;
       transition: all 0.2s ease;
     }
 
     .btn-edit:hover {
-      background: #7a6bff;
-      border-color: #6b5bff;
-      box-shadow: 0 2px 4px rgba(156, 139, 255, 0.3);
+      background: #abcbda;
+      border-color: #003399;
     }
 
     .btn-delete {
-      background: #ff6b6b;
-      color: white;
-      border-color: #ff5252;
+      width: 100%;
+      height: 20%;
+      background: #a0a0a0;
+      color: #202020;
+      border-color: #a0a0a0;
       transition: all 0.2s ease;
     }
 
     .btn-delete:hover {
-      background: #ff5252;
-      border-color: #ff1744;
-      box-shadow: 0 2px 4px rgba(255, 107, 107, 0.3);
+      background: #abcbda;
+      border-color: #003399;
     }
 
-    /* Paginación compacta */
+    /* Paginación compacta - Consistente con el sitio */
     .pagination-section {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-top: 8px;
       padding: 4px 8px;
-      background: #f0f0f0;
-      border: 1px solid #c0c0c0;
-      border-radius: 2px;
+      background: #f8f7ff;
+      border: 1px solid #858585;
+      border-radius: 4px;
     }
 
     .pagination-info {
@@ -6573,78 +6327,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     .page-number {
       padding: 2px 6px;
-      border: 1px solid #a0a0a0;
-      border-radius: 2px;
+      border: 1px solid #858585;
+      border-radius: 4px;
       cursor: pointer;
       font-size: 9px;
-      background: #f0f0f0;
-      color: #000;
+      background: #e3e3e3;
+      color: #202020;
     }
 
     .page-number.active {
-      background: #0078d4;
+      background: #858585;
       color: white;
-      border-color: #005a9e;
+      border-color: #858585;
     }
 
     .page-number:hover:not(.active) {
-      background: #e0e0e0;
+      background: #e3e3e3;
     }
 
-    /* Modo oscuro para el modal - Estilo Windows */
-    [data-theme="dark"] .toolbar-section {
-      background: #2d2d30;
-      border-color: #3e3e42;
-    }
-
-    [data-theme="dark"] .filters-section {
-      background: #2d2d30;
-      border-color: #3e3e42;
-    }
-
-    [data-theme="dark"] .stats-section {
-      background: #2d2d30;
-      border-color: #3e3e42;
-    }
-
-    [data-theme="dark"] .filter-group label {
-      color: #cccccc;
-    }
-
-    [data-theme="dark"] .filter-select,
-    [data-theme="dark"] .filter-input {
-      background: #3c3c3c;
-      border-color: #555555;
-      color: #cccccc;
-    }
-
-    [data-theme="dark"] .search-input {
-      background: #3c3c3c;
-      border-color: #555555;
-      color: #cccccc;
-    }
-
-    [data-theme="dark"] .btn {
-      background: #3c3c3c;
-      border-color: #555555;
-      color: #cccccc;
-    }
-
-    [data-theme="dark"] .btn:hover {
-      background: #4a4a4a;
-      border-color: #666666;
-    }
-
-    [data-theme="dark"] .stat-card {
-      background: #3c3c3c;
-      border-color: #555555;
-      color: #cccccc;
-    }
-
-    [data-theme="dark"] .computations-container {
-      background: #1e1e1e;
-      border-color: #3e3e42;
-    }
 
     /* Estilos para el modal de login */
     .login-modal {
@@ -6787,25 +6487,6 @@ document.addEventListener('DOMContentLoaded', () => {
       font-size: 12px;
     }
 
-    [data-theme="dark"] .form-group label {
-      color: #e2e8f0;
-    }
-
-    [data-theme="dark"] .form-group input {
-      background: #1e293b;
-      border-color: #334155;
-      color: #e2e8f0;
-    }
-
-    [data-theme="dark"] .form-group input:focus {
-      border-color: #3b82f6;
-    }
-
-    [data-theme="dark"] .error-message {
-      background: #1f2937;
-      color: #fca5a5;
-      border-color: #374151;
-    }
 
     /* Estilos para información del usuario */
     .user-info {
@@ -6923,72 +6604,7 @@ document.addEventListener('DOMContentLoaded', () => {
       border-radius: 0 0 10px 10px;
     }
 
-    [data-theme="dark"] .user-info {
-      background: rgba(30, 41, 59, 0.8);
-      border-color: rgba(255, 255, 255, 0.1);
-    }
 
-    [data-theme="dark"] .user-dropdown {
-      background: #1e293b;
-      border-color: #334155;
-    }
-
-    [data-theme="dark"] .user-dropdown-item {
-      color: #e2e8f0;
-    }
-
-    [data-theme="dark"] .user-dropdown-item:hover {
-      background: #334155;
-    }
-
-    [data-theme="dark"] .computation-item {
-      border-color: #3e3e42;
-    }
-
-    [data-theme="dark"] .computation-item:hover {
-      background: #2a2d2e;
-    }
-
-    [data-theme="dark"] .computation-name {
-      color: #cccccc;
-    }
-
-    [data-theme="dark"] .computation-details {
-      color: #999999;
-    }
-
-    [data-theme="dark"] .computation-date {
-      color: #666666;
-    }
-
-    [data-theme="dark"] .action-btn {
-      background: #3c3c3c;
-      border-color: #555555;
-      color: #cccccc;
-    }
-
-    [data-theme="dark"] .action-btn:hover {
-      background: #4a4a4a;
-    }
-
-    [data-theme="dark"] .pagination-section {
-      background: #2d2d30;
-      border-color: #3e3e42;
-    }
-
-    [data-theme="dark"] .pagination-info {
-      color: #999999;
-    }
-
-    [data-theme="dark"] .page-number {
-      background: #3c3c3c;
-      border-color: #555555;
-      color: #cccccc;
-    }
-
-    [data-theme="dark"] .page-number:hover:not(.active) {
-      background: #4a4a4a;
-    }
   </style>
 
   <script>
