@@ -1154,6 +1154,7 @@ const SERVICE_TYPES = [
 'Personal de ferrobarcos (FFCC Argentinos)',
 'Señaleros ferroviarios',
 'Petróleo y gas (boca de pozo / campaña)'
+'Transporte de Cargas'
 ];
 
 // Reglas por tipo (edad y aportes requeridos). Valores por sexo cuando aplica.
@@ -1181,6 +1182,7 @@ const SERVICE_RULES = {
   'Personal de ferrobarcos (FFCC Argentinos)': { default:{edad:52,ap:25} },
   'Señaleros ferroviarios': { default:{edad:55,ap:30} },
   'Petróleo y gas (boca de pozo / campaña)': { default:{edad:50,ap:25} }
+  'Transporte de Cargas': { default:{edad:55,ap:25} }
 };
 
 function getRequirementsFor(tipo, sex, fechaAporte = null){
@@ -6804,3 +6806,4 @@ document.addEventListener('DOMContentLoaded', () => {
   </script>
 </body>
 </html>
+
