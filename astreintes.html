@@ -3,81 +3,682 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cálculo de Astreintes — compacto con toggles (responsive fix)</title>
+  <title>Cálculo de Astreintes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{--fs-base:13px;--fs-sm:12px;--fs-h:15px;--pad:10px;--gap:8px}
-    *{box-sizing:border-box}
-    html,body{margin:0;font-family:"Roboto",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:var(--fs-base);color:#2e2e2e;background:#fff}
-    .header{display:flex;align-items:center;gap:8px;background:#ebebeb;border-bottom:1px solid #d3d3d3;padding:6px var(--pad)}
-    .header img{height:40px}
-    .header h3{font-size:var(--fs-h);font-weight:600;margin:0;flex:1}
-    .header .btn{background:#f6f6f6;border:1px solid #dcdcdc;padding:6px 10px;border-radius:6px;font-size:var(--fs-base);cursor:pointer}
-    .header .btn:hover{background:#e6f3fb;border-color:#b5d7ee}
-    main{padding:var(--pad)}
+    :root{
+      --fs-base:11px;
+      --fs-sm:10px;
+      --fs-h:13px;
+      --pad:12px;
+      --gap:8px;
+      --primary-color:#0066CC;
+      --primary-dark:#0052A3;
+      --primary-darker:#003D7A;
+      --success-color:#10B981;
+      --success-dark:#059669;
+      --error-color:#EF4444;
+      --error-dark:#DC2626;
+    }
+    
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+    
+    html,body{
+      margin:0;
+      font-family:'Roboto','Segoe UI',system-ui,-apple-system,Arial,sans-serif;
+      font-size:var(--fs-base);
+      color:#1E293B;
+      background:linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+      min-height:100vh;
+      font-weight:400;
+    }
+    
+    /* Header moderno con gradiente */
+    .header{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background:linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      padding:4px 10px;
+      box-shadow:0 2px 8px rgba(0, 102, 204, 0.15);
+      min-height:40px;
+    }
+    
+    .logo-section{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
 
-    /* Secciones base */
-    .section{background:#fafafa;border:1px solid #ddd;border-radius:6px;padding:var(--pad);margin-bottom:12px}
-    .section h4{font-size:var(--fs-h);margin:0 0 8px}
-    .field-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--gap);margin-bottom:8px}
-    .field-row label{min-width:120px}
-    .input-text,.input-date,.input-number{padding:5px 7px;border:1px solid #cfcfcf;border-radius:5px;font-size:var(--fs-base);min-width:120px;flex:1}
-    .note{font-size:var(--fs-sm);color:#6a6a6a}
-    .switch{display:flex;align-items:center;gap:8px}
-    .hidden{display:none}
-    .print-only{display:none}
-    table{width:100%;border-collapse:collapse;font-size:var(--fs-base)}
-    th,td{border:1px solid #d8d8d8;padding:6px;text-align:left}
-    th{background:#f3f3f3}
-    .btn{background:#0077c9;color:#fff;border:0;padding:6px 10px;border-radius:6px;font-size:var(--fs-base);cursor:pointer}
-    .btn:hover{background:#0664a3}
-    .btn-ghost{background:transparent;color:#0077c9;border:1px solid #b5d7ee}
-    .btn-primary{background:#2ba348}
-    .btn-primary:hover{background:#238a3b}
-    .resultado h5{font-size:var(--fs-h);margin:10px 0 6px}
-    .resultado ul{margin:0 0 8px 18px}
-    .msg{margin:8px 0;padding:8px 10px;border-left:4px solid;border-radius:6px;background:#f7f7f7}
-    .msg.error{border-color:#c9302c;background:#fdecea;color:#7a1f1c}
-    .msg.success{border-color:#2ba348;background:#e9f7ee;color:#144d2a}
+    .logo-img{
+      width:32px;
+      height:32px;
+      background:white;
+      border-radius:6px;
+      padding:4px;
+      box-shadow:0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo-text h1{
+      color:white;
+      font-size:16px;
+      font-weight:700;
+      margin:0;
+      line-height:1.2;
+    }
+
+    .logo-text p{
+      color:rgba(255, 255, 255, 0.9);
+      font-size:11px;
+      font-weight:400;
+      margin:0;
+      line-height:1.2;
+    }
+    
+    .header h3{
+      font-size:16px;
+      font-weight:700;
+      margin:0;
+      flex:1;
+      color:#FFFFFF;
+      letter-spacing:0.3px;
+    }
+    
+    .header .btn{
+      background:transparent;
+      color:#FFFFFF;
+      border:1px solid transparent;
+      padding:8px 12px;
+      border-radius:6px;
+      font-size:12px;
+      font-weight:500;
+      cursor:pointer;
+      transition:all 0.2s ease;
+    }
+    
+    .header .btn:hover{
+      background:rgba(255, 255, 255, 0.15);
+      border:1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .header .btn:active{
+      background:rgba(255, 255, 255, 0.2);
+    }
+    
+    main{
+      padding:10px;
+      max-width:900px;
+      margin:0 auto;
+    }
+
+    /* Secciones con diseño moderno */
+    .section{
+      background:#FFFFFF;
+      border:1px solid #E2E8F0;
+      border-radius:8px;
+      padding:var(--pad);
+      margin-bottom:5px;
+      box-shadow:0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+      transition:all 0.3s ease;
+    }
+    
+    .section:hover{
+      box-shadow:0 4px 12px rgba(0, 102, 204, 0.12), 0 2px 6px rgba(0, 102, 204, 0.06);
+      border-color:#CBD5E1;
+      transform:translateY(-2px);
+    }
+    
+    .section h4{
+      font-size:var(--fs-h);
+      font-weight:700;
+      margin:0 0 8px;
+      color:#1E293B;
+      border-bottom:2px solid #E2E8F0;
+      padding-bottom:4px;
+    }
+    
+    .field-row{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:var(--gap);
+      margin-bottom:8px;
+      padding:4px 6px;
+      background:#F8FAFC;
+      border-radius:6px;
+      border:1px solid #E2E8F0;
+    }
+    
+    .field-row label{
+      min-width:100px;
+      font-weight:500;
+      color:#475569;
+      font-size:var(--fs-base);
+    }
+    
+    .input-text,.input-date,.input-number{
+      padding:4px 6px;
+      border:1px solid #CBD5E1;
+      border-radius:6px;
+      font-size:var(--fs-base);
+      font-weight:500;
+      color:#1E293B;
+      min-width:120px;
+      flex:1;
+      background:#FFFFFF;
+      transition:all 0.3s ease;
+    }
+    
+    .input-text:focus,.input-date:focus,.input-number:focus{
+      outline:none;
+      border-color:var(--primary-color);
+      box-shadow:0 0 0 3px rgba(0, 102, 204, 0.1);
+      transform:translateY(-1px);
+    }
+    
+    .note{
+      font-size:var(--fs-sm);
+      color:#64748B;
+      font-style:italic;
+      background:#F8FAFC;
+      padding:4px 8px;
+      border-radius:6px;
+      border-left:3px solid var(--primary-color);
+      margin-bottom:6px;
+    }
+    
+    .switch{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      margin-bottom:6px;
+    }
+    
+    .switch input[type="checkbox"]{
+      width:14px;
+      height:14px;
+      cursor:pointer;
+    }
+    
+    .switch label{
+      font-weight:600;
+      color:#475569;
+      cursor:pointer;
+      font-size:var(--fs-base);
+    }
+    
+    .hidden{
+      display:none;
+    }
+    
+    .print-only{
+      display:none;
+    }
+    
+    /* Tablas con diseño moderno */
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:var(--fs-base);
+      margin-bottom:4px;
+      border-radius:8px;
+      overflow:hidden;
+      box-shadow:0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
+    
+    th,td{
+      border:1px solid #E2E8F0;
+      padding:6px 8px;
+      text-align:left;
+      font-weight:500;
+    }
+    
+    th{
+      background:linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      color:#FFFFFF;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:0.3px;
+      font-size:var(--fs-base);
+    }
+    
+    td{
+      background:#FFFFFF;
+      color:#1E293B;
+    }
+    
+    tr:nth-child(even) td{
+      background:#F8FAFC;
+    }
+    
+    tr:hover td{
+      background:#EFF6FF;
+      transition:all 0.2s ease;
+    }
+    
+    /* Botones con gradientes */
+    .btn{
+      background:linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      color:#FFFFFF;
+      border:none;
+      padding:6px 10px;
+      margin-top:2px;
+      margin-right:4px;
+      cursor:pointer;
+      border-radius:6px;
+      font-size:var(--fs-base);
+      font-weight:600;
+      letter-spacing:0.3px;
+      transition:all 0.3s ease;
+      box-shadow:0 2px 4px rgba(0, 102, 204, 0.2);
+    }
+    
+    .btn:hover{
+      background:linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-darker) 100%);
+      transform:translateY(-2px);
+      box-shadow:0 4px 12px rgba(0, 102, 204, 0.3);
+    }
+    
+    .btn:active{
+      transform:translateY(0);
+      box-shadow:0 2px 4px rgba(0, 102, 204, 0.2);
+    }
+    
+    .btn-ghost{
+      background:transparent;
+      color:var(--primary-color);
+      border:1px solid #CBD5E1;
+      box-shadow:none;
+    }
+    
+    .btn-ghost:hover{
+      background:#EFF6FF;
+      border-color:var(--primary-color);
+      box-shadow:0 2px 6px rgba(0, 102, 204, 0.15);
+    }
+    
+    .btn-ghost:active{
+      background:#DBEAFE;
+    }
+    
+    .btn-primary{
+      background:linear-gradient(135deg, var(--success-color) 0%, var(--success-dark) 100%);
+      box-shadow:0 2px 4px rgba(16, 185, 129, 0.2);
+    }
+    
+    .btn-primary:hover{
+      background:linear-gradient(135deg, var(--success-dark) 0%, #047857 100%);
+      box-shadow:0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+    
+    .btn-primary:active{
+      transform:translateY(0);
+      box-shadow:0 2px 4px rgba(16, 185, 129, 0.2);
+    }
+    
+    .resultado{
+      margin-top:10px;
+      padding:var(--pad);
+      background:#FFFFFF;
+      border-radius:8px;
+      border:1px solid #E2E8F0;
+      box-shadow:0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
+    
+    .resultado h5{
+      font-size:var(--fs-h);
+      font-weight:700;
+      margin:8px 0 4px;
+      color:#1E293B;
+      border-bottom:2px solid #E2E8F0;
+      padding-bottom:4px;
+    }
+    
+    .resultado ul{
+      margin:0 0 8px 18px;
+      color:#475569;
+      font-weight:500;
+      list-style-type:disc;
+    }
+    
+    .resultado ul li{
+      margin-bottom:2px;
+    }
+    
+    /* Mensajes de estado */
+    .msg{
+      margin:8px 0;
+      padding:8px 10px;
+      border-left:4px solid;
+      border-radius:6px;
+      background:#F7F7F7;
+      font-weight:500;
+    }
+    
+    .msg.error{
+      border-color:var(--error-color);
+      background:#FEE2E2;
+      color:#991B1B;
+    }
+    
+    .msg.success{
+      border-color:var(--success-color);
+      background:#D1FAE5;
+      color:#065F46;
+    }
+    
+    .msg.info{
+      border-color:#3B82F6;
+      background:#DBEAFE;
+      color:#1E40AF;
+    }
 
     /* Lado a lado para Datos + Fechas */
-    .row-two{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;align-items:flex-start}
-    .row-two>.section{flex:1 1 320px;margin-bottom:0}
+    .row-two{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+      align-items:flex-start;
+    }
+    
+    .row-two>.section{
+      flex:1 1 320px;
+      margin-bottom:0;
+    }
 
-    /* ===== Responsive fix ===== */
+    /* Responsive */
     @media (max-width: 720px){
-      .row-two{flex-direction:column}
-      /* clave: al pasar a columna, el flex-basis de 320px se vuelve altura mínima -> generaba mucho espacio en blanco */
-      .row-two>.section{flex:1 1 auto}
-      .field-row label{min-width:100px}
-      .input-text,.input-date,.input-number{min-width:0}
+      .row-two{
+        flex-direction:column;
+      }
+      
+      .row-two>.section{
+        flex:1 1 auto;
+      }
+      
+      .field-row label{
+        min-width:100px;
+      }
+      
+      .input-text,.input-date,.input-number{
+        min-width:0;
+      }
+    }
+
+    @media (max-width: 768px){
+      .header{
+        flex-wrap:wrap;
+        gap:8px;
+      }
+      
+      .header h3{
+        font-size:14px;
+      }
+      
+      .header .btn{
+        padding:5px 8px;
+        font-size:10px;
+      }
+      
+      .user-info{
+        width:100%;
+        order:10;
+        margin-left:0;
+      }
+      
+      .user-details{
+        display:none;
+      }
     }
 
     @media (max-width: 420px){
-      :root{--fs-base:12px;--fs-sm:11px;--fs-h:14px}
-      .header h3{font-size:var(--fs-h)}
-      .header .btn{padding:5px 8px}
-      .field-row{gap:6px}
-      .field-row label{min-width:92px}
+      :root{
+        --fs-base:10px;
+        --fs-sm:9px;
+        --fs-h:12px;
+        --pad:10px;
+      }
+      
+      .header{
+        padding:6px 10px;
+      }
+      
+      .header h3{
+        font-size:12px;
+      }
+      
+      .header .btn{
+        padding:4px 8px;
+        font-size:9px;
+      }
+      
+      .field-row{
+        gap:6px;
+        padding:4px;
+      }
+      
+      .field-row label{
+        min-width:92px;
+      }
+    }
+
+    /* Estilos para información del usuario */
+    .user-info{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      background:rgba(255, 255, 255, 0.1);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255, 255, 255, 0.2);
+      border-radius:6px;
+      padding:3px 8px;
+      margin-left:auto;
+      position:relative;
+      height:32px;
+    }
+    
+    .user-profile{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    
+    .user-avatar{
+      width:26px;
+      height:26px;
+      border-radius:50%;
+      background:linear-gradient(135deg, #4168ea 0%, #1e40af 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#FFFFFF;
+      font-weight:600;
+      font-size:12px;
+      position:relative;
+      overflow:hidden;
+      flex-shrink:0;
+    }
+    
+    .user-avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:50%;
+    }
+    
+    .user-details{
+      display:flex;
+      flex-direction:column;
+      gap:0px;
+      line-height:1.2;
+    }
+    
+    .user-name{
+      font-weight:600;
+      color:#FFFFFF;
+      font-size:12px;
+      white-space:nowrap;
+    }
+    
+    .user-email{
+      color:rgba(255, 255, 255, 0.8);
+      font-size:10px;
+      white-space:nowrap;
+    }
+    
+    .user-menu-btn{
+      background:rgba(255, 255, 255, 0.1);
+      border:1px solid rgba(255, 255, 255, 0.2);
+      color:#FFFFFF;
+      width:26px;
+      height:26px;
+      border-radius:50%;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:16px;
+      transition:all 0.3s ease;
+      flex-shrink:0;
+    }
+    
+    .user-menu-btn:hover{
+      background:rgba(255, 255, 255, 0.2);
+      transform:scale(1.1);
+      box-shadow:0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    .user-menu-btn:active{
+      transform:scale(1.05);
+    }
+    
+    /* Dropdown del usuario */
+    .user-dropdown{
+      position:absolute;
+      top:100%;
+      right:0;
+      margin-top:8px;
+      background:#FFFFFF;
+      border-radius:10px;
+      box-shadow:0 10px 30px rgba(0, 0, 0, 0.15);
+      border:1px solid #E2E8F0;
+      min-width:200px;
+      z-index:1000;
+      display:none;
+    }
+    
+    .user-dropdown.show{
+      display:block;
+      animation:dropdownFadeIn 0.2s ease;
+    }
+    
+    @keyframes dropdownFadeIn{
+      from{
+        opacity:0;
+        transform:translateY(-10px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+    
+    .user-dropdown-item{
+      padding:12px 16px;
+      cursor:pointer;
+      transition:all 0.2s ease;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:#1E293B;
+      font-weight:500;
+    }
+    
+    .user-dropdown-item:hover{
+      background:#F8FAFC;
+      transform:translateX(4px);
+    }
+    
+    .user-dropdown-item:first-child{
+      border-radius:10px 10px 0 0;
+    }
+    
+    .user-dropdown-item:last-child{
+      border-radius:0 0 10px 10px;
     }
 
     @media print{
-      .header,button{display:none!important}
-      #resultadoExclusiones{page-break-before:always}
-      .print-only{display:block}
-      body{background:#fff}
+      .header,button{
+        display:none!important;
+      }
+      
+      #resultadoExclusiones{
+        page-break-before:always;
+      }
+      
+      .print-only{
+        display:block;
+      }
+      
+      body{
+        background:#fff;
+      }
+      
+      .section{
+        box-shadow:none;
+        page-break-inside:avoid;
+      }
+      
+      #resultadoResumen{
+        page-break-inside:avoid;
+      }
     }
   </style>
 </head>
 <body>
   <header class="header">
-    <img alt="LEXAR" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgoP///wAAAgMBQG5lXhQAAAAASUVORK5CYII=">
-    <h3>Cálculo de Astreintes</h3>
+    <div class="logo-section">
+      <img src="logo.png" alt="LEXAR" class="logo-img" onerror="this.style.display='none'">
+      <div class="logo-text">
+        <h1>LEXAR</h1>
+        <p>Cálculo de Astreintes</p>
+      </div>
+    </div>
     <button onclick="window.location.href='dashboard.html'" class="btn btn-ghost" title="Volver al Dashboard">🏠 Inicio</button>
     <button id="btnNuevo" class="btn">Nuevo</button>
     <button id="btnImprimir" class="btn">Imprimir</button>
+    
+    <!-- User Info -->
+    <div class="user-info" id="userInfo">
+      <div class="user-profile">
+        <div class="user-avatar" id="userAvatar">
+          <img id="userAvatarImg" src="" alt="Avatar" style="display: none;">
+          <span id="userInitials">U</span>
+        </div>
+        <div class="user-details">
+          <span class="user-name" id="userName">Usuario</span>
+          <span class="user-email" id="userEmail">usuario@lexar.com</span>
+        </div>
+      </div>
+      <button class="user-menu-btn" id="userMenuBtn">⋮</button>
+      <div class="user-dropdown" id="userDropdown">
+        <div class="user-dropdown-item" onclick="changeUserAvatar()">
+          <span>📷</span>
+          <span>Cambiar foto</span>
+        </div>
+        <div class="user-dropdown-item" onclick="logout()">
+          <span>🚪</span>
+          <span>Cerrar sesión</span>
+        </div>
+      </div>
+    </div>
   </header>
 
   <!-- Encabezado para impresión -->
@@ -310,8 +911,106 @@
       setTimeout(()=>window.print(), 50);
     }
 
+    // ========== FUNCIONES DE USER INFO ==========
+    
+    // Función para mostrar información del usuario
+    function showUserInfo() {
+      const userEmail = localStorage.getItem('lexar_user_email');
+      if (userEmail) {
+        const userInfo = $('userInfo');
+        const userName = $('userName');
+        const userEmailSpan = $('userEmail');
+        const userInitials = $('userInitials');
+        
+        // Extraer nombre del email (antes del @)
+        const name = userEmail.split('@')[0];
+        const initials = name.substring(0, 2).toUpperCase();
+        
+        userName.textContent = name.charAt(0).toUpperCase() + name.slice(1);
+        userEmailSpan.textContent = userEmail;
+        userInitials.textContent = initials;
+        
+        userInfo.style.display = 'flex';
+        loadUserAvatar();
+      }
+    }
+
+    // Función para cargar foto de perfil
+    function loadUserAvatar() {
+      const avatarImg = $('userAvatarImg');
+      const userInitials = $('userInitials');
+      
+      // Intentar cargar foto desde localStorage
+      const savedAvatar = localStorage.getItem('lexar_user_avatar');
+      if (savedAvatar) {
+        avatarImg.src = savedAvatar;
+        avatarImg.style.display = 'block';
+        userInitials.style.display = 'none';
+      } else {
+        avatarImg.style.display = 'none';
+        userInitials.style.display = 'flex';
+      }
+    }
+
+    // Función para cambiar foto de perfil
+    function changeUserAvatar() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.onchange = function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            const avatarImg = $('userAvatarImg');
+            const userInitials = $('userInitials');
+            
+            avatarImg.src = event.target.result;
+            avatarImg.style.display = 'block';
+            userInitials.style.display = 'none';
+            
+            // Guardar en localStorage
+            localStorage.setItem('lexar_user_avatar', event.target.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+      input.click();
+    }
+
+    // Función para cerrar sesión
+    function logout() {
+      if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
+        localStorage.removeItem('lexar_authenticated');
+        localStorage.removeItem('lexar_user_email');
+        window.location.href = 'index.html';
+      }
+    }
+
     document.addEventListener('DOMContentLoaded',()=>{
       initializeForm();
+      
+      // Inicializar user info
+      showUserInfo();
+      
+      // Event listener para el dropdown del usuario
+      const userMenuBtn = $('userMenuBtn');
+      const userDropdown = $('userDropdown');
+      
+      if (userMenuBtn && userDropdown) {
+        userMenuBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          userDropdown.classList.toggle('show');
+        });
+
+        // Cerrar dropdown al hacer clic fuera
+        document.addEventListener('click', function(e) {
+          if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+            userDropdown.classList.remove('show');
+          }
+        });
+      }
+      
       $('btnNuevo').addEventListener('click',initializeForm);
       $('btnImprimir').addEventListener('click',imprimir);
       $('btnImprimir2').addEventListener('click',imprimir);

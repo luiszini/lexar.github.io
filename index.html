@@ -54,8 +54,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 3px 10px;
-      max-height: 40px;
+      padding: 4px 10px;
+      min-height: 40px;
     }
     
     .header-left {
@@ -76,17 +76,40 @@
     .header-right {
       display: flex;
       align-items: center;
+      gap: 15px;
       flex: 0 0 auto;
       height: 100%;
     }
     
-    .logo-section h1 {
-      background: none;
-      border: none;
-      box-shadow: none;
-      padding: 0;
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      background: white;
+      border-radius: 6px;
+      padding: 4px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo-text h1 {
+      color: white;
       font-size: 16px;
-      color: #FFFFFF;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .logo-text p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 11px;
+      font-weight: 400;
+      margin: 0;
+      line-height: 1.2;
     }
     
     /* Estilos de búsqueda */
@@ -223,9 +246,24 @@
         max-width: 100%;
       }
       
+      .header-right {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+      }
+      
       .main-nav {
         flex-wrap: wrap;
         justify-content: center;
+      }
+      
+      .user-info {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+      
+      .user-details {
+        display: none;
       }
       
       .main-layout {
@@ -238,15 +276,22 @@
       padding: 12px;
       margin: 5px;
       border: 1px solid #E2E8F0;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+      transition: all 0.3s ease;
+    }
+    fieldset:hover {
+      box-shadow: 0 4px 12px rgba(0, 102, 204, 0.12), 0 2px 6px rgba(0, 102, 204, 0.06);
+      border-color: #CBD5E1;
+      transform: translateY(-2px);
     }
     legend {
-      font-weight: 600;
+      font-weight: 700;
       font-size: 11px;
       color: #0066CC;
       background: #FFFFFF;
-      padding: 0 6px;
+      padding: 0 8px;
+      border-bottom: 2px solid #E2E8F0;
     }
     label {
       display: block;
@@ -263,12 +308,14 @@
       color: #1E293B;
       padding: 4px 6px;
       border-radius: 6px;
-      transition: all 0.2s ease;
+      transition: all 0.3s ease;
+      font-weight: 500;
     }
     input:focus, select:focus {
       border-color: #0066CC;
       background: #FFFFFF;
-      box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.1);
+      box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+      transform: translateY(-1px);
     }
     .fieldset-main .grid input,
     .fieldset-main .grid select {
@@ -303,14 +350,17 @@
     th, td {
       border-bottom: 1px solid #E2E8F0;
       font-size: 11px;
+      font-weight: 500;
     }
     th {
       background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
       color: #FFFFFF;
-      font-weight: 600;
+      font-weight: 700;
       text-align: left;
       font-size: 11px;
       padding: 6px 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
     }
     td {
       background: #FFFFFF;
@@ -318,9 +368,9 @@
       vertical-align: middle;
     }
     tr:nth-child(even) td { background: #F8FAFC; }
-    tr.warn td { background: #FEF3C7 !important; color: #92400E; }
-    tr.ok td { background: #D1FAE5 !important; color: #065F46; }
-    tr.danger td { background: #FEE2E2 !important; color: #991B1B; }
+    tr.warn td { background: #FEF3C7 !important; color: #92400E; font-weight: 600; }
+    tr.ok td { background: #D1FAE5 !important; color: #065F46; font-weight: 600; }
+    tr.danger td { background: #FEE2E2 !important; color: #991B1B; font-weight: 600; }
     tr.editing td { background: #DBEAFE !important; color: #1E40AF; }
     tr.newrow td { background: #E0E7FF !important; color: #3730A3; }
     tr:hover td { background: #EFF6FF !important; transition: all 0.2s ease; }
@@ -329,22 +379,22 @@
     .btn {
       background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
       color: #FFFFFF;
-      border: 1px solid #0066CC;
+      border: none;
       font-weight: 600;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       font-size: 11px;
-      padding: 6px 10px;
+      padding: 6px 12px;
       cursor: pointer;
       margin: 2px 4px 2px 0;
-      transition: all 0.2s ease;
-      border-radius: 6px;
+      transition: all 0.3s ease;
+      border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 102, 204, 0.2);
+      letter-spacing: 0.3px;
     }
     .btn:hover {
       background: linear-gradient(135deg, #0052A3 0%, #003D7A 100%);
-      border: 1px solid #0052A3;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 8px rgba(0, 102, 204, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
     }
     .btn:active {
       background: linear-gradient(135deg, #003D7A 0%, #002952 100%);
@@ -746,7 +796,11 @@
     <div class="header-content">
       <div class="header-left">
         <div class="logo-section">
-          <h1>LEX▲R - Cómputo de derecho Previsional</h1>
+          <img src="logo.png" alt="LEXAR" class="logo-img" onerror="this.style.display='none'">
+          <div class="logo-text">
+            <h1>LEXAR</h1>
+            <p>Cómputo de derecho Previsional</p>
+          </div>
         </div>
       </div>
       
@@ -826,10 +880,33 @@
             </div>
           </div>
         </nav>
+        
+        <!-- User Info -->
+        <div class="user-info" id="userInfo" style="display: none;">
+          <div class="user-profile">
+            <div class="user-avatar" id="userAvatar">
+              <img id="userAvatarImg" src="" alt="Avatar" style="display: none;">
+              <span id="userInitials">U</span>
+            </div>
+            <div class="user-details">
+              <span class="user-name" id="userName">Usuario</span>
+              <span class="user-email" id="userEmail">usuario@lexar.com</span>
+            </div>
+          </div>
+          <button class="user-menu-btn" id="userMenuBtn">⋮</button>
+          <div class="user-dropdown" id="userDropdown">
+            <div class="user-dropdown-item" onclick="changeUserAvatar()">
+              <span>📷</span>
+              <span>Cambiar foto</span>
+            </div>
+            <div class="user-dropdown-item" onclick="logout()">
+              <span>🚪</span>
+              <span>Cerrar sesión</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    
-   
   </header>
 
   
@@ -7681,18 +7758,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     .btn-secondary {
-      background: #b0b0b0;
-      color: #202020;
-      border: 1px solid #b0b0b0;
+      background: #F1F5F9;
+      color: #475569;
+      border: 1px solid #E2E8F0;
       padding: 8px 16px;
       cursor: pointer;
       font-size: 12px;
-      transition: all 0.2s ease;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      letter-spacing: 0.3px;
     }
 
     .btn-secondary:hover {
-      background: #ffffff;
-      border-color: #abcbda;
+      background: #E2E8F0;
+      border-color: #CBD5E1;
+      transform: translateY(-2px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-secondary:active {
+      transform: translateY(0);
+      box-shadow: none;
     }
 
     .prompt-input {
@@ -7823,64 +7910,96 @@ document.addEventListener('DOMContentLoaded', () => {
     .btn-success {
       background: linear-gradient(135deg, #10B981 0%, #059669 100%);
       color: white;
-      border-color: #10B981;
-      transition: all 0.2s ease;
+      border: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
     }
 
     .btn-success:hover {
       background: linear-gradient(135deg, #059669 0%, #047857 100%);
-      border-color: #059669;
-      box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-success:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
     }
 
     .btn-info {
       background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
       color: white;
-      border-color: #3B82F6;
-      transition: all 0.2s ease;
+      border: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
     }
 
     .btn-info:hover {
       background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
-      border-color: #2563EB;
-      box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-info:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
     }
 
     .btn-danger {
       background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
       color: white;
-      border-color: #EF4444;
-      transition: all 0.2s ease;
+      border: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
     }
 
     .btn-danger:hover {
       background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
-      border-color: #DC2626;
-      box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    }
+
+    .btn-danger:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
     }
 
     .btn-warning {
       background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
       color: white;
-      border-color: #F59E0B;
-      transition: all 0.2s ease;
+      border: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(245, 158, 11, 0.2);
     }
 
     .btn-warning:hover {
       background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
-      border-color: #D97706;
-      box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    }
+
+    .btn-warning:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(245, 158, 11, 0.2);
     }
 
     .btn-secondary {
       background: #F1F5F9;
       color: #475569;
-      border-color: #E2E8F0;
+      border: 1px solid #E2E8F0;
+      transition: all 0.3s ease;
     }
 
     .btn-secondary:hover {
       background: #E2E8F0;
       border-color: #CBD5E1;
+      transform: translateY(-2px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-secondary:active {
+      transform: translateY(0);
+      box-shadow: none;
     }
 
     /* Filtros compactos - En línea */
@@ -8314,35 +8433,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* Estilos para información del usuario */
     .user-info {
-      height: 35px;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: center;
-      gap: 15px;
+      gap: 8px;
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
-      border: 1px solid #858585;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      padding: 3px 8px;
+      transition: all 0.3s ease;
+      position: relative;
+      margin-left: 10px;
+      height: 32px;
+    }
+    
+    .user-info:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
     }
 
     .user-profile {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
     }
 
     .user-avatar {
-      width: 30px;
-      height: 30px;
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
       background: linear-gradient(135deg, #4168ea 0%, #1e40af 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #202020;
+      color: #FFFFFF;
       font-weight: 600;
-      font-size: 16px;
+      font-size: 12px;
       position: relative;
       overflow: hidden;
+      flex-shrink: 0;
     }
 
     .user-avatar img {
@@ -8355,26 +8485,29 @@ document.addEventListener('DOMContentLoaded', () => {
     .user-details {
       display: flex;
       flex-direction: column;
-      gap: 1px;
+      gap: 0px;
+      line-height: 1.2;
     }
 
     .user-name {
       font-weight: 600;
-      color: #202020;
-      font-size: 14px;
+      color: #FFFFFF;
+      font-size: 12px;
+      white-space: nowrap;
     }
 
     .user-email {
-      color: #202020;
-      font-size: 11px;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 10px;
+      white-space: nowrap;
     }
 
     .user-menu-btn {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #202020;
-      width: 30px;
-      height: 30px;
+      color: #FFFFFF;
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
@@ -8382,11 +8515,17 @@ document.addEventListener('DOMContentLoaded', () => {
       justify-content: center;
       font-size: 16px;
       transition: all 0.3s ease;
+      flex-shrink: 0;
     }
 
     .user-menu-btn:hover {
       background: rgba(255, 255, 255, 0.2);
       transform: scale(1.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .user-menu-btn:active {
+      transform: scale(1.05);
     }
 
     /* Dropdown del usuario */
@@ -8394,10 +8533,11 @@ document.addEventListener('DOMContentLoaded', () => {
       position: absolute;
       top: 100%;
       right: 0;
+      margin-top: 8px;
       background: white;
       border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      border: 1px solid #e2e8f0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      border: 1px solid #E2E8F0;
       min-width: 200px;
       z-index: 1000;
       display: none;
@@ -8405,19 +8545,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     .user-dropdown.show {
       display: block;
+      animation: dropdownFadeIn 0.2s ease;
+    }
+
+    @keyframes dropdownFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .user-dropdown-item {
       padding: 12px 16px;
       cursor: pointer;
-      transition: background-color 0.2s;
+      transition: all 0.2s ease;
       display: flex;
       align-items: center;
       gap: 10px;
+      color: #1E293B;
+      font-weight: 500;
     }
 
     .user-dropdown-item:hover {
-      background: #f8fafc;
+      background: #F8FAFC;
+      transform: translateX(4px);
     }
 
     .user-dropdown-item:first-child {
