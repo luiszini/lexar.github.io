@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LEXAR - Sistema de Gestión Previsional</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #F1F5F9 0%, #E2E8F0 100%);
+      color: #1E293B;
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+
+    /* Header */
+    .main-header {
+      background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0, 102, 204, 0.15);
+      margin-bottom: 30px;
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-img {
+      width: 60px;
+      height: 60px;
+      background: white;
+      border-radius: 12px;
+      padding: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo-text h1 {
+      color: white;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .logo-text p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .user-info {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 8px 16px;
+      border-radius: 20px;
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-logout {
+      background: white;
+      color: #0066CC;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-logout:hover {
+      background: #EFF6FF;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Container principal */
+    .dashboard-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Sección de bienvenida */
+    .welcome-section {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 12px rgba(0, 102, 204, 0.12);
+      border: 1px solid #E2E8F0;
+    }
+
+    .welcome-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1E293B;
+      margin-bottom: 10px;
+    }
+
+    .welcome-subtitle {
+      font-size: 16px;
+      color: #64748B;
+      margin-bottom: 20px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #E2E8F0;
+      transition: all 0.3s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 102, 204, 0.15);
+      border-color: #0066CC;
+    }
+
+    .stat-value {
+      font-size: 36px;
+      font-weight: 700;
+      color: #0066CC;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: #64748B;
+      font-weight: 500;
+    }
+
+    .stat-icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    /* Grid de funcionalidades */
+    .section-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1E293B;
+      margin-bottom: 20px;
+      padding-left: 10px;
+      border-left: 4px solid #0066CC;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0, 102, 204, 0.08);
+      border: 2px solid transparent;
+      transition: all 0.3s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(0, 102, 204, 0.2);
+      border-color: #0066CC;
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+    }
+
+    .feature-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1E293B;
+      margin-bottom: 10px;
+    }
+
+    .feature-description {
+      font-size: 14px;
+      color: #64748B;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .feature-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 15px;
+      border-top: 1px solid #E2E8F0;
+      font-size: 12px;
+      color: #94A3B8;
+    }
+
+    .feature-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10B981;
+    }
+
+    /* Accesos rápidos */
+    .quick-actions {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 12px rgba(0, 102, 204, 0.08);
+      border: 1px solid #E2E8F0;
+    }
+
+    .quick-actions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .quick-btn {
+      background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+      border: 1px solid #E2E8F0;
+      padding: 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1E293B;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .quick-btn:hover {
+      background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+      border-color: #0066CC;
+      color: #0066CC;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 102, 204, 0.15);
+    }
+
+    .quick-btn-icon {
+      font-size: 20px;
+    }
+
+    /* Sección de recursos */
+    .resources-section {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 12px rgba(0, 102, 204, 0.08);
+      border: 1px solid #E2E8F0;
+    }
+
+    .resources-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .resource-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px;
+      background: #F8FAFC;
+      border-radius: 10px;
+      border: 1px solid #E2E8F0;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .resource-item:hover {
+      background: #EFF6FF;
+      border-color: #0066CC;
+      transform: translateX(4px);
+    }
+
+    .resource-icon {
+      font-size: 24px;
+    }
+
+    .resource-text {
+      flex: 1;
+    }
+
+    .resource-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1E293B;
+      margin-bottom: 2px;
+    }
+
+    .resource-desc {
+      font-size: 12px;
+      color: #64748B;
+    }
+
+    /* Alertas y notificaciones */
+    .alerts-section {
+      background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+      border-radius: 16px;
+      padding: 20px 30px;
+      margin-bottom: 30px;
+      border: 2px solid #F59E0B;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+    }
+
+    .alert-content {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .alert-icon {
+      font-size: 32px;
+    }
+
+    .alert-text h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #92400E;
+      margin-bottom: 5px;
+    }
+
+    .alert-text p {
+      font-size: 14px;
+      color: #78350F;
+    }
+
+    /* Footer */
+    .dashboard-footer {
+      background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+      color: white;
+      padding: 30px 20px;
+      margin-top: 50px;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .footer-section h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #0066CC;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.8;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .footer-section a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .welcome-title {
+        font-size: 24px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="main-header">
+    <div class="header-content">
+      <div class="logo-section">
+        <img src="logo.png" alt="LEXAR Logo" class="logo-img" onerror="this.style.display='none'">
+        <div class="logo-text">
+          <h1>LEXAR</h1>
+          <p>Sistema de Gestión Previsional</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="user-info">
+          👤 Usuario: <span id="userName">Administrador</span>
+        </div>
+        <button class="btn-logout" onclick="logout()">🚪 Cerrar Sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dashboard Container -->
+  <div class="dashboard-container">
+    
+    <!-- Bienvenida -->
+    <section class="welcome-section">
+      <h2 class="welcome-title">¡Bienvenido al Dashboard!</h2>
+      <p class="welcome-subtitle">Gestiona todos los aspectos de la gestión previsional desde un solo lugar</p>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">📊</div>
+          <div class="stat-value" id="totalCasos">0</div>
+          <div class="stat-label">Casos Procesados</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📝</div>
+          <div class="stat-value" id="casosActivos">0</div>
+          <div class="stat-label">Casos Activos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">✅</div>
+          <div class="stat-value" id="casosCompletados">0</div>
+          <div class="stat-label">Casos Completados</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⏱️</div>
+          <div class="stat-value" id="tiempoPromedio">--</div>
+          <div class="stat-label">Tiempo Promedio</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alerta informativa -->
+    <div class="alerts-section">
+      <div class="alert-content">
+        <div class="alert-icon">⚡</div>
+        <div class="alert-text">
+          <h3>Sistema actualizado</h3>
+          <p>Todas las funcionalidades están operativas. Última actualización: <span id="lastUpdate">Hoy</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Funcionalidades principales -->
+    <h2 class="section-title">Funcionalidades Principales</h2>
+    <div class="features-grid">
+      
+      <a href="index.html" class="feature-card">
+        <div class="feature-icon">🧮</div>
+        <div class="feature-title">Cómputo Previsional</div>
+        <div class="feature-description">
+          Calcula años de aportes, edad jubilatoria, moratorias y beneficios. Importa historia laboral de ANSES.
+        </div>
+        <div class="feature-meta">
+          <div class="feature-status">
+            <span class="status-dot"></span>
+            <span>Operativo</span>
+          </div>
+          <span>→</span>
+        </div>
+      </a>
+
+      <a href="astreintes.html" class="feature-card">
+        <div class="feature-icon">📅</div>
+        <div class="feature-title">Cálculo de Astreintes</div>
+        <div class="feature-description">
+          Calcula astreintes con exclusión de feriados y días inhábiles. Importa plantilla de cálculo.
+        </div>
+        <div class="feature-meta">
+          <div class="feature-status">
+            <span class="status-dot"></span>
+            <span>Operativo</span>
+          </div>
+          <span>→</span>
+        </div>
+      </a>
+
+      <a href="#" class="feature-card" onclick="comingSoon(); return false;">
+        <div class="feature-icon">📄</div>
+        <div class="feature-title">Generador de Documentos</div>
+        <div class="feature-description">
+          Genera escritos, demandas y recursos automáticamente con plantillas predefinidas.
+        </div>
+        <div class="feature-meta">
+          <div class="feature-status">
+            <span class="status-dot" style="background: #F59E0B;"></span>
+            <span>Próximamente</span>
+          </div>
+          <span>→</span>
+        </div>
+      </a>
+
+      <a href="#" class="feature-card" onclick="comingSoon(); return false;">
+        <div class="feature-icon">📈</div>
+        <div class="feature-title">Estadísticas y Reportes</div>
+        <div class="feature-description">
+          Visualiza estadísticas detalladas, genera reportes y analiza tendencias de casos.
+        </div>
+        <div class="feature-meta">
+          <div class="feature-status">
+            <span class="status-dot" style="background: #F59E0B;"></span>
+            <span>Próximamente</span>
+          </div>
+          <span>→</span>
+        </div>
+      </a>
+
+      <a href="#" class="feature-card" onclick="comingSoon(); return false;">
+        <div class="feature-icon">🗂️</div>
+        <div class="feature-title">Gestión de Casos</div>
+        <div class="feature-description">
+          Organiza y administra expedientes, documentación y seguimiento de casos.
+        </div>
+        <div class="feature-meta">
+          <div class="feature-status">
+            <span class="status-dot" style="background: #F59E0B;"></span>
+            <span>Próximamente</span>
+          </div>
+          <span>→</span>
+        </div>
+      </a>
+
+      <a href="#" class="feature-card" onclick="comingSoon(); return false;">
+        <div class="feature-icon">📚</div>
+        <div class="feature-title">Base de Conocimiento</div>
+        <div class="feature-description">
+          Accede a jurisprudencia, normativa actualizada y guías de procedimientos.
+        </div>
+        <div class="feature-meta">
+          <div class="feature-status">
+            <span class="status-dot" style="background: #F59E0B;"></span>
+            <span>Próximamente</span>
+          </div>
+          <span>→</span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Accesos rápidos -->
+    <section class="quick-actions">
+      <h2 class="section-title">Accesos Rápidos</h2>
+      <div class="quick-actions-grid">
+        <button class="quick-btn" onclick="window.location.href='index.html'">
+          <span class="quick-btn-icon">🧮</span>
+          Nuevo Cómputo
+        </button>
+        <button class="quick-btn" onclick="window.location.href='astreintes.html'">
+          <span class="quick-btn-icon">📅</span>
+          Nuevo Astreinte
+        </button>
+        <button class="quick-btn" onclick="comingSoon()">
+          <span class="quick-btn-icon">📂</span>
+          Casos Recientes
+        </button>
+        <button class="quick-btn" onclick="comingSoon()">
+          <span class="quick-btn-icon">⚙️</span>
+          Configuración
+        </button>
+        <button class="quick-btn" onclick="comingSoon()">
+          <span class="quick-btn-icon">💾</span>
+          Mis Archivos
+        </button>
+        <button class="quick-btn" onclick="showHelp()">
+          <span class="quick-btn-icon">❓</span>
+          Ayuda y Soporte
+        </button>
+      </div>
+    </section>
+
+    <!-- Recursos y documentación -->
+    <section class="resources-section">
+      <h2 class="section-title">Recursos y Documentación</h2>
+      <div class="resources-list">
+        
+        <a href="prorrateo.pdf" target="_blank" class="resource-item">
+          <span class="resource-icon">📄</span>
+          <div class="resource-text">
+            <div class="resource-title">Guía de Prorrateo</div>
+            <div class="resource-desc">Instructivo ANSES</div>
+          </div>
+        </a>
+
+        <a href="#" onclick="comingSoon(); return false;" class="resource-item">
+          <span class="resource-icon">📖</span>
+          <div class="resource-text">
+            <div class="resource-title">Manual de Usuario</div>
+            <div class="resource-desc">Guía completa del sistema</div>
+          </div>
+        </a>
+
+        <a href="#" onclick="comingSoon(); return false;" class="resource-item">
+          <span class="resource-icon">⚖️</span>
+          <div class="resource-text">
+            <div class="resource-title">Normativa Vigente</div>
+            <div class="resource-desc">Leyes y resoluciones</div>
+          </div>
+        </a>
+
+        <a href="#" onclick="comingSoon(); return false;" class="resource-item">
+          <span class="resource-icon">🎓</span>
+          <div class="resource-text">
+            <div class="resource-title">Tutoriales</div>
+            <div class="resource-desc">Videos instructivos</div>
+          </div>
+        </a>
+
+        <a href="#" onclick="comingSoon(); return false;" class="resource-item">
+          <span class="resource-icon">📞</span>
+          <div class="resource-text">
+            <div class="resource-title">Contacto Soporte</div>
+            <div class="resource-desc">Asistencia técnica</div>
+          </div>
+        </a>
+
+        <a href="#" onclick="comingSoon(); return false;" class="resource-item">
+          <span class="resource-icon">🔄</span>
+          <div class="resource-text">
+            <div class="resource-title">Actualizaciones</div>
+            <div class="resource-desc">Novedades del sistema</div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="dashboard-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>LEXAR</h4>
+        <p>Sistema integral de gestión previsional diseñado para facilitar el trabajo de profesionales del derecho.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Enlaces Rápidos</h4>
+        <a href="index.html">Cómputo Previsional</a>
+        <a href="astreintes.html">Cálculo de Astreintes</a>
+        <a href="#" onclick="comingSoon(); return false;">Documentación</a>
+        <a href="#" onclick="comingSoon(); return false;">Soporte</a>
+      </div>
+      <div class="footer-section">
+        <h4>Recursos</h4>
+        <a href="prorrateo.pdf" target="_blank">Guía de Prorrateo</a>
+        <a href="#" onclick="comingSoon(); return false;">Base de Conocimiento</a>
+        <a href="#" onclick="comingSoon(); return false;">Preguntas Frecuentes</a>
+        <a href="#" onclick="comingSoon(); return false;">Contacto</a>
+      </div>
+      <div class="footer-section">
+        <h4>Información</h4>
+        <p>Versión: 2.0.0</p>
+        <p>Última actualización: Octubre 2025</p>
+        <p>© 2025 LEXAR. Todos los derechos reservados.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Desarrollado con dedicación para profesionales del derecho previsional</p>
+    </div>
+  </footer>
+
+  <script>
+    // Inicialización al cargar la página
+    document.addEventListener('DOMContentLoaded', function() {
+      loadDashboardData();
+      updateDateTime();
+      setInterval(updateDateTime, 60000); // Actualizar cada minuto
+    });
+
+    // Cargar datos del dashboard desde localStorage
+    function loadDashboardData() {
+      // Estadísticas desde localStorage
+      const stats = JSON.parse(localStorage.getItem('lexarStats') || '{}');
+      
+      document.getElementById('totalCasos').textContent = stats.totalCasos || 0;
+      document.getElementById('casosActivos').textContent = stats.casosActivos || 0;
+      document.getElementById('casosCompletados').textContent = stats.casosCompletados || 0;
+      document.getElementById('tiempoPromedio').textContent = stats.tiempoPromedio || '--';
+      
+      // Cargar nombre de usuario
+      const userName = localStorage.getItem('lexarUserName') || 'Administrador';
+      document.getElementById('userName').textContent = userName;
+    }
+
+    // Actualizar fecha y hora
+    function updateDateTime() {
+      const now = new Date();
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById('lastUpdate').textContent = now.toLocaleDateString('es-ES', options);
+    }
+
+    // Funciones de navegación
+    function logout() {
+      if(confirm('¿Está seguro que desea cerrar sesión?')) {
+        // Limpiar datos de sesión si es necesario
+        // localStorage.removeItem('lexarSession');
+        alert('Sesión cerrada correctamente');
+        // Redirigir a página de login si existe
+        // window.location.href = 'login.html';
+      }
+    }
+
+    function comingSoon() {
+      alert('Esta funcionalidad estará disponible próximamente.\n\n¡Estamos trabajando para ofrecerte más herramientas!');
+    }
+
+    function showHelp() {
+      alert('Centro de Ayuda LEXAR\n\n' +
+            '📧 Email: soporte@lexar.com\n' +
+            '📞 Teléfono: (011) 4000-0000\n' +
+            '⏰ Horario: Lunes a Viernes 9:00-18:00\n\n' +
+            'Para asistencia inmediata, consulte el Manual de Usuario en la sección de Recursos.');
+    }
+
+    // Incrementar contador de casos al usar el sistema
+    function incrementCasoCounter() {
+      const stats = JSON.parse(localStorage.getItem('lexarStats') || '{}');
+      stats.totalCasos = (stats.totalCasos || 0) + 1;
+      stats.casosActivos = (stats.casosActivos || 0) + 1;
+      localStorage.setItem('lexarStats', JSON.stringify(stats));
+    }
+
+    // Actualizar estadísticas al cargar
+    window.addEventListener('storage', function(e) {
+      if (e.key === 'lexarStats') {
+        loadDashboardData();
+      }
+    });
+  </script>
+</body>
+</html>
+

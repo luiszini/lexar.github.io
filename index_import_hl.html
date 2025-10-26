@@ -11,8 +11,8 @@
   <style>
     body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background: linear-gradient(135deg, #F1F5F9 0%, #E2E8F0 100%);
-  color: #1E293B;
+  background: #a0a0a0;
+  color: #202020;
   margin-left: 10px;
   margin-right: 10px;
   padding: 0;
@@ -28,12 +28,10 @@
       font-weight: 600;
       margin: 0;
       text-align: left;
-      color: #FFFFFF;
+      color: #575757;
       padding: 5px;
-      background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
-      border: 1px solid #0066CC;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 102, 204, 0.15);
+      border: 1px solid #b6b2ff;
+      box-shadow: 0 2px 4px rgba(139, 127, 255, 0.2);
     }
     
     /* Estilos del Header */
@@ -43,11 +41,11 @@
       left: 0;
       right: 0;
       width: 100%;
-      background: #0066CC;
-      background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
+      background: #e3e3e3;
+      background: linear-gradient(180deg, rgba(227, 227, 227, 1) 0%, rgba(255, 255, 255, 1) 100%);
+      border-bottom: 1px solid #858585;
       margin-bottom: 10px;
       z-index: 1000;
-      box-shadow: 0 2px 8px rgba(0, 102, 204, 0.15);
     }
     
     .header-content {
@@ -55,7 +53,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 3px 10px;
-      max-height: 40px;
+      max-height: 30px;
     }
     
     .header-left {
@@ -86,7 +84,6 @@
       box-shadow: none;
       padding: 0;
       font-size: 16px;
-      color: #FFFFFF;
     }
     
     /* Estilos de búsqueda */
@@ -94,45 +91,42 @@
     .search-input {
       flex: 1;
       padding: 4px 10px;
-      border: 1px solid #FFFFFF;
-      border-radius: 6px 0 0 6px;
+      border: 1px solid #202020;
+      border-radius: 4px 0 0 4px;
       font-size: 12px;
-      background: #FFFFFF;
+      background: #202020;
       outline: none;
       height: 25px;
       box-sizing: border-box;
       display: flex;
       align-items: center;
-      color: #1E293B;
+      color: #858585;
     }
     
     .search-input:focus {
-      background: #FFFFFF;
-      border-color: #003D7A;
-      box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+      background: #abcbda;
+      border-color: #4f6fc7;
     }
     
     .search-btn {
       padding: 4px 12px;
-      background: #FFFFFF;
-      color: #0066CC;
-      border: 1px solid #FFFFFF;
-      border-radius: 0 6px 6px 0;
+      background: #858585;
+      color: #858585;
+      border: 1px solid #858585;
+      border-radius: 0 4px 4px 0;
       cursor: pointer;
       font-size: 11px;
-      font-weight: 600;
       height: 25px;
       box-sizing: border-box;
-      transition: all 0.2s;
+      transition: background-color 0.2s;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     
     .search-btn:hover {
-      background: #EFF6FF;
-      border-color: #003D7A;
-      color: #003D7A;
+      background: #abcbda;
+      border: 1px solid #4f6fc7;
     }
     
     /* Estilos de navegación */
@@ -148,20 +142,19 @@
     
     .dropdown-btn {
       background: transparent;
-      color: #FFFFFF;
+      color: #202020;
       border: none;
       padding: 8px 12px;
       cursor: pointer;
       font-size: 12px;
       font-weight: 500;
-      transition: all 0.2s;
+      transition: background-color 0.2s;
       border: 1px solid transparent;
-      border-radius: 6px;
     }
     
     .dropdown-btn:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: #abcbda;
+      border: 1px solid #4f6fc7;
     }
     
     .dropdown-content {
@@ -169,9 +162,7 @@
       position: absolute;
       background: white;
       min-width: 180px;
-      border: 1px solid #E2E8F0;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border: 1px solid #858585;
       z-index: 1001; /* Por encima del header fijo */
       top: 100%;
       left: 0;
@@ -185,19 +176,18 @@
     }
     
     .dropdown-content a {
-      color: #1E293B;
+      color: #202020;
       padding: 8px 12px;
       text-decoration: none;
       display: block;
       font-size: 11px;
-      transition: all 0.2s;
+      transition: background-color 0.2s;
       border: 1px solid transparent;
     }
     
     .dropdown-content a:hover {
-      background: #EFF6FF;
-      color: #0066CC;
-      border: 1px solid transparent;
+      background: #abcbda;
+      border: 1px solid #4f6fc7;
     }
     
     .dropdown-content hr {
@@ -234,41 +224,39 @@
       }
     }
     fieldset {
-      background: #FFFFFF;
-      padding: 12px;
+      background: #a0a0a0;
+      padding: 10px;
       margin: 5px;
-      border: 1px solid #E2E8F0;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      border: none;
+      border-top: 1px solid #202020;
     }
     legend {
       font-weight: 600;
       font-size: 11px;
-      color: #0066CC;
-      background: #FFFFFF;
-      padding: 0 6px;
+      color: #202020;
+      background: #a0a0a0;
+      
     }
     label {
       display: block;
       font-size: 11px;
-      color: #475569;
+      color: #202020;
       font-weight: 500;
+      
     }
     input, select {
       font-size: 11px;
       outline: none;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      border: 1px solid #CBD5E1;
-      background: #FFFFFF;
-      color: #1E293B;
-      padding: 4px 6px;
-      border-radius: 6px;
-      transition: all 0.2s ease;
+      border: 1px solid #b3b3b3;
+      background: #fff;
+      color: #202020;
+      padding: 3px 3px;
+      transition: border-color 0.2s ease;
     }
     input:focus, select:focus {
-      border-color: #0066CC;
-      background: #FFFFFF;
-      box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.1);
+      border-color: #003399;
+      background: #f8f7ff;
     }
     .fieldset-main .grid input,
     .fieldset-main .grid select {
@@ -294,62 +282,50 @@
       border-collapse: collapse;
       width: 100%;
       margin-top: 4px;
-      background: #FFFFFF;
-      border: 1px solid #E2E8F0;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+      background: #fff;
+      border: 1px solid #858585;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
     th, td {
-      border-bottom: 1px solid #E2E8F0;
+      border-bottom: 1px solid #858585;
       font-size: 11px;
     }
     th {
-      background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
-      color: #FFFFFF;
+      background: #202020;
+      color: #fff;
       font-weight: 600;
       text-align: left;
       font-size: 11px;
-      padding: 6px 8px;
     }
     td {
-      background: #FFFFFF;
-      padding: 4px 6px;
-      vertical-align: middle;
+      background: #fff;
     }
-    tr:nth-child(even) td { background: #F8FAFC; }
-    tr.warn td { background: #FEF3C7 !important; color: #92400E; }
-    tr.ok td { background: #D1FAE5 !important; color: #065F46; }
-    tr.danger td { background: #FEE2E2 !important; color: #991B1B; }
-    tr.editing td { background: #DBEAFE !important; color: #1E40AF; }
-    tr.newrow td { background: #E0E7FF !important; color: #3730A3; }
-    tr:hover td { background: #EFF6FF !important; transition: all 0.2s ease; }
-    tfoot td { font-weight: 600; background: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 100%); color: #1E293B; }
+    tr.warn td { background: #fef3c7 !important; color: #92400e; }
+    tr.ok td { background: #d1fae5 !important; color: #065f46; }
+    tr.danger td { background: #fee2e2 !important; color: #991b1b; }
+    tr.editing td { background: #dbeafe !important; color: #1e40af; }
+    tr.newrow td { background: #e0e7ff !important; color: #3730a3; }
+    tr:hover td { background: #f1f5f9; }
+    tfoot td { font-weight: 600; background: #e2e8f0; color: #1e293b; }
     
     .btn {
-      background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
-      color: #FFFFFF;
-      border: 1px solid #0066CC;
+      background: #858585;
+      color: #202020;
+      border: 1px solid #858585;
       font-weight: 600;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       font-size: 11px;
-      padding: 6px 10px;
+      padding: 6px;
       cursor: pointer;
       margin: 2px 4px 2px 0;
-      transition: all 0.2s ease;
-      border-radius: 6px;
-      box-shadow: 0 2px 4px rgba(0, 102, 204, 0.2);
+      transition: background-color 0.2s ease;
     }
     .btn:hover {
-      background: linear-gradient(135deg, #0052A3 0%, #003D7A 100%);
-      border: 1px solid #0052A3;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 8px rgba(0, 102, 204, 0.3);
+      background: #ffffff;
+      border: 1px solid #858585;
     }
     .btn:active {
-      background: linear-gradient(135deg, #003D7A 0%, #002952 100%);
-      transform: translateY(0);
-      box-shadow: 0 2px 4px rgba(0, 102, 204, 0.2);
+      background: #005a9e;
     }
     
     /* Estilos para indicadores de atajos de teclado */
@@ -375,23 +351,18 @@
       min-height: 26px;
     }
     .row-actions {
-      min-width: 50px;
+      min-width: 60px;
       text-align: left;
-      padding: 2px 4px !important;
     }
     .row-actions .btn {
-      margin-right: 2px;
-      min-width: 24px;
-      height: 22px;
-      width: 24px;
-      padding: 0;
-      font-size: 11px;
-      line-height: 1;
-      vertical-align: middle;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 4px;
+  margin-right: 2px;
+  min-width: 32px;
+  height: 24px;
+  width: 32px;
+  padding: 0;
+  font-size: 10px;
+  line-height: 1;
+  vertical-align: middle;
     }
     .row-actions .btn:last-child { margin-right: 0; }
 
@@ -522,13 +493,11 @@
       min-width: 80px;
     }
     .action-bar {
-      padding: 8px;
-      background: #FFFFFF;
-      border-radius: 8px;
-      border: 1px solid #E2E8F0;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      margin-top: 10px;
     }
-    
+    .pills-container {
+      margin-top: 10px;
+    }
     .derecho-actions {
       display:flex;
       gap:4px;
@@ -609,24 +578,23 @@
       left: 0;
       right: 0;
       width: 100%;
-      height: 50px;
-      background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
-      
+      height: 60px;
+      background: #202020;
+      border-top: 1px solid #858585;
       display: flex;
       flex-direction: row;
-      gap: 4px;
+      gap: 8px;
       align-items: center;
       justify-content: center;
       z-index: 999;
-      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
     }
     
     .action-btn {
       width: 80px;
       height: 44px;
-      border: 1px solid #334155;
-      background: #FFFFFF;
-      color: #1E293B;
+      border: 1px solid #858585;
+      background: #f1f5f9;
+      color: #202020;
       cursor: pointer;
       display: flex;
       flex-direction: column;
@@ -634,13 +602,12 @@
       justify-content: center;
       font-size: 8px;
       font-weight: 500;
-      transition: all 0.2s;
+      transition: background-color 0.2s;
       position: relative;
       text-align: center;
       line-height: 1.1;
       overflow: hidden;
       word-wrap: break-word;
-      border-radius: 6px;
     }
     
     .action-btn .icon {
@@ -655,79 +622,18 @@
     }
     
     .action-btn:hover {
-      background: #EFF6FF;
-      border-color: #CBD5E1;
+      background: #e2e8f0;
     }
     
     .action-btn-primary {
-      background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
+      background: #667eea;
       color: white;
-      border-color: #0066CC;
+      border-color: #2563eb;
     }
     
     .action-btn-primary:hover {
-      background: linear-gradient(135deg, #0052A3 0%, #003D7A 100%);
-      border-color: #0052A3;
-      box-shadow: 0 2px 6px rgba(0, 102, 204, 0.3);
-    }
-    
-    .action-btn-success {
-      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
-      color: white;
-      border-color: #10B981;
-    }
-    
-    .action-btn-success:hover {
-      background: linear-gradient(135deg, #059669 0%, #047857 100%);
-      border-color: #059669;
-      box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
-    }
-    
-    .action-btn-info {
-      background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
-      color: white;
-      border-color: #3B82F6;
-    }
-    
-    .action-btn-info:hover {
-      background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
-      border-color: #2563EB;
-      box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3);
-    }
-    
-    .action-btn-warning {
-      background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
-      color: white;
-      border-color: #F59E0B;
-    }
-    
-    .action-btn-warning:hover {
-      background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
-      border-color: #D97706;
-      box-shadow: 0 2px 6px rgba(245, 158, 11, 0.3);
-    }
-    
-    .action-btn-danger {
-      background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
-      color: white;
-      border-color: #EF4444;
-    }
-    
-    .action-btn-danger:hover {
-      background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
-      border-color: #DC2626;
-      box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3);
-    }
-    
-    .action-btn-secondary {
-      background: #F1F5F9;
-      color: #475569;
-      border-color: #E2E8F0;
-    }
-    
-    .action-btn-secondary:hover {
-      background: #E2E8F0;
-      border-color: #CBD5E1;
+      background: #abcbda;
+      border: 1px solid #003399;
     }
     
     /* Ajustar margen del contenido principal */
@@ -739,6 +645,16 @@
     
     
   </style>
+
+  <!-- PDF.js for client-side PDF text extraction -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    // Configure global workerSrc so pdf.js works reliably
+    if (window['pdfjsLib']) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    }
+  </script>
+
 </head>
 <body>
   <!-- Header completo con menús desplegables -->
@@ -756,12 +672,9 @@
       </div>
       
       <div class="header-right">
+      
+      <div class="header-right">
         <nav class="main-nav">
-          <!-- Botón de Inicio -->
-          <a href="dashboard.html" style="text-decoration: none;">
-            <button class="dropdown-btn" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);" title="Volver al Dashboard">🏠 Inicio</button>
-          </a>
-          
           <!-- Menú Archivo -->
           <div class="dropdown">
             <button class="dropdown-btn">Archivo</button>
@@ -875,11 +788,11 @@
       <span class="icon">🖨️</span>
       <span class="text">Imprimir</span>
     </button>
-    <button id="btnExportResumen" type="button" class="action-btn action-btn-info">
+    <button id="btnExportResumen" type="button" class="action-btn">
       <span class="icon">📄</span>
       <span class="text">Exportar</span>
     </button>
-    <button id="btnCopyResumen" type="button" class="action-btn action-btn-secondary">
+    <button id="btnCopyResumen" type="button" class="action-btn">
       <span class="icon">📋</span>
       <span class="text">Copiar</span>
     </button>
@@ -1031,17 +944,15 @@
     <legend>Carga de aportes</legend>
 
     <div class="action-bar">
-      <label for="moratoria">Seleccionar moratoria:</label>
       <select id="moratoria" class="input-short" style="margin-right:12px">
         <option value="NINGUNA">Ninguna</option>
         <option value="24476">Moratoria Ley 24476</option>
         <option value="27705">Plan Ley 27705</option>
       </select>
-  <button id="btnAutoMoratoria" type="button" class="btn btn-main btn-success">🔁 Cargar moratoria</button>
-  <button id="btnQuitarMoratoria" type="button" class="btn btn-main btn-danger">🧹 Quitar moratorias</button>
-  <button id="btnImportarPDF" type="button" class="btn btn-main btn-warning">📄 Importar Historia ANSES</button>
-  <button id="btnRestoreD475" type="button" class="btn btn-info" style="margin-left:8px">♻️ Restaurar D.475/21</button>
-  <button id="btnRestoreEX" type="button" class="btn btn-info" style="margin-left:6px">♻️ Restaurar Art. 19</button>
+  <button id="btnAutoMoratoria" type="button" class="btn btn-main">🔁 Cargar moratoria</button>
+  <button id="btnQuitarMoratoria" type="button" class="btn btn-main">🧹 Quitar moratorias</button>
+  <button id="btnRestoreD475" type="button" class="btn" style="margin-left:8px">♻️ Restaurar D.475/21</button>
+  <button id="btnRestoreEX" type="button" class="btn" style="margin-left:6px">♻️ Restaurar Art. 19</button>
     </div>
 
 
@@ -1086,7 +997,7 @@
           <td id="new-y">0</td>
           <td id="new-m">0</td>
           <td id="new-d">0</td>
-          <td><button id="btnAddRow" type="button" class="btn btn-success">➕ Añadir</button></td>
+          <td><button id="btnAddRow" type="button" class="btn">➕ Añadir</button></td>
         </tr>
       </thead>
       <tbody id="aportesBody"></tbody>
@@ -1230,66 +1141,6 @@
   
   // Variable para rastrear el cómputo que se está editando
   let editingComputationId = null;
-  
-  // Sistema de historial para Deshacer/Rehacer
-  const historial = {
-    estados: [],
-    indiceActual: -1,
-    maxEstados: 50,
-    
-    guardarEstado() {
-      // Eliminar estados futuros si estamos en medio del historial
-      if (this.indiceActual < this.estados.length - 1) {
-        this.estados = this.estados.slice(0, this.indiceActual + 1);
-      }
-      
-      // Guardar estado actual
-      const estado = {
-        aportes: JSON.parse(JSON.stringify(state.aportes)),
-        timestamp: Date.now()
-      };
-      
-      this.estados.push(estado);
-      
-      // Mantener solo los últimos maxEstados
-      if (this.estados.length > this.maxEstados) {
-        this.estados.shift();
-      } else {
-        this.indiceActual++;
-      }
-    },
-    
-    deshacer() {
-      if (this.indiceActual > 0) {
-        this.indiceActual--;
-        const estado = this.estados[this.indiceActual];
-        state.aportes = JSON.parse(JSON.stringify(estado.aportes));
-        render();
-        return true;
-      }
-      return false;
-    },
-    
-    rehacer() {
-      if (this.indiceActual < this.estados.length - 1) {
-        this.indiceActual++;
-        const estado = this.estados[this.indiceActual];
-        state.aportes = JSON.parse(JSON.stringify(estado.aportes));
-        render();
-        return true;
-      }
-      return false;
-    },
-    
-    puedeDeshacer() {
-      return this.indiceActual > 0;
-    },
-    
-    puedeRehacer() {
-      return this.indiceActual < this.estados.length - 1;
-    }
-  };
-  
     const $ = sel => document.querySelector(sel);
 
 // Lista de tipos de servicio (usada en selects)
@@ -1766,9 +1617,7 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
         per.ymd=periodoYMD(per.desde, per.hasta); 
         state.aportes.push(per) 
       }
-      render();
-      historial.guardarEstado(); // Guardar después de cargar moratoria
-      await showModal(`Moratoria ${tipo} cargada en ${piezas.length} tramo(s). Se cargó toda la moratoria disponible sin importar los aportes requeridos.`);
+      render(); await showModal(`Moratoria ${tipo} cargada en ${piezas.length} tramo(s). Se cargó toda la moratoria disponible sin importar los aportes requeridos.`);
     }
     function quitarMoratorias(){ state.aportes = state.aportes.filter(p=>!p.esMoratoria); render(); }
 
@@ -3908,7 +3757,6 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
         document.getElementById('new-m').textContent='0';
         document.getElementById('new-d').textContent='0';
         render();
-        historial.guardarEstado(); // Guardar estado después de agregar
       });
 
       // Delegación de eventos para acciones en filas (editar/guardar/cancelar/borrar)
@@ -3932,19 +3780,16 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
             state.computedDisabled.D475 = true;
             state.aportes = state.aportes.filter(x=>x.generatedType!=='D475');
             render();
-            historial.guardarEstado(); // Guardar después de eliminar D.475
             return;
           }
           if(p.generatedType==='EX'){
             state.computedDisabled.EX = true;
             state.aportes = state.aportes.filter(x=>x.generatedType!=='EX');
             render();
-            historial.guardarEstado(); // Guardar después de eliminar EX
             return;
           }
           // fila normal
           state.aportes.splice(idx,1); render();
-          historial.guardarEstado(); // Guardar después de eliminar
           return;
         }
         if(act==='edit'){
@@ -3972,9 +3817,7 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
           p.edadReq=parseInt(getVal('input[data-field="edadReq"]')||'0',10);
           p.apReq=parseInt(getVal('input[data-field="apReq"]')||'0',10);
           p.ymd=periodoYMD(d,h);
-          p._editing=false; render();
-          historial.guardarEstado(); // Guardar después de editar
-          return;
+          p._editing=false; render(); return;
         }
       });
 
@@ -4006,7 +3849,6 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
 
       document.getElementById('btnAutoMoratoria').addEventListener('click', (e)=>{ e.preventDefault(); cargarMoratoriaAuto(); });
       document.getElementById('btnQuitarMoratoria').addEventListener('click', (e)=>{ e.preventDefault(); quitarMoratorias(); });
-      document.getElementById('btnImportarPDF').addEventListener('click', (e)=>{ e.preventDefault(); importarHistoriaLaboralANSES(); });
   document.getElementById('btnRestoreD475').addEventListener('click', (e)=>{ e.preventDefault(); state.computedDisabled.D475=false; syncComputedRows(); render(); });
   document.getElementById('btnRestoreEX').addEventListener('click', (e)=>{ e.preventDefault(); state.computedDisabled.EX=false; syncComputedRows(); render(); });
     document.getElementById('btnCalcular').addEventListener('click', (e)=>{ 
@@ -4322,7 +4164,6 @@ Ctrl+C - Copiar resumen
       addShortcutIndicators();
 
       render();
-      historial.guardarEstado(); // Guardar estado inicial
     });
     
     // Función para mostrar/ocultar comandos de teclado
@@ -4641,10 +4482,246 @@ function imprimirReporte() {
           });
         };
       </scr` + `ipt>
-    </head>
+    
+  <!-- PDF.js for client-side PDF text extraction -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    // Configure global workerSrc so pdf.js works reliably
+    if (window['pdfjsLib']) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    }
+  </script>
+
+</head>
     <body>
       ${reporteHTML}
-    </body>
+    
+  <script>
+    // =============== Importador de Historia Laboral (ANSES) desde PDF ===============
+    (function(){
+      const $ = (sel) => document.querySelector(sel);
+
+      // UI hooks
+      const btnImport = document.getElementById('btnImportHL');
+      const fileHL = document.getElementById('fileHL');
+
+      if(btnImport && fileHL){
+        btnImport.addEventListener('click', ()=> fileHL.click());
+        fileHL.addEventListener('change', handleHLFile, false);
+      }
+
+      // Util: parse DD/MM/YYYY, MM/YYYY, YYYY and return Date objects (desde/hasta) según el contexto
+      function parseMonthYear(s, isDesde){
+        // s: "01/1992" or "1/1992" or "01-1992" or "01.1992" or "01 1992" or "01/92"
+        if(!s) return null;
+        const m = s.match(/(\d{1,2})[\/\.\-\s](\d{2,4})/);
+        if(!m) return null;
+        let mm = parseInt(m[1],10);
+        let yyyy = parseInt(m[2],10);
+        if(yyyy < 100) yyyy += 2000*(yyyy<50?1:0) + 1900*(yyyy>=50?1:0); // rudimentario
+        if(isDesde) return new Date(yyyy, mm-1, 1);
+        // hasta: último día del mes
+        const lastDay = new Date(yyyy, mm, 0).getDate();
+        return new Date(yyyy, mm-1, lastDay);
+      }
+
+      function toInputDate(d){
+        if(!d) return "";
+        const y=d.getFullYear();
+        const m=String(d.getMonth()+1).padStart(2,'0');
+        const day=String(d.getDate()).padStart(2,'0');
+        return `${y}-${m}-${day}`;
+      }
+
+      // Parseador principal para la sección "RESUMEN HISTORIA LABORAL"
+      function parseResumen(text){
+        const results = [];
+        // Buscar bloque de "RESUMEN HISTORIA LABORAL" hasta la siguiente sección
+        const blockRegex = /RESUMEN\s+HISTORIA\s+LABORAL([\s\S]*?)(?:RELACIÓN\s+LABORAL|APORTES\s+EN|$)/i;
+        const blockMatch = text.match(blockRegex);
+        if(!blockMatch) return results;
+        const block = blockMatch[1];
+
+        // Filas tipo: "RAZÓN SOCIAL CUIT/CUENTA DESDE HASTA" luego líneas con "EMPRESA ... 30-... 07/2000 10/2000"
+        // Normalizamos espacios múltiples -> uno
+        const lines = block.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+
+        // Heurística: línea que contenga 2 fechas (mm/aaaa mm/aaaa) y 1 CUIT/cuenta entre medio.
+        const rowRegex = /(.*?)(\d{1,2}[\/\.\-\s]\d{2,4}|\d{2}\-\d{8}\-\d)(?:\s+|\s*\t+)(\d{1,2}[\/\.\-\s]\d{2,4})\s+(\d{1,2}[\/\.\-\s]\d{2,4})$/i;
+        // Alternativa con CUIT claro: RAZÓN  CUIT  DESDE  HASTA
+        const rowRegex2 = /^(.*?)\s+(\d{2}\-\d{7,8}\-\d)\s+(\d{1,2}[\/\.\-\s]\d{2,4})\s+(\d{1,2}[\/\.\-\s]\d{2,4})$/i;
+
+        for(const raw of lines){
+          if(/RAZ[ÓO]N\s+SOCIAL/i.test(raw)) continue; // encabezado
+          let razon='', cuit='', desdeS='', hastaS='';
+          let m2 = raw.match(rowRegex2);
+          if(m2){
+            razon = m2[1].trim();
+            cuit = m2[2].trim();
+            desdeS = m2[3].trim();
+            hastaS = m2[4].trim();
+          } else {
+            let m = raw.match(rowRegex);
+            if(m){
+              razon = m[1].trim();
+              // m[2] puede ser CUIT o una fecha si el PDF juntó columnas; intentamos detectar
+              if(/\d{2}\-\d{7,8}\-\d/.test(m[2])){
+                cuit = m[2].trim();
+                desdeS = m[3].trim();
+                hastaS = m[4].trim();
+              } else {
+                // A veces el CUIT se come o no está; tratamos la columna faltante
+                cuit = '';
+                desdeS = m[2].trim();
+                hastaS = m[3].trim();
+              }
+            } else {
+              continue;
+            }
+          }
+
+          // Normalizamos razón social abreviada de ANSES
+          razon = razon.replace(/\s+/g,' ').replace(/\s{2,}/g,' ').trim();
+
+          // Mapear a tipo/caja
+          let tipo = inferTipo(razon);
+          let caja = 'ANSES';
+
+          const desde = parseMonthYear(desdeS, true);
+          const hasta = parseMonthYear(hastaS, false);
+          if(desde && hasta){
+            results.push({ razon, cuit, desde, hasta, tipo, caja });
+          }
+        }
+        return results;
+      }
+
+      function inferTipo(razon){
+        const r = (razon||'').toUpperCase();
+        if(r.includes('MONOTRI') || r.includes('MONOTRIB')) return 'Monotributista con Aportes';
+        if(r.includes('CASAS PARTICULA')) return 'Casas particulares';
+        if(r.includes('SUBSIDIO POR DESEMPLEO')) return 'Prestacion por desempleo construcción';
+        if(r.includes('CAPACITACION') && r.includes('EMPLEO')) return 'Declaración Jurada Relación de Dependencia';
+        // Por defecto, relación de dependencia común
+        return 'Común Relación de Dependencia';
+      }
+
+      // Rellena los inputs básicos
+      function fillBasics(text){
+        try{
+          const nameMatch = text.match(/APELLIDO\s+Y\s+NOMBRE:\s*([^\n\r]+?)\s+(?:ACREDITADO|CUIT|NRO|$)/i);
+          if(nameMatch) { $('#nombre').value = nameMatch[1].trim().replace(/\s+/g,' '); }
+          const cuilMatch = text.match(/CUIT\/?L?\s+VIGENTE:\s*([0-9\-]+)/i);
+          if(cuilMatch) { $('#cuil').value = cuilMatch[1].trim(); }
+        }catch(e){ /* silent */ }
+      }
+
+      // Inserta filas en la tabla de aportes (tbody#aportesBody) respetando el formato existente
+      function addAporteRow(idx, row){
+        const tbody = document.getElementById('aportesBody');
+        if(!tbody) return;
+        const tr = document.createElement('tr');
+        tr.dataset.tipo = row.tipo.includes('Insalubre') ? 'Insalubre' : (row.tipo.includes('Privilegiado')||row.tipo.includes('Especial')?'Especial':'Común');
+        tr.innerHTML = `
+          <td>${idx}</td>
+          <td><input class="cell-input" type="date" value="${toInputDate(row.desde)}"></td>
+          <td><input class="cell-input" type="date" value="${toInputDate(row.hasta)}"></td>
+          <td><input class="cell-input" type="text" value="${(row.razon||'').replace(/"/g,'&quot;')}" /></td>
+          <td>
+            <select class="cell-input">
+              <option ${row.caja==='ANSES'?'selected':''}>ANSES</option>
+              <option ${row.caja==='Provincia No Adherida'?'selected':''}>Provincia No Adherida</option>
+              <option ${row.caja==='Caja Profesional'?'selected':''}>Caja Profesional</option>
+            </select>
+          </td>
+          <td>
+            <select class="cell-input">
+              <option ${row.tipo==='Común Relación de Dependencia'?'selected':''}>Común</option>
+              <option ${row.tipo.indexOf('Insalubre')>=0?'selected':''}>Insalubre</option>
+              <option ${row.tipo.indexOf('Privilegiado')>=0?'selected':''}>Privilegiado</option>
+              <option ${row.tipo.indexOf('Especial')>=0?'selected':''}>Especial</option>
+            </select>
+          </td>
+          <td><input class="cell-input" type="number" min="0" value="0"/></td>
+          <td><input class="cell-input" type="number" min="0" value="30"/></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td class="row-actions">
+            <button type="button" class="btn">✏️</button>
+            <button type="button" class="btn">🗑️</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      }
+
+      function populateFromResumen(rows){
+        // Limpiar actual
+        const tbody = document.getElementById('aportesBody');
+        if(tbody) tbody.innerHTML = '';
+        let i=1;
+        for(const r of rows){
+          addAporteRow(i++, r);
+        }
+        // Intento simple de actualizar totales si existiera función global
+        if(typeof window.recalcTotals === 'function'){ window.recalcTotals(); }
+      }
+
+      async function handleHLFile(evt){
+        const file = evt.target.files && evt.target.files[0];
+        if(!file) return;
+        const arrayBuffer = await file.arrayBuffer();
+        if(!window['pdfjsLib']){
+          alert('No se pudo cargar pdf.js. Revisa la conexión.');
+          return;
+        }
+        const loadingTask = pdfjsLib.getDocument({data: arrayBuffer});
+        const pdf = await loadingTask.promise;
+        let fullText = '';
+        for(let p=1; p<=pdf.numPages; p++){
+          const page = await pdf.getPage(p);
+          const content = await page.getTextContent();
+          const pageText = content.items.map(it => it.str).join('\n');
+          fullText += '\n' + pageText;
+        }
+        // Normalización básica
+        fullText = fullText.replace(/\u00A0/g,' ').replace(/\s+\n/g,'\n');
+
+        fillBasics(fullText);
+        const resumenRows = parseResumen(fullText);
+        if(resumenRows.length){
+          populateFromResumen(resumenRows);
+          showCustomModal('✅ Listo', `Se importaron ${resumenRows.length} períodos desde "Resumen Historia Laboral". Revisa las filas antes de calcular.`);
+        }else{
+          showCustomModal('⚠️ No se detectó el "Resumen"', 'No pude reconocer la sección "RESUMEN HISTORIA LABORAL". Podés enviarme un ejemplo para ajustar el parser.');
+        }
+        // limpiar input para permitir reimportar
+        evt.target.value = '';
+      }
+
+      // Modal minimalista reutilizando el del sitio si existe
+      function showCustomModal(title, msg){
+        const backdrop = document.getElementById('customModalBackdrop');
+        const box = document.getElementById('customModalBox');
+        const msgBox = document.getElementById('customModalMsg');
+        const btns = document.getElementById('customModalBtns');
+        if(backdrop && box && msgBox && btns){
+          msgBox.innerHTML = `<h3 style="margin:0 0 6px 0">${title}</h3><div>${msg}</div>`;
+          btns.innerHTML = '';
+          const ok = document.createElement('button');
+          ok.className = 'btn action-btn-primary';
+          ok.textContent = 'Aceptar';
+          ok.onclick = ()=> backdrop.style.display = 'none';
+          btns.appendChild(ok);
+          backdrop.style.display = 'flex';
+        }else{
+          alert(`${title}\n\n${msg}`);
+        }
+      }
+    })();
+  </script>
+
+</body>
     </html>
   `);
   ventanaImpresion.document.close();
@@ -4893,7 +4970,243 @@ async function exportarPDF() {
 function exportResumen(){
   const resumen = document.getElementById('resumen'); if(!resumen) return; 
   const w = window.open('','_blank','width=800,height=600');
-  const html = `<!doctype html><html><head><meta charset="utf-8"><title>Resumen</title><style>body{font-family:Tahoma,Arial,sans-serif;padding:12px}</style></head><body>${resumen.innerHTML}</body></html>`;
+  const html = `<!doctype html><html><head><meta charset="utf-8"><title>Resumen</title><style>body{font-family:Tahoma,Arial,sans-serif;padding:12px}</style>
+  <!-- PDF.js for client-side PDF text extraction -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    // Configure global workerSrc so pdf.js works reliably
+    if (window['pdfjsLib']) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    }
+  </script>
+
+</head><body>${resumen.innerHTML}
+  <script>
+    // =============== Importador de Historia Laboral (ANSES) desde PDF ===============
+    (function(){
+      const $ = (sel) => document.querySelector(sel);
+
+      // UI hooks
+      const btnImport = document.getElementById('btnImportHL');
+      const fileHL = document.getElementById('fileHL');
+
+      if(btnImport && fileHL){
+        btnImport.addEventListener('click', ()=> fileHL.click());
+        fileHL.addEventListener('change', handleHLFile, false);
+      }
+
+      // Util: parse DD/MM/YYYY, MM/YYYY, YYYY and return Date objects (desde/hasta) según el contexto
+      function parseMonthYear(s, isDesde){
+        // s: "01/1992" or "1/1992" or "01-1992" or "01.1992" or "01 1992" or "01/92"
+        if(!s) return null;
+        const m = s.match(/(\d{1,2})[\/\.\-\s](\d{2,4})/);
+        if(!m) return null;
+        let mm = parseInt(m[1],10);
+        let yyyy = parseInt(m[2],10);
+        if(yyyy < 100) yyyy += 2000*(yyyy<50?1:0) + 1900*(yyyy>=50?1:0); // rudimentario
+        if(isDesde) return new Date(yyyy, mm-1, 1);
+        // hasta: último día del mes
+        const lastDay = new Date(yyyy, mm, 0).getDate();
+        return new Date(yyyy, mm-1, lastDay);
+      }
+
+      function toInputDate(d){
+        if(!d) return "";
+        const y=d.getFullYear();
+        const m=String(d.getMonth()+1).padStart(2,'0');
+        const day=String(d.getDate()).padStart(2,'0');
+        return `${y}-${m}-${day}`;
+      }
+
+      // Parseador principal para la sección "RESUMEN HISTORIA LABORAL"
+      function parseResumen(text){
+        const results = [];
+        // Buscar bloque de "RESUMEN HISTORIA LABORAL" hasta la siguiente sección
+        const blockRegex = /RESUMEN\s+HISTORIA\s+LABORAL([\s\S]*?)(?:RELACIÓN\s+LABORAL|APORTES\s+EN|$)/i;
+        const blockMatch = text.match(blockRegex);
+        if(!blockMatch) return results;
+        const block = blockMatch[1];
+
+        // Filas tipo: "RAZÓN SOCIAL CUIT/CUENTA DESDE HASTA" luego líneas con "EMPRESA ... 30-... 07/2000 10/2000"
+        // Normalizamos espacios múltiples -> uno
+        const lines = block.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+
+        // Heurística: línea que contenga 2 fechas (mm/aaaa mm/aaaa) y 1 CUIT/cuenta entre medio.
+        const rowRegex = /(.*?)(\d{1,2}[\/\.\-\s]\d{2,4}|\d{2}\-\d{8}\-\d)(?:\s+|\s*\t+)(\d{1,2}[\/\.\-\s]\d{2,4})\s+(\d{1,2}[\/\.\-\s]\d{2,4})$/i;
+        // Alternativa con CUIT claro: RAZÓN  CUIT  DESDE  HASTA
+        const rowRegex2 = /^(.*?)\s+(\d{2}\-\d{7,8}\-\d)\s+(\d{1,2}[\/\.\-\s]\d{2,4})\s+(\d{1,2}[\/\.\-\s]\d{2,4})$/i;
+
+        for(const raw of lines){
+          if(/RAZ[ÓO]N\s+SOCIAL/i.test(raw)) continue; // encabezado
+          let razon='', cuit='', desdeS='', hastaS='';
+          let m2 = raw.match(rowRegex2);
+          if(m2){
+            razon = m2[1].trim();
+            cuit = m2[2].trim();
+            desdeS = m2[3].trim();
+            hastaS = m2[4].trim();
+          } else {
+            let m = raw.match(rowRegex);
+            if(m){
+              razon = m[1].trim();
+              // m[2] puede ser CUIT o una fecha si el PDF juntó columnas; intentamos detectar
+              if(/\d{2}\-\d{7,8}\-\d/.test(m[2])){
+                cuit = m[2].trim();
+                desdeS = m[3].trim();
+                hastaS = m[4].trim();
+              } else {
+                // A veces el CUIT se come o no está; tratamos la columna faltante
+                cuit = '';
+                desdeS = m[2].trim();
+                hastaS = m[3].trim();
+              }
+            } else {
+              continue;
+            }
+          }
+
+          // Normalizamos razón social abreviada de ANSES
+          razon = razon.replace(/\s+/g,' ').replace(/\s{2,}/g,' ').trim();
+
+          // Mapear a tipo/caja
+          let tipo = inferTipo(razon);
+          let caja = 'ANSES';
+
+          const desde = parseMonthYear(desdeS, true);
+          const hasta = parseMonthYear(hastaS, false);
+          if(desde && hasta){
+            results.push({ razon, cuit, desde, hasta, tipo, caja });
+          }
+        }
+        return results;
+      }
+
+      function inferTipo(razon){
+        const r = (razon||'').toUpperCase();
+        if(r.includes('MONOTRI') || r.includes('MONOTRIB')) return 'Monotributista con Aportes';
+        if(r.includes('CASAS PARTICULA')) return 'Casas particulares';
+        if(r.includes('SUBSIDIO POR DESEMPLEO')) return 'Prestacion por desempleo construcción';
+        if(r.includes('CAPACITACION') && r.includes('EMPLEO')) return 'Declaración Jurada Relación de Dependencia';
+        // Por defecto, relación de dependencia común
+        return 'Común Relación de Dependencia';
+      }
+
+      // Rellena los inputs básicos
+      function fillBasics(text){
+        try{
+          const nameMatch = text.match(/APELLIDO\s+Y\s+NOMBRE:\s*([^\n\r]+?)\s+(?:ACREDITADO|CUIT|NRO|$)/i);
+          if(nameMatch) { $('#nombre').value = nameMatch[1].trim().replace(/\s+/g,' '); }
+          const cuilMatch = text.match(/CUIT\/?L?\s+VIGENTE:\s*([0-9\-]+)/i);
+          if(cuilMatch) { $('#cuil').value = cuilMatch[1].trim(); }
+        }catch(e){ /* silent */ }
+      }
+
+      // Inserta filas en la tabla de aportes (tbody#aportesBody) respetando el formato existente
+      function addAporteRow(idx, row){
+        const tbody = document.getElementById('aportesBody');
+        if(!tbody) return;
+        const tr = document.createElement('tr');
+        tr.dataset.tipo = row.tipo.includes('Insalubre') ? 'Insalubre' : (row.tipo.includes('Privilegiado')||row.tipo.includes('Especial')?'Especial':'Común');
+        tr.innerHTML = `
+          <td>${idx}</td>
+          <td><input class="cell-input" type="date" value="${toInputDate(row.desde)}"></td>
+          <td><input class="cell-input" type="date" value="${toInputDate(row.hasta)}"></td>
+          <td><input class="cell-input" type="text" value="${(row.razon||'').replace(/"/g,'&quot;')}" /></td>
+          <td>
+            <select class="cell-input">
+              <option ${row.caja==='ANSES'?'selected':''}>ANSES</option>
+              <option ${row.caja==='Provincia No Adherida'?'selected':''}>Provincia No Adherida</option>
+              <option ${row.caja==='Caja Profesional'?'selected':''}>Caja Profesional</option>
+            </select>
+          </td>
+          <td>
+            <select class="cell-input">
+              <option ${row.tipo==='Común Relación de Dependencia'?'selected':''}>Común</option>
+              <option ${row.tipo.indexOf('Insalubre')>=0?'selected':''}>Insalubre</option>
+              <option ${row.tipo.indexOf('Privilegiado')>=0?'selected':''}>Privilegiado</option>
+              <option ${row.tipo.indexOf('Especial')>=0?'selected':''}>Especial</option>
+            </select>
+          </td>
+          <td><input class="cell-input" type="number" min="0" value="0"/></td>
+          <td><input class="cell-input" type="number" min="0" value="30"/></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td class="row-actions">
+            <button type="button" class="btn">✏️</button>
+            <button type="button" class="btn">🗑️</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      }
+
+      function populateFromResumen(rows){
+        // Limpiar actual
+        const tbody = document.getElementById('aportesBody');
+        if(tbody) tbody.innerHTML = '';
+        let i=1;
+        for(const r of rows){
+          addAporteRow(i++, r);
+        }
+        // Intento simple de actualizar totales si existiera función global
+        if(typeof window.recalcTotals === 'function'){ window.recalcTotals(); }
+      }
+
+      async function handleHLFile(evt){
+        const file = evt.target.files && evt.target.files[0];
+        if(!file) return;
+        const arrayBuffer = await file.arrayBuffer();
+        if(!window['pdfjsLib']){
+          alert('No se pudo cargar pdf.js. Revisa la conexión.');
+          return;
+        }
+        const loadingTask = pdfjsLib.getDocument({data: arrayBuffer});
+        const pdf = await loadingTask.promise;
+        let fullText = '';
+        for(let p=1; p<=pdf.numPages; p++){
+          const page = await pdf.getPage(p);
+          const content = await page.getTextContent();
+          const pageText = content.items.map(it => it.str).join('\n');
+          fullText += '\n' + pageText;
+        }
+        // Normalización básica
+        fullText = fullText.replace(/\u00A0/g,' ').replace(/\s+\n/g,'\n');
+
+        fillBasics(fullText);
+        const resumenRows = parseResumen(fullText);
+        if(resumenRows.length){
+          populateFromResumen(resumenRows);
+          showCustomModal('✅ Listo', `Se importaron ${resumenRows.length} períodos desde "Resumen Historia Laboral". Revisa las filas antes de calcular.`);
+        }else{
+          showCustomModal('⚠️ No se detectó el "Resumen"', 'No pude reconocer la sección "RESUMEN HISTORIA LABORAL". Podés enviarme un ejemplo para ajustar el parser.');
+        }
+        // limpiar input para permitir reimportar
+        evt.target.value = '';
+      }
+
+      // Modal minimalista reutilizando el del sitio si existe
+      function showCustomModal(title, msg){
+        const backdrop = document.getElementById('customModalBackdrop');
+        const box = document.getElementById('customModalBox');
+        const msgBox = document.getElementById('customModalMsg');
+        const btns = document.getElementById('customModalBtns');
+        if(backdrop && box && msgBox && btns){
+          msgBox.innerHTML = `<h3 style="margin:0 0 6px 0">${title}</h3><div>${msg}</div>`;
+          btns.innerHTML = '';
+          const ok = document.createElement('button');
+          ok.className = 'btn action-btn-primary';
+          ok.textContent = 'Aceptar';
+          ok.onclick = ()=> backdrop.style.display = 'none';
+          btns.appendChild(ok);
+          backdrop.style.display = 'flex';
+        }else{
+          alert(`${title}\n\n${msg}`);
+        }
+      }
+    })();
+  </script>
+
+</body></html>`;
   w.document.open(); w.document.write(html); w.document.close();
   w.focus();
   // invocar impresión del popup
@@ -5369,37 +5682,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  document.getElementById('exitApp')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (confirm('¿Está seguro de que desea salir?')) {
-      window.close();
-    }
-  });
-  
   // Menú Editar
-  document.getElementById('undoAction')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (historial.deshacer()) {
-      customAlert('Acción deshecha');
-    } else {
-      customAlert('No hay acciones para deshacer');
-    }
-  });
-  
-  document.getElementById('redoAction')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (historial.rehacer()) {
-      customAlert('Acción rehecha');
-    } else {
-      customAlert('No hay acciones para rehacer');
-    }
-  });
-  
   document.getElementById('clearAll')?.addEventListener('click', async (e) => {
     e.preventDefault();
     const confirmed = await customConfirm('¿Está seguro de que desea limpiar todos los campos?');
     if (confirmed) {
-      historial.guardarEstado(); // Guardar antes de limpiar
       clearAllFields();
     }
   });
@@ -5415,7 +5702,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Menú Ver
   document.getElementById('togglePreview')?.addEventListener('click', (e) => {
     e.preventDefault();
-    mostrarVistaPrevia();
+    customAlert('Vista previa del cómputo (funcionalidad en desarrollo)');
   });
   
   document.getElementById('fullScreen')?.addEventListener('click', (e) => {
@@ -5427,16 +5714,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  document.getElementById('zoomIn')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    ajustarZoom(0.1);
-  });
-  
-  document.getElementById('zoomOut')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    ajustarZoom(-0.1);
-  });
-  
   // Toggle shortcuts visibility
   document.getElementById('toggleShortcuts')?.addEventListener('click', (e) => {
     e.preventDefault();
@@ -5446,1176 +5723,30 @@ document.addEventListener('DOMContentLoaded', function() {
   // Menú Herramientas
   document.getElementById('calculator')?.addEventListener('click', (e) => {
     e.preventDefault();
-    abrirCalculadora();
+    customAlert('Calculadora (funcionalidad en desarrollo)');
   });
   
   document.getElementById('dateCalculator')?.addEventListener('click', (e) => {
     e.preventDefault();
-    abrirCalculadoraFechas();
-  });
-  
-  document.getElementById('converter')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    abrirConvertidor();
+    customAlert('Calculadora de fechas (funcionalidad en desarrollo)');
   });
   
   document.getElementById('settings')?.addEventListener('click', (e) => {
     e.preventDefault();
-    abrirConfiguracion();
+    customAlert('Configuración (funcionalidad en desarrollo)');
   });
   
   // Menú Ayuda
   document.getElementById('helpContent')?.addEventListener('click', (e) => {
     e.preventDefault();
-    mostrarAyuda();
-  });
-  
-  document.getElementById('userGuide')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    mostrarGuiaUsuario();
-  });
-  
-  document.getElementById('shortcuts')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    toggleShortcutsVisibility();
+    customAlert('Contenido de ayuda (funcionalidad en desarrollo)');
   });
   
   document.getElementById('aboutApp')?.addEventListener('click', (e) => {
     e.preventDefault();
-    mostrarAcercaDe();
+    customAlert('LEX▲R - Cómputo de derecho Previsional\nVersión 1.0\nDesarrollado para cálculos previsionales');
   });
 });
-
-// ========== FUNCIONES ADICIONALES DEL MENÚ ==========
-
-// Variable global para el zoom
-let nivelZoom = 1;
-
-// Función para ajustar zoom
-function ajustarZoom(cambio) {
-  nivelZoom += cambio;
-  nivelZoom = Math.max(0.5, Math.min(2, nivelZoom)); // Limitar entre 50% y 200%
-  document.body.style.zoom = nivelZoom;
-  customAlert(`Zoom: ${Math.round(nivelZoom * 100)}%`);
-}
-
-// Función para mostrar vista previa
-function mostrarVistaPrevia() {
-  const ventana = window.open('', '_blank', 'width=1000,height=800,scrollbars=yes');
-  ventana.document.write(`
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="UTF-8">
-      <title>Vista Previa - LEX▲R</title>
-      <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        h1 { color: #333; }
-      </style>
-    </head>
-    <body>
-      <h1>Vista Previa del Cómputo</h1>
-      ${document.querySelector('fieldset')?.innerHTML || '<p>No hay datos para mostrar</p>'}
-    </body>
-    </html>
-  `);
-  ventana.document.close();
-}
-
-// Función para abrir calculadora
-function abrirCalculadora() {
-  const html = `
-    <div style="background: white; padding: 20px; border-radius: 8px; max-width: 300px;">
-      <h2 style="margin-top: 0;">Calculadora</h2>
-      <input type="text" id="calcDisplay" readonly style="width: 100%; padding: 10px; font-size: 24px; text-align: right; margin-bottom: 10px; border: 2px solid #ccc; border-radius: 4px;">
-      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
-        <button onclick="calcAgregar('7')" style="padding: 15px; font-size: 18px;">7</button>
-        <button onclick="calcAgregar('8')" style="padding: 15px; font-size: 18px;">8</button>
-        <button onclick="calcAgregar('9')" style="padding: 15px; font-size: 18px;">9</button>
-        <button onclick="calcAgregar('/')" style="padding: 15px; font-size: 18px;">/</button>
-        
-        <button onclick="calcAgregar('4')" style="padding: 15px; font-size: 18px;">4</button>
-        <button onclick="calcAgregar('5')" style="padding: 15px; font-size: 18px;">5</button>
-        <button onclick="calcAgregar('6')" style="padding: 15px; font-size: 18px;">6</button>
-        <button onclick="calcAgregar('*')" style="padding: 15px; font-size: 18px;">*</button>
-        
-        <button onclick="calcAgregar('1')" style="padding: 15px; font-size: 18px;">1</button>
-        <button onclick="calcAgregar('2')" style="padding: 15px; font-size: 18px;">2</button>
-        <button onclick="calcAgregar('3')" style="padding: 15px; font-size: 18px;">3</button>
-        <button onclick="calcAgregar('-')" style="padding: 15px; font-size: 18px;">-</button>
-        
-        <button onclick="calcAgregar('0')" style="padding: 15px; font-size: 18px;">0</button>
-        <button onclick="calcAgregar('.')" style="padding: 15px; font-size: 18px;">.</button>
-        <button onclick="calcCalcular()" style="padding: 15px; font-size: 18px;">=</button>
-        <button onclick="calcAgregar('+')" style="padding: 15px; font-size: 18px;">+</button>
-        
-        <button onclick="calcLimpiar()" style="padding: 15px; font-size: 18px; grid-column: span 2;">C</button>
-        <button onclick="calcBorrar()" style="padding: 15px; font-size: 18px; grid-column: span 2;">←</button>
-      </div>
-    </div>
-  `;
-  
-  const ventana = window.open('', '_blank', 'width=350,height=550');
-  ventana.document.write(`
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="UTF-8">
-      <title>Calculadora - LEX▲R</title>
-      <style>
-        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #f0f0f0; }
-        button { cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #fff; }
-        button:hover { background: #e0e0e0; }
-        button:active { background: #d0d0d0; }
-      </style>
-      <script>
-        let expresion = '';
-        
-        function calcAgregar(valor) {
-          expresion += valor;
-          document.getElementById('calcDisplay').value = expresion;
-        }
-        
-        function calcCalcular() {
-          try {
-            const resultado = eval(expresion);
-            document.getElementById('calcDisplay').value = resultado;
-            expresion = resultado.toString();
-          } catch (e) {
-            document.getElementById('calcDisplay').value = 'Error';
-            expresion = '';
-          }
-        }
-        
-        function calcLimpiar() {
-          expresion = '';
-          document.getElementById('calcDisplay').value = '';
-        }
-        
-        function calcBorrar() {
-          expresion = expresion.slice(0, -1);
-          document.getElementById('calcDisplay').value = expresion;
-        }
-      <\/script>
-    </head>
-    <body>
-      ${html}
-    </body>
-    </html>
-  `);
-  ventana.document.close();
-}
-
-// Función para abrir calculadora de fechas
-function abrirCalculadoraFechas() {
-  const html = `
-    <div style="background: white; padding: 20px; border-radius: 8px; max-width: 500px;">
-      <h2 style="margin-top: 0;">Calculadora de Fechas</h2>
-      
-      <div style="margin-bottom: 20px;">
-        <h3>Diferencia entre fechas</h3>
-        <label>Fecha inicial: <input type="date" id="fecha1"></label><br><br>
-        <label>Fecha final: <input type="date" id="fecha2"></label><br><br>
-        <button onclick="calcularDiferencia()" style="padding: 10px 20px;">Calcular Diferencia</button>
-        <div id="resultadoDif" style="margin-top: 10px; font-weight: bold;"></div>
-      </div>
-      
-      <hr>
-      
-      <div style="margin-top: 20px;">
-        <h3>Agregar/Restar días a una fecha</h3>
-        <label>Fecha base: <input type="date" id="fechaBase"></label><br><br>
-        <label>Días a agregar/restar: <input type="number" id="diasOperar" value="0"></label><br><br>
-        <button onclick="operarDias()" style="padding: 10px 20px;">Calcular</button>
-        <div id="resultadoOp" style="margin-top: 10px; font-weight: bold;"></div>
-      </div>
-    </div>
-  `;
-  
-  const ventana = window.open('', '_blank', 'width=550,height=600');
-  ventana.document.write(`
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="UTF-8">
-      <title>Calculadora de Fechas - LEX▲R</title>
-      <style>
-        body { font-family: Arial, sans-serif; padding: 20px; background: #f0f0f0; }
-        input { padding: 8px; margin: 5px 0; }
-        button { cursor: pointer; background: #4CAF50; color: white; border: none; border-radius: 4px; }
-        button:hover { background: #45a049; }
-      </style>
-      <script>
-        function calcularDiferencia() {
-          const fecha1 = new Date(document.getElementById('fecha1').value);
-          const fecha2 = new Date(document.getElementById('fecha2').value);
-          
-          if (!document.getElementById('fecha1').value || !document.getElementById('fecha2').value) {
-            document.getElementById('resultadoDif').innerHTML = 'Por favor ingrese ambas fechas';
-            return;
-          }
-          
-          const diferencia = Math.abs(fecha2 - fecha1);
-          const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-          const anos = Math.floor(dias / 360);
-          const meses = Math.floor((dias % 360) / 30);
-          const diasRestantes = dias % 30;
-          
-          document.getElementById('resultadoDif').innerHTML = 
-            'Diferencia: ' + dias + ' días<br>' +
-            'Equivalente a: ' + anos + ' años, ' + meses + ' meses, ' + diasRestantes + ' días (método 360)';
-        }
-        
-        function operarDias() {
-          const fechaBase = new Date(document.getElementById('fechaBase').value);
-          const dias = parseInt(document.getElementById('diasOperar').value) || 0;
-          
-          if (!document.getElementById('fechaBase').value) {
-            document.getElementById('resultadoOp').innerHTML = 'Por favor ingrese una fecha base';
-            return;
-          }
-          
-          const nuevaFecha = new Date(fechaBase);
-          nuevaFecha.setDate(nuevaFecha.getDate() + dias);
-          
-          document.getElementById('resultadoOp').innerHTML = 
-            'Nueva fecha: ' + nuevaFecha.toLocaleDateString('es-ES');
-        }
-      <\/script>
-    </head>
-    <body>
-      ${html}
-    </body>
-    </html>
-  `);
-  ventana.document.close();
-}
-
-// Función para abrir convertidor
-function abrirConvertidor() {
-  const html = `
-    <div style="background: white; padding: 20px; border-radius: 8px; max-width: 400px;">
-      <h2 style="margin-top: 0;">Convertidor de Tiempo</h2>
-      
-      <div style="margin-bottom: 20px;">
-        <h3>Convertir años/meses/días a días</h3>
-        <label>Años: <input type="number" id="anos" value="0" min="0"></label><br>
-        <label>Meses: <input type="number" id="meses" value="0" min="0"></label><br>
-        <label>Días: <input type="number" id="dias" value="0" min="0"></label><br><br>
-        <button onclick="convertirADias()" style="padding: 10px 20px;">Convertir</button>
-        <div id="resultadoDias" style="margin-top: 10px; font-weight: bold;"></div>
-      </div>
-      
-      <hr>
-      
-      <div style="margin-top: 20px;">
-        <h3>Convertir días a años/meses/días</h3>
-        <label>Total de días: <input type="number" id="totalDias" value="0" min="0"></label><br><br>
-        <button onclick="convertirDesdeDias()" style="padding: 10px 20px;">Convertir</button>
-        <div id="resultadoYMD" style="margin-top: 10px; font-weight: bold;"></div>
-      </div>
-    </div>
-  `;
-  
-  const ventana = window.open('', '_blank', 'width=450,height=550');
-  ventana.document.write(`
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="UTF-8">
-      <title>Convertidor - LEX▲R</title>
-      <style>
-        body { font-family: Arial, sans-serif; padding: 20px; background: #f0f0f0; }
-        input { padding: 8px; margin: 5px 0; width: 100px; }
-        button { cursor: pointer; background: #2196F3; color: white; border: none; border-radius: 4px; }
-        button:hover { background: #0b7dda; }
-      </style>
-      <script>
-        function convertirADias() {
-          const anos = parseInt(document.getElementById('anos').value) || 0;
-          const meses = parseInt(document.getElementById('meses').value) || 0;
-          const dias = parseInt(document.getElementById('dias').value) || 0;
-          
-          const totalDias = anos * 360 + meses * 30 + dias;
-          
-          document.getElementById('resultadoDias').innerHTML = 
-            'Total: ' + totalDias + ' días (método 360)';
-        }
-        
-        function convertirDesdeDias() {
-          const totalDias = parseInt(document.getElementById('totalDias').value) || 0;
-          
-          const anos = Math.floor(totalDias / 360);
-          const meses = Math.floor((totalDias % 360) / 30);
-          const dias = totalDias % 30;
-          
-          document.getElementById('resultadoYMD').innerHTML = 
-            anos + ' años, ' + meses + ' meses, ' + dias + ' días';
-        }
-      <\/script>
-    </head>
-    <body>
-      ${html}
-    </body>
-    </html>
-  `);
-  ventana.document.close();
-}
-
-// Función para abrir configuración
-function abrirConfiguracion() {
-  customAlert(`
-    CONFIGURACIÓN
-
-    Esta sección permite configurar:
-    - Preferencias de cálculo
-    - Opciones de visualización
-    - Configuración de impresión
-    
-    Funcionalidad en desarrollo.
-  `.trim());
-}
-
-// Función para mostrar ayuda
-function mostrarAyuda() {
-  const ayuda = `
-    <div style="max-width: 800px; text-align: left;">
-      <h2>Ayuda de LEX▲R</h2>
-      
-      <h3>📋 Cómo usar el sistema</h3>
-      <ol>
-        <li><b>Datos básicos:</b> Complete nombre, CUIL, sexo, fechas, etc.</li>
-        <li><b>Agregar aportes:</b> Use el formulario inferior para añadir períodos de aportes</li>
-        <li><b>Calcular derecho:</b> Presione F5 o el botón "✅ Calcular"</li>
-        <li><b>Generar planificación:</b> Presione Ctrl+P o el botón "🎯 Planificar"</li>
-        <li><b>Imprimir:</b> Presione F6 o el botón "🖨️ Imprimir"</li>
-        <li><b>Exportar PDF:</b> Use Ctrl+Shift+P o el menú Archivo</li>
-      </ol>
-      
-      <h3>⚡ Funciones especiales</h3>
-      <ul>
-        <li><b>D.475/21:</b> Automático para mujeres con hijos</li>
-        <li><b>Art.19 (Exceso de edad):</b> Se calcula automáticamente</li>
-        <li><b>Prorrateo:</b> Activar checkbox para regímenes especiales</li>
-        <li><b>Construcción:</b> Requisitos especiales automáticos</li>
-      </ul>
-      
-      <h3>💾 Guardar cómputos</h3>
-      <p>Use Ctrl+S o el menú Archivo → Guardar para almacenar el cómputo en el navegador</p>
-      
-      <h3>⌨️ Atajos de teclado</h3>
-      <p>Presione el botón "⌨️ Ver Comandos" o use el menú Ver → Comandos de Teclado</p>
-    </div>
-  `;
-  
-  const ventana = window.open('', '_blank', 'width=850,height=700,scrollbars=yes');
-  ventana.document.write(`
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="UTF-8">
-      <title>Ayuda - LEX▲R</title>
-      <style>
-        body { font-family: Arial, sans-serif; padding: 30px; background: #f5f5f5; }
-        h2 { color: #333; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; }
-        h3 { color: #555; margin-top: 20px; }
-        ul, ol { line-height: 1.8; }
-      </style>
-    </head>
-    <body>
-      ${ayuda}
-    </body>
-    </html>
-  `);
-  ventana.document.close();
-}
-
-// Función para mostrar guía del usuario
-function mostrarGuiaUsuario() {
-  const guia = `
-    <div style="max-width: 900px; text-align: left;">
-      <h1>Guía del Usuario - LEX▲R</h1>
-      
-      <h2>1. Introducción</h2>
-      <p>LEX▲R es un sistema de cómputo previsional que permite calcular si una persona cumple los requisitos para acceder a beneficios jubilatorios.</p>
-      
-      <h2>2. Tipos de Beneficios</h2>
-      <ul>
-        <li><b>Jubilación Ordinaria:</b> Requiere edad y 30 años de aportes</li>
-        <li><b>Retiro por Invalidez:</b> No requiere edad ni aportes mínimos</li>
-        <li><b>PUAM:</b> Pensión Universal para el Adulto Mayor</li>
-        <li><b>Pensión de PBU:</b> Para beneficiarios de trabajador fallecido</li>
-      </ul>
-      
-      <h2>3. Carga de Aportes</h2>
-      <p>Complete los siguientes campos para cada período:</p>
-      <ul>
-        <li><b>Desde/Hasta:</b> Fechas del período de aportes</li>
-        <li><b>Razón:</b> Empleador o descripción</li>
-        <li><b>Caja:</b> ANSES, Provincia, Caja Profesional</li>
-        <li><b>Tipo:</b> Seleccione el régimen (Común, Construcción, etc.)</li>
-      </ul>
-      
-      <h2>4. Regímenes Especiales</h2>
-      <p>Los regímenes especiales tienen requisitos diferentes:</p>
-      <ul>
-        <li><b>Construcción:</b> 55 años y 25 de aportes (+ requisito 12/15)</li>
-        <li><b>Docentes:</b> Reducción de edad con años al frente de aula</li>
-        <li><b>Insalubres:</b> 20% de bonificación en aportes</li>
-      </ul>
-      
-      <h2>5. Prorrateo</h2>
-      <p>Cuando se tienen aportes en diferentes regímenes, active el checkbox "Usar prorrateo" para calcular edad y aportes proporcionalmente.</p>
-      
-      <h2>6. Moratorias</h2>
-      <p>Use el botón "Cargar Moratoria" (F8) para agregar automáticamente períodos de moratoria que completen los aportes faltantes.</p>
-      
-      <h2>7. Planificación</h2>
-      <p>Genera un plan detallado de lo que falta para cumplir requisitos, incluyendo fechas estimadas y opciones de regularización.</p>
-      
-      <h2>8. Gestión de Cómputos</h2>
-      <p>Los cómputos se guardan en el navegador. Use el menú "🗂️ Gestionar Cómputos" para ver, editar, eliminar o exportar cómputos guardados.</p>
-    </div>
-  `;
-  
-  const ventana = window.open('', '_blank', 'width=950,height=800,scrollbars=yes');
-  ventana.document.write(`
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="UTF-8">
-      <title>Guía del Usuario - LEX▲R</title>
-      <style>
-        body { font-family: Arial, sans-serif; padding: 40px; background: #f9f9f9; line-height: 1.6; }
-        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 15px; }
-        h2 { color: #34495e; margin-top: 30px; border-left: 4px solid #3498db; padding-left: 15px; }
-        ul { line-height: 1.8; }
-        p { margin: 15px 0; }
-      </style>
-    </head>
-    <body>
-      ${guia}
-    </body>
-    </html>
-  `);
-  ventana.document.close();
-}
-
-// Función para mostrar "Acerca de"
-function mostrarAcercaDe() {
-  customAlert(`
-    LEX▲R - Sistema de Cómputo Previsional
-    Versión 1.0.0
-    
-    Desarrollado para el cálculo de requisitos jubilatorios
-    según la legislación argentina.
-    
-    Características:
-    ✓ Cálculo de múltiples beneficios
-    ✓ Soporte para regímenes especiales
-    ✓ Prorrateo automático
-    ✓ Gestión de moratorias
-    ✓ Exportación a PDF
-    ✓ Base de datos local
-    ✓ Importación desde PDF ANSES
-    
-    © 2025 LEX▲R - Todos los derechos reservados
-  `.trim());
-}
-
-// ========== IMPORTAR HISTORIA LABORAL DE ANSES ==========
-
-// Función principal para importar desde PDF
-async function importarHistoriaLaboralANSES() {
-  const input = document.createElement('input');
-  input.type = 'file';
-  input.accept = 'application/pdf';
-  
-  input.onchange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    
-    try {
-      await showModal('⏳ Procesando historia laboral de ANSES...\nEsto puede tomar unos segundos.');
-      
-      // Cargar PDF.js si no está cargado
-      if (!window.pdfjsLib) {
-        await cargarPDFjs();
-      }
-      
-      const arrayBuffer = await file.arrayBuffer();
-      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-      
-      let textoCompleto = '';
-      
-      // Extraer texto de todas las páginas
-      for (let i = 1; i <= pdf.numPages; i++) {
-        const page = await pdf.getPage(i);
-        const textContent = await page.getTextContent();
-        const pageText = textContent.items.map(item => item.str).join(' ');
-        textoCompleto += pageText + '\n';
-      }
-      
-      // Parsear y extraer aportes
-      const resultado = parsearHistoriaANSES(textoCompleto);
-      
-      if (resultado.aportes.length === 0) {
-        await showModal('❌ No se encontraron períodos de aportes.\n\nVerifique que sea una historia laboral válida de ANSES.');
-        return;
-      }
-      
-      // Mostrar resumen antes de importar
-      const resumen = `
-📄 HISTORIA LABORAL ANSES
-
-✅ Períodos encontrados: ${resultado.aportes.length}
-
-ℹ️ Importación desde: RESUMEN HISTORIA LABORAL
-
-Desglose por tipo:
-• Relación de Dependencia: ${resultado.stats.dependencia}
-• Construcción: ${resultado.stats.construccion}
-• Monotributo: ${resultado.stats.monotributo}
-• Desempleo: ${resultado.stats.desempleo}
-• Casas Particulares: ${resultado.stats.casasParticulares}
-• Otros: ${resultado.stats.otros}
-
-Los períodos consecutivos de la misma empresa
-se fusionarán automáticamente.
-
-¿Desea importar estos períodos?
-      `.trim();
-      
-      const confirmar = await showConfirmModal(resumen, 'Sí, Importar', 'Cancelar');
-      
-      if (confirmar) {
-        historial.guardarEstado(); // Guardar estado antes de importar
-        cargarAportesImportados(resultado.aportes);
-        await showModal(`✅ Se importaron ${resultado.aportes.length} períodos correctamente.`);
-      }
-      
-    } catch (error) {
-      console.error('Error al procesar PDF:', error);
-      await showModal(`❌ Error al procesar el PDF:\n${error.message}\n\nVerifique que el archivo sea válido.`);
-    }
-  };
-  
-  input.click();
-}
-
-// Cargar PDF.js dinámicamente
-async function cargarPDFjs() {
-  return new Promise((resolve, reject) => {
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
-    script.onload = () => {
-      pdfjsLib.GlobalWorkerOptions.workerSrc = 
-        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-      resolve();
-    };
-    script.onerror = () => reject(new Error('No se pudo cargar PDF.js'));
-    document.head.appendChild(script);
-  });
-}
-
-// Parsear texto de historia laboral ANSES
-function parsearHistoriaANSES(texto) {
-  const aportesTemp = [];
-  const stats = {
-    dependencia: 0,
-    construccion: 0,
-    monotributo: 0,
-    desempleo: 0,
-    casasParticulares: 0,
-    otros: 0
-  };
-  
-  console.log('===== INICIANDO PARSEO DE HISTORIA LABORAL =====');
-  console.log('Longitud del texto:', texto.length);
-  
-  // SOLO IMPORTAR DEL RESUMEN HISTORIA LABORAL (fuente más confiable)
-  const resumenAportes = extraerResumenHistoriaLaboral(texto);
-  console.log('Aportes del RESUMEN:', resumenAportes.length);
-  aportesTemp.push(...resumenAportes);
-  
-  console.log('ℹ️ Importando solo desde RESUMEN HISTORIA LABORAL');
-  console.log('ℹ️ Otras secciones (Monotributo, Casas Particulares, etc.) se omiten para evitar duplicados');
-  
-  console.log('Total aportes antes de filtrar:', aportesTemp.length);
-  
-  // Filtrar y validar aportes
-  const aportes = [];
-  const aportesUnicos = new Map(); // Para detectar duplicados
-  
-  aportesTemp.forEach(aporte => {
-    // Validar que las fechas sean válidas
-    if (!aporte.desde || !aporte.hasta) {
-      console.warn('Aporte con fechas inválidas:', aporte);
-      return;
-    }
-    
-    // Validar que desde < hasta
-    if (aporte.desde >= aporte.hasta) {
-      console.warn('Aporte con fecha desde >= hasta:', aporte);
-      return;
-    }
-    
-    // Crear clave única más flexible para detectar duplicados
-    // Usar año y mes para detectar duplicados incluso si el día varía
-    const desdeKey = `${aporte.desde.getFullYear()}-${aporte.desde.getMonth()}`;
-    const hastaKey = `${aporte.hasta.getFullYear()}-${aporte.hasta.getMonth()}`;
-    
-    // Normalizar razón social (quitar espacios extras, convertir a mayúsculas)
-    const razonNormalizada = aporte.razon.toUpperCase().replace(/\s+/g, ' ').trim();
-    
-    const clave = `${desdeKey}-${hastaKey}-${razonNormalizada}`;
-    
-    if (!aportesUnicos.has(clave)) {
-      aportesUnicos.set(clave, true);
-      aportes.push(aporte);
-      console.log('✓ Aporte único agregado:', {
-        desde: aporte.desde.toLocaleDateString(),
-        hasta: aporte.hasta.toLocaleDateString(),
-        razon: aporte.razon
-      });
-    } else {
-      console.log('✗ Duplicado eliminado:', {
-        desde: aporte.desde.toLocaleDateString(),
-        hasta: aporte.hasta.toLocaleDateString(),
-        razon: aporte.razon
-      });
-    }
-  });
-  
-  console.log('Total aportes después de filtrar:', aportes.length);
-  
-  // Calcular estadísticas
-  aportes.forEach(aporte => {
-    const tipo = aporte.tipo.toLowerCase();
-    if (tipo.includes('construcción') || tipo.includes('construccion')) {
-      stats.construccion++;
-    } else if (tipo.includes('monotribut')) {
-      stats.monotributo++;
-    } else if (tipo.includes('desempleo')) {
-      stats.desempleo++;
-    } else if (tipo.includes('doméstic') || tipo.includes('domestic') || tipo.includes('casas particulares')) {
-      stats.casasParticulares++;
-    } else if (tipo.includes('común') || tipo.includes('comun') || tipo.includes('dependencia')) {
-      stats.dependencia++;
-    } else {
-      stats.otros++;
-    }
-  });
-  
-  console.log('Estadísticas finales:', stats);
-  console.log('===== FIN PARSEO =====');
-  
-  return { aportes, stats };
-}
-
-// Extraer del RESUMEN HISTORIA LABORAL
-function extraerResumenHistoriaLaboral(texto) {
-  const aportes = [];
-  
-  // Buscar toda la sección del resumen completa
-  const inicioResumen = texto.indexOf('RESUMEN HISTORIA LABORAL');
-  const finResumen = texto.indexOf('RELACIÓN LABORAL');
-  
-  if (inicioResumen === -1) {
-    console.log('No se encontró RESUMEN HISTORIA LABORAL');
-    return aportes;
-  }
-  
-  let seccionResumen = finResumen > inicioResumen 
-    ? texto.substring(inicioResumen, finResumen)
-    : texto.substring(inicioResumen, inicioResumen + 5000);
-  
-  // Eliminar el encabezado completo (RAZÓN SOCIAL   CUIT/CUENTA   DESDE   HASTA)
-  seccionResumen = seccionResumen.replace(/RESUMEN HISTORIA LABORAL\s+RAZÓN SOCIAL\s+CUIT\/CUENTA\s+DESDE\s+HASTA\s+/i, '');
-  console.log('✓ Encabezado eliminado');
-  
-  console.log('=== EXTRAYENDO RESUMEN HISTORIA LABORAL ===');
-  console.log('Longitud de la sección:', seccionResumen.length);
-  console.log('Primeros 1200 caracteres:', seccionResumen.substring(0, 1200));
-  
-  // Patrón 1: Buscar formato con CUIT/CUENTA explícito
-  // Formato: RAZÓN SOCIAL CUIT/CUENTA MM/YYYY MM/YYYY
-  // Limitar espacios a máximo 3 consecutivos para evitar capturar múltiples entradas
-  const patron1 = /([A-ZÑÁÉÍÓÚ](?:[A-ZÑÁÉÍÓÚA-Z0-9&.,\-\/]|\s(?!\s\s)){3,50}?)\s{1,5}(\d{2,3}-?\d{7,9}-?\d?|\d{8})\s{1,5}(\d{2}\/\d{4})\s{1,5}(\d{2}\/\d{4})/gi;
-  
-  let match;
-  let countPatron1 = 0;
-  
-  while ((match = patron1.exec(seccionResumen)) !== null) {
-    const razonSocial = match[1].trim();
-    const cuit = match[2];
-    const desdeStr = match[3];
-    const hastaStr = match[4];
-    
-    countPatron1++;
-    console.log(`Match ${countPatron1}:`, { razonSocial, cuit, desdeStr, hastaStr });
-    
-    const desde = parsearPeriodoMMAAAY(desdeStr);
-    const hasta = parsearPeriodoMMAAAY(hastaStr);
-    
-    // Validar longitud de la razón social
-    if (desde && hasta && razonSocial.length >= 3 && razonSocial.length <= 50) {
-      // Validar que no sea una línea de encabezado
-      if (razonSocial.includes('RAZÓN SOCIAL') || 
-          razonSocial.includes('CUIT') ||
-          razonSocial.includes('DESDE') ||
-          razonSocial.includes('HASTA')) {
-        console.log('Saltando encabezado:', razonSocial);
-        continue;
-      }
-      
-      // Validar que no contenga fechas dentro (indicaría múltiples líneas)
-      const tieneFechasInternas = /\d{2}\/\d{4}/.test(razonSocial);
-      if (tieneFechasInternas) {
-        console.log('✗ Descartado (contiene fechas internas):', razonSocial.substring(0, 50));
-        continue;
-      }
-      
-      // Calcular último día del mes para "hasta"
-      const hastaFinal = new Date(hasta.getFullYear(), hasta.getMonth() + 1, 0);
-      
-      aportes.push({
-        desde,
-        hasta: hastaFinal,
-        razon: razonSocial,
-        tipo: detectarTipoAporteANSES(razonSocial)
-      });
-      
-      console.log('✓ Aporte agregado:', {
-        desde: desde.toLocaleDateString(),
-        hasta: hastaFinal.toLocaleDateString(),
-        razon: razonSocial
-      });
-    } else {
-      console.log('✗ Descartado (fechas inválidas o razón fuera de rango):', razonSocial.substring(0, 50));
-    }
-  }
-  
-  // Patrón 2: Más simple, solo buscar cualquier cosa seguida de MM/YYYY MM/YYYY
-  // Limitar espacios consecutivos para evitar capturar múltiples entradas
-  const patron2 = /([A-ZÑÁÉÍÓÚ](?:[A-ZÑÁÉÍÓÚ&.,\-]|\s(?!\s\s)){5,50}?)\s{1,5}(\d{2}\/\d{4})\s{1,5}(\d{2}\/\d{4})(?!\s{0,5}\d{2}\/\d{4})/gi;
-  const aportesYaAgregados = new Set(aportes.map(a => `${a.razon}-${a.desde.getTime()}-${a.hasta.getTime()}`));
-  
-  patron2.lastIndex = 0; // Reiniciar el índice
-  let countPatron2 = 0;
-  
-  while ((match = patron2.exec(seccionResumen)) !== null) {
-    const textoCompleto = match[1].trim();
-    const desdeStr = match[2];
-    const hastaStr = match[3];
-    
-    // Extraer solo el nombre de la empresa (antes del CUIT)
-    let razonSocial = textoCompleto;
-    
-    // Intentar limpiar el CUIT del final
-    razonSocial = razonSocial.replace(/\s+\d{2,3}-?\d{7,9}-?\d?\s*$/, '');
-    razonSocial = razonSocial.replace(/\s+\d{8}\s*$/, '');
-    razonSocial = razonSocial.trim();
-    
-    // Validar longitud
-    if (razonSocial.length < 5 || razonSocial.length > 50) {
-      console.log('✗ Patrón2 descartado por longitud:', razonSocial.length, razonSocial.substring(0, 30));
-      continue;
-    }
-    
-    const desde = parsearPeriodoMMAAAY(desdeStr);
-    const hasta = parsearPeriodoMMAAAY(hastaStr);
-    
-    if (desde && hasta) {
-      const clave = `${razonSocial}-${desde.getTime()}-${hasta.getTime()}`;
-      
-      // No agregar si ya existe (comparando razón + fechas)
-      if (aportesYaAgregados.has(clave)) {
-        continue;
-      }
-      
-      // Validar que no sea encabezado
-      if (razonSocial.includes('RAZÓN SOCIAL') || 
-          razonSocial.includes('CUIT') ||
-          razonSocial.includes('DESDE') ||
-          razonSocial.includes('HASTA')) {
-        continue;
-      }
-      
-      // Validar que no contenga fechas dentro (indicaría múltiples líneas)
-      const tieneFechasInternas = /\d{2}\/\d{4}/.test(razonSocial);
-      if (tieneFechasInternas) {
-        console.log('✗ Patrón2 descartado (contiene fechas internas):', razonSocial.substring(0, 50));
-        continue;
-      }
-      
-      countPatron2++;
-      const hastaFinal = new Date(hasta.getFullYear(), hasta.getMonth() + 1, 0);
-      
-      aportes.push({
-        desde,
-        hasta: hastaFinal,
-        razon: razonSocial,
-        tipo: detectarTipoAporteANSES(razonSocial)
-      });
-      
-      aportesYaAgregados.add(clave);
-      
-      console.log(`✓ Aporte adicional (patrón2):`, {
-        desde: desde.toLocaleDateString(),
-        hasta: hastaFinal.toLocaleDateString(),
-        razon: razonSocial
-      });
-    }
-  }
-  
-  console.log(`Total matches patrón 1: ${countPatron1}`);
-  console.log(`Total matches patrón 2: ${countPatron2}`);
-  console.log('Total de aportes encontrados en resumen:', aportes.length);
-  console.log('===========================================');
-  
-  return aportes;
-}
-
-// Extraer MONOTRIBUTO
-function extraerMonotributo(texto) {
-  const aportes = [];
-  const periodosYaProcesados = new Set(); // Para evitar duplicados
-  
-  // Buscar sección específica de DETALLE DE PAGOS/TRANSFERENCIA después de MONOTRIBUTO
-  const inicioMonotributo = texto.indexOf('PADRÓN ÚNICO CONTRIBUYENTE');
-  const finMonotributo = texto.indexOf('CASAS PARTICULARES');
-  
-  if (inicioMonotributo === -1) {
-    console.log('No se encontró sección de MONOTRIBUTO');
-    return aportes;
-  }
-  
-  const seccionMonotributo = finMonotributo > inicioMonotributo
-    ? texto.substring(inicioMonotributo, finMonotributo)
-    : texto.substring(inicioMonotributo);
-  
-  // Buscar pagos C13 (aportes de monotributo)
-  const patronPago = /C\s+(\d{2}\/\d{4})\s+C13/g;
-  
-  let match;
-  while ((match = patronPago.exec(seccionMonotributo)) !== null) {
-    const periodoStr = match[1];
-    
-    // Evitar duplicados
-    if (periodosYaProcesados.has(periodoStr)) {
-      continue;
-    }
-    periodosYaProcesados.add(periodoStr);
-    
-    const fecha = parsearPeriodoMMAAAY(periodoStr);
-    if (fecha) {
-      const desde = new Date(fecha);
-      const hasta = new Date(fecha.getFullYear(), fecha.getMonth() + 1, 0);
-      
-      aportes.push({
-        desde,
-        hasta,
-        razon: 'MONOTRIBUTO - Pagos y Transferencias',
-        tipo: 'Monotributista con Aportes'
-      });
-    }
-  }
-  
-  console.log('Monotributo - períodos encontrados:', aportes.length);
-  return aportes;
-}
-
-// Extraer DESEMPLEO
-function extraerDesempleo(texto) {
-  const aportes = [];
-  
-  // Buscar sección específica
-  const inicioDesempleo = texto.indexOf('DESEMPLEO');
-  const finDesempleo = texto.indexOf('BLANQUEO');
-  
-  if (inicioDesempleo === -1) {
-    console.log('No se encontró sección de DESEMPLEO');
-    return aportes;
-  }
-  
-  const seccionDesempleo = finDesempleo > inicioDesempleo
-    ? texto.substring(inicioDesempleo, finDesempleo)
-    : texto.substring(inicioDesempleo, inicioDesempleo + 500);
-  
-  // Buscar períodos con patrón MM/YYYY MM/YYYY seguido de números
-  const patronDesempleo = /(\d{2}\/\d{4})\s+(\d{2}\/\d{4})\s+\d+/g;
-  
-  let match;
-  while ((match = patronDesempleo.exec(seccionDesempleo)) !== null) {
-    const desde = parsearPeriodoMMAAAY(match[1]);
-    const hasta = parsearPeriodoMMAAAY(match[2]);
-    
-    if (desde && hasta) {
-      // Calcular último día del mes para "hasta"
-      const hastaFinal = new Date(hasta.getFullYear(), hasta.getMonth() + 1, 0);
-      
-      aportes.push({
-        desde,
-        hasta: hastaFinal,
-        razon: 'SUBSIDIO POR DESEMPLEO',
-        tipo: 'Prestacion por desempleo construcción'
-      });
-    }
-  }
-  
-  console.log('Desempleo - períodos encontrados:', aportes.length);
-  return aportes;
-}
-
-// Extraer CASAS PARTICULARES
-function extraerCasasParticulares(texto) {
-  const aportes = [];
-  const periodosYaProcesados = new Set();
-  
-  // Buscar sección específica
-  const inicioCasas = texto.indexOf('CASAS PARTICULARES');
-  const finCasas = texto.indexOf('DESEMPLEO', inicioCasas);
-  
-  if (inicioCasas === -1) {
-    console.log('No se encontró sección de CASAS PARTICULARES');
-    return aportes;
-  }
-  
-  const seccionCasas = finCasas > inicioCasas
-    ? texto.substring(inicioCasas, finCasas)
-    : texto.substring(inicioCasas, inicioCasas + 500);
-  
-  // Buscar pagos O01 (casas particulares)
-  const patronPago = /C\s+(\d{2}\/\d{4})\s+O01/g;
-  
-  let match;
-  while ((match = patronPago.exec(seccionCasas)) !== null) {
-    const periodoStr = match[1];
-    
-    // Evitar duplicados
-    if (periodosYaProcesados.has(periodoStr)) {
-      continue;
-    }
-    periodosYaProcesados.add(periodoStr);
-    
-    const fecha = parsearPeriodoMMAAAY(periodoStr);
-    if (fecha) {
-      const desde = new Date(fecha);
-      const hasta = new Date(fecha.getFullYear(), fecha.getMonth() + 1, 0);
-      
-      aportes.push({
-        desde,
-        hasta,
-        razon: 'PAGOS Y TRANSF CASAS PARTICULARES',
-        tipo: 'Servicio doméstico'
-      });
-    }
-  }
-  
-  console.log('Casas Particulares - períodos encontrados:', aportes.length);
-  return aportes;
-}
-
-// Extraer SEGURO DE CAPACITACIÓN Y EMPLEO
-function extraerSeguroCapacitacion(texto) {
-  const aportes = [];
-  const periodosYaProcesados = new Set();
-  
-  // Buscar sección específica
-  const inicioSeguro = texto.indexOf('SEGURO DE CAPACITACIÓN Y EMPLEO') >= 0 
-    ? texto.indexOf('SEGURO DE CAPACITACIÓN Y EMPLEO')
-    : texto.indexOf('SEGURO DE CAPACITACION Y EMPLEO');
-  
-  const finSeguro = texto.indexOf('TALLERES PROTEGIDOS');
-  
-  if (inicioSeguro === -1) {
-    console.log('No se encontró sección de SEGURO DE CAPACITACIÓN');
-    return aportes;
-  }
-  
-  const seccionSeguro = finSeguro > inicioSeguro
-    ? texto.substring(inicioSeguro, finSeguro)
-    : texto.substring(inicioSeguro);
-  
-  // Buscar líneas con programa 336
-  const patronPeriodo = /(\d{2}\/\d{4})\s+(\d{2}\/\d{4})\s+336/g;
-  
-  let match;
-  while ((match = patronPeriodo.exec(seccionSeguro)) !== null) {
-    // La segunda fecha es el período de pago (la que cuenta para aportes)
-    const periodoStr = match[2];
-    
-    // Evitar duplicados
-    if (periodosYaProcesados.has(periodoStr)) {
-      continue;
-    }
-    periodosYaProcesados.add(periodoStr);
-    
-    const fechaPago = parsearPeriodoMMAAAY(periodoStr);
-    
-    if (fechaPago) {
-      const desde = new Date(fechaPago);
-      const hasta = new Date(fechaPago.getFullYear(), fechaPago.getMonth() + 1, 0);
-      
-      aportes.push({
-        desde,
-        hasta,
-        razon: 'SEG CAPACITACION Y EMPLEO',
-        tipo: 'Común Relación de Dependencia'
-      });
-    }
-  }
-  
-  console.log('Seguro de Capacitación - períodos encontrados:', aportes.length);
-  return aportes;
-}
-
-// Parsear período MM/YYYY a Date
-function parsearPeriodoMMAAAY(periodo) {
-  const match = periodo.match(/(\d{2})\/(\d{4})/);
-  if (!match) return null;
-  
-  const mes = parseInt(match[1], 10) - 1; // JS usa 0-11 para meses
-  const anio = parseInt(match[2], 10);
-  
-  if (mes < 0 || mes > 11 || anio < 1900 || anio > 2100) return null;
-  
-  // Retornar el primer día del mes
-  return new Date(anio, mes, 1);
-}
-
-// Detectar tipo de aporte basado en razón social
-function detectarTipoAporteANSES(razonSocial) {
-  const texto = razonSocial.toLowerCase();
-  
-  // Detectar Monotributo
-  if (texto.includes('monotribut') || texto.includes('monotri')) {
-    return 'Monotributista con Aportes';
-  }
-  
-  // Detectar Autónomo
-  if (texto.includes('autonom') || texto.includes('autonomo')) {
-    return 'Autónomo';
-  }
-  
-  // Detectar Casas Particulares / Servicio Doméstico
-  if (texto.includes('casas particular') || 
-      texto.includes('particular') || 
-      texto.includes('domestica') ||
-      texto.includes('domestico')) {
-    return 'Servicio doméstico';
-  }
-  
-  // Detectar Desempleo
-  if (texto.includes('desempleo')) {
-    return 'Prestacion por desempleo construcción';
-  }
-  
-  // Detectar Docente
-  if (texto.includes('docente')) {
-    return 'Docente común';
-  }
-  
-  // Detectar Seguro de Capacitación (se mantiene como Común)
-  if (texto.includes('capacitacion')) {
-    return 'Común Relación de Dependencia';
-  }
-  
-  // Por defecto: Común Relación de Dependencia
-  return 'Común Relación de Dependencia';
-}
-
-// Fusionar períodos consecutivos de la misma empresa
-function fusionarPeriodosConsecutivos(aportes) {
-  if (aportes.length === 0) return [];
-  
-  // Ordenar por fecha de inicio
-  const aportesOrdenados = [...aportes].sort((a, b) => a.desde - b.desde);
-  
-  const fusionados = [];
-  let periodoActual = { ...aportesOrdenados[0] };
-  
-  for (let i = 1; i < aportesOrdenados.length; i++) {
-    const siguiente = aportesOrdenados[i];
-    
-    // Verificar si es consecutivo (mismo empleador y tipo, fechas seguidas)
-    const sonConsecutivos = 
-      periodoActual.razon === siguiente.razon &&
-      periodoActual.tipo === siguiente.tipo &&
-      esFechaConsecutiva(periodoActual.hasta, siguiente.desde);
-    
-    if (sonConsecutivos) {
-      // Fusionar: extender el hasta del período actual
-      periodoActual.hasta = siguiente.hasta;
-      console.log('Fusionando períodos:', periodoActual.razon, 
-        'desde', periodoActual.desde.toLocaleDateString(),
-        'hasta', periodoActual.hasta.toLocaleDateString());
-    } else {
-      // Guardar el período actual y comenzar uno nuevo
-      fusionados.push(periodoActual);
-      periodoActual = { ...siguiente };
-    }
-  }
-  
-  // Agregar el último período
-  fusionados.push(periodoActual);
-  
-  console.log('Períodos antes de fusionar:', aportes.length);
-  console.log('Períodos después de fusionar:', fusionados.length);
-  
-  return fusionados;
-}
-
-// Verificar si dos fechas son consecutivas o cercanas (hasta 60 días de diferencia)
-function esFechaConsecutiva(fecha1, fecha2) {
-  const diff = Math.abs(fecha2 - fecha1);
-  const diasDiferencia = diff / (1000 * 60 * 60 * 24);
-  
-  // Tolerancia de hasta 60 días para cubrir interrupciones menores
-  // Típico en historias laborales: períodos de 1-2 meses de interrupción
-  return diasDiferencia <= 60;
-}
-
-// Cargar aportes importados
-function cargarAportesImportados(aportesImportados) {
-  const sexo = $('#sexo').value;
-  
-  console.log('Cargando aportes importados:', aportesImportados.length);
-  
-  // Fusionar períodos consecutivos de la misma empresa
-  const aportesFusionados = fusionarPeriodosConsecutivos(aportesImportados);
-  
-  for (const aporte of aportesFusionados) {
-    const reqs = getRequirementsFor(aporte.tipo, sexo);
-    
-    const per = {
-      id: state.seq++,
-      desde: aporte.desde,
-      hasta: aporte.hasta,
-      razon: aporte.razon,
-      caja: 'ANSES',
-      tipo: aporte.tipo,
-      edadReq: reqs.edad,
-      apReq: reqs.ap,
-      ymd: periodoYMD(aporte.desde, aporte.hasta),
-      importado: true,
-      fuenteImportacion: 'Historia Laboral ANSES'
-    };
-    
-    console.log('Aporte importado:', {
-      desde: per.desde.toLocaleDateString(),
-      hasta: per.hasta.toLocaleDateString(),
-      razon: per.razon,
-      tipo: per.tipo
-    });
-    
-    state.aportes.push(per);
-  }
-  
-  render();
-  console.log('Total aportes en state:', state.aportes.length);
-}
 
 // Función para ver cómputo (cierra el modal)
 async function viewComputation(id) {
@@ -7093,7 +6224,7 @@ function renderComputationsList() {
       <div class="computation-actions">
         <button class="action-btn btn-view" onclick="viewComputation(${comp.id})" title="Cargar cómputo">👁️ Ver</button>
         <button class="action-btn btn-edit" onclick="editComputation(${comp.id})" title="Editar cómputo">✏️ Editar</button>
-        <button class="action-btn btn-delete" onclick="confirmDeleteComputation(${comp.id})" title="Eliminar cómputo">🗑️ Borrar</button>
+        <button class="action-btn btn-delete" onclick="confirmDeleteComputation(${comp.id})" title="Eliminar cómputo">🗑️ Eliminar</button>
       </div>
     </div>
   `).join('');
@@ -7390,70 +6521,67 @@ document.addEventListener('DOMContentLoaded', () => {
         <span class="close" id="closeModal">&times;</span>
       </div>
       <div class="modal-body">
-        <!-- Sección superior unificada compacta -->
-        <div class="top-unified-section">
-          <!-- Barra de herramientas -->
-          <div class="toolbar-section">
-            <div class="search-group">
-              <input type="text" id="modalSearchInput" placeholder="Buscar..." class="search-input">
-              <button id="modalSearchBtn" class="btn btn-primary">🔍</button>
-              <button id="clearSearchBtn" class="btn btn-secondary">❌</button>
-            </div>
-            <div class="action-group">
-              <button id="refreshListBtn" class="btn btn-success">🔄</button>
-              <button id="exportAllBtn" class="btn btn-info">📤</button>
-              <button id="deleteAllBtn" class="btn btn-danger">🗑️</button>
-            </div>
+        <!-- Barra de herramientas compacta -->
+        <div class="toolbar-section">
+          <div class="search-group">
+            <input type="text" id="modalSearchInput" placeholder="Buscar cómputos..." class="search-input">
+            <button id="modalSearchBtn" class="btn btn-primary">🔍</button>
+            <button id="clearSearchBtn" class="btn btn-secondary">❌</button>
           </div>
-
-          <!-- Filtros -->
-          <div class="filters-section">
-            <div class="filter-group">
-              <label>Beneficio:</label>
-              <select id="benefitFilter" class="filter-select">
-                <option value="">Todos</option>
-                <option value="Jubilación Ordinaria">Jubilación</option>
-                <option value="Pensión por Fallecimiento (PBU)">PBU</option>
-                <option value="Retiro por Invalidez">Invalidez</option>
-                <option value="PUAM">PUAM</option>
-              </select>
-            </div>
-            <div class="filter-group">
-              <label>Desde:</label>
-              <input type="date" id="dateFromFilter" class="filter-input">
-            </div>
-            <div class="filter-group">
-              <label>Hasta:</label>
-              <input type="date" id="dateToFilter" class="filter-input">
-            </div>
-            <div class="filter-group">
-              <label>Ordenar:</label>
-              <select id="sortByFilter" class="filter-select">
-                <option value="fecha_desc">Fecha ↓</option>
-                <option value="fecha_asc">Fecha ↑</option>
-                <option value="nombre_asc">A-Z</option>
-                <option value="nombre_desc">Z-A</option>
-                <option value="beneficio_asc">Beneficio</option>
-              </select>
-            </div>
-            <button id="applyFiltersBtn" class="btn btn-primary">Aplicar</button>
-            <button id="clearFiltersBtn" class="btn btn-secondary">Limpiar</button>
+          <div class="action-group">
+            <button id="refreshListBtn" class="btn btn-success">🔄</button>
+            <button id="exportAllBtn" class="btn btn-info">📤</button>
+            <button id="deleteAllBtn" class="btn btn-danger">🗑️</button>
           </div>
+        </div>
 
-          <!-- Estadísticas -->
-          <div class="stats-section">
-            <div class="stat-card">
-              <div class="stat-number" id="totalComputations">0</div>
-              <div class="stat-label">Total</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number" id="filteredComputations">0</div>
-              <div class="stat-label">Filtrados</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number" id="lastComputation">-</div>
-              <div class="stat-label">Último</div>
-            </div>
+        <!-- Filtros compactos -->
+        <div class="filters-section">
+          <div class="filter-group">
+            <label>Beneficio:</label>
+            <select id="benefitFilter" class="filter-select">
+              <option value="">Todos</option>
+              <option value="Jubilación Ordinaria">Jubilación</option>
+              <option value="Pensión por Fallecimiento (PBU)">PBU</option>
+              <option value="Retiro por Invalidez">Invalidez</option>
+              <option value="PUAM">PUAM</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Desde:</label>
+            <input type="date" id="dateFromFilter" class="filter-input">
+          </div>
+          <div class="filter-group">
+            <label>Hasta:</label>
+            <input type="date" id="dateToFilter" class="filter-input">
+          </div>
+          <div class="filter-group">
+            <label>Ordenar:</label>
+            <select id="sortByFilter" class="filter-select">
+              <option value="fecha_desc">Fecha ↓</option>
+              <option value="fecha_asc">Fecha ↑</option>
+              <option value="nombre_asc">Nombre A-Z</option>
+              <option value="nombre_desc">Nombre Z-A</option>
+              <option value="beneficio_asc">Beneficio</option>
+            </select>
+          </div>
+          <button id="applyFiltersBtn" class="btn btn-primary">Aplicar</button>
+          <button id="clearFiltersBtn" class="btn btn-secondary">Limpiar</button>
+        </div>
+
+        <!-- Estadísticas compactas -->
+        <div class="stats-section">
+          <div class="stat-card">
+            <div class="stat-number" id="totalComputations">0</div>
+            <div class="stat-label">Total</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="filteredComputations">0</div>
+            <div class="stat-label">Mostrados</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="lastComputation">-</div>
+            <div class="stat-label">Último</div>
           </div>
         </div>
 
@@ -7542,10 +6670,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
       .modal-content {
-        background-color: #FFFFFF;
-        border: 1px solid #E2E8F0;
-        border-radius: 12px;
-        box-shadow: 0 8px 32px rgba(0, 102, 204, 0.15);
+        background-color: #ffffff;
+        border: 1px solid #858585;
+        box-shadow: 0 8px 32px rgba(139, 127, 255, 0.2);
         position: fixed;
         top: 50%;
         left: 50%;
@@ -7554,15 +6681,14 @@ document.addEventListener('DOMContentLoaded', () => {
         max-width: 1000px;
         max-height: 90vh;
         overflow-y: auto;
-        backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
     }
     
     .modal-header {
-      background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
+      background: #858585;
       color: white;
-      padding: 8px 12px;
+      padding: 6px 8px;
       display: flex;
-      border-radius: 12px 12px 0 0;
       justify-content: space-between;
       align-items: center;
     }
@@ -7589,18 +6715,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     .modal-body {
-      padding: 20px;
-      background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
-      flex: 1;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-
-    .modal-body::-webkit-scrollbar {
-      display: none;
+      padding: 24px;
+      background: linear-gradient(135deg, #f8f7ff 0%, #f0efff 100%);
     }
     
     .search-section {
@@ -7740,75 +6856,48 @@ document.addEventListener('DOMContentLoaded', () => {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 95%;
-      max-width: 1200px;
-      height: 90vh;
+      width: 90%;
+      max-width: 1000px;
       max-height: 90vh;
-      overflow: hidden;
-      background: #FFFFFF;
-      border-radius: 12px;
-      display: flex;
-      flex-direction: column;
+      overflow-y: auto;
     }
 
-    /* Contenedor unificado superior - Compacto */
-    .top-unified-section {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 12px;
-      padding: 10px 16px;
-      background: #F8FAFC;
-      border: 1px solid #E2E8F0;
-      border-radius: 8px;
-      flex-shrink: 0;
-      flex-wrap: wrap;
-      min-height: 48px;
-    }
-
-    /* Barra de herramientas - Compacta */
+    /* Barra de herramientas - Consistente con el sitio */
     .toolbar-section {
       display: flex;
       align-items: center;
-      gap: 8px;
-      flex: 0 0 auto;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding: 12px 16px;
+      background: #f8f7ff;
+      border: 1px solid #858585;
     }
 
     .search-group {
       display: flex;
       align-items: center;
       gap: 4px;
+      flex: 1;
     }
 
     .search-group .search-input {
-      width: 200px;
-      padding: 6px 10px;
-      border: 1px solid #CBD5E1;
-      border-radius: 6px;
-      font-size: 11px;
-      height: 28px;
+      flex: 1;
+      padding: 4px;
+      border: 1px solid #858585;
+      font-size: 12px;
+      height: 32px;
       transition: all 0.2s ease;
       background: white;
-      color: #1E293B;
     }
 
     .search-group .search-input:focus {
-      border-color: #0066CC;
+      border-color: #003399;
       outline: none;
-      box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.1);
     }
 
     .action-group {
       display: flex;
-      gap: 6px;
-    }
-
-    .toolbar-section .btn,
-    .filters-section .btn {
-      padding: 5px 10px;
-      font-size: 10px;
-      height: 26px;
-      min-width: auto;
+      gap: 8px;
     }
 
     /* Botones compactos estilo Windows */
@@ -7830,89 +6919,75 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
+      background: #0078d4;
       color: white;
-      border-color: #0066CC;
-      transition: all 0.2s ease;
+      border-color: #005a9e;
     }
 
     .btn-primary:hover {
-      background: linear-gradient(135deg, #0052A3 0%, #003D7A 100%);
-      border-color: #0052A3;
-      box-shadow: 0 2px 4px rgba(0, 102, 204, 0.3);
+      background: #106ebe;
     }
 
     .btn-success {
-      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      background: #9c8bff;
       color: white;
-      border-color: #10B981;
+      border-color: #8b7fff;
       transition: all 0.2s ease;
     }
 
     .btn-success:hover {
-      background: linear-gradient(135deg, #059669 0%, #047857 100%);
-      border-color: #059669;
-      box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+      background: #7a6bff;
+      border-color: #6b5bff;
+      box-shadow: 0 2px 4px rgba(156, 139, 255, 0.3);
     }
 
     .btn-info {
-      background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+      background: #8b7fff;
       color: white;
-      border-color: #3B82F6;
+      border-color: #b6b2ff;
       transition: all 0.2s ease;
     }
 
     .btn-info:hover {
-      background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
-      border-color: #2563EB;
-      box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+      background: #6b5bff;
+      border-color: #8b7fff;
+      box-shadow: 0 2px 4px rgba(139, 127, 255, 0.3);
     }
 
     .btn-danger {
-      background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+      background: #ff6b6b;
       color: white;
-      border-color: #EF4444;
+      border-color: #ff5252;
       transition: all 0.2s ease;
     }
 
     .btn-danger:hover {
-      background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
-      border-color: #DC2626;
-      box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
-    }
-
-    .btn-warning {
-      background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
-      color: white;
-      border-color: #F59E0B;
-      transition: all 0.2s ease;
-    }
-
-    .btn-warning:hover {
-      background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
-      border-color: #D97706;
-      box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+      background: #ff5252;
+      border-color: #ff1744;
+      box-shadow: 0 2px 4px rgba(255, 107, 107, 0.3);
     }
 
     .btn-secondary {
-      background: #F1F5F9;
-      color: #475569;
-      border-color: #E2E8F0;
+      background: #f0f0f0;
+      color: #000;
+      border-color: #a0a0a0;
     }
 
     .btn-secondary:hover {
-      background: #E2E8F0;
-      border-color: #CBD5E1;
+      background: #e0e0e0;
     }
 
-    /* Filtros compactos - En línea */
+    /* Filtros compactos - Consistente con el sitio */
     .filters-section {
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 0 12px;
-      border-left: 1px solid #CBD5E1;
-      flex: 0 0 auto;
+      margin-bottom: 8px;
+      padding: 6px 8px;
+      background: #f8f7ff;
+      border: 1px solid #858585;
+      border-radius: 4px;
+      flex-wrap: wrap;
     }
 
     .filter-group {
@@ -7922,90 +6997,63 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     .filter-group label {
-      font-size: 10px;
-      font-weight: 500;
-      color: #475569;
+      font-size: 9px;
+      font-weight: 600;
+      color: #000;
       white-space: nowrap;
     }
 
     .filter-select, .filter-input {
-      padding: 5px 8px;
-      border: 1px solid #CBD5E1;
-      border-radius: 6px;
-      font-size: 10px;
+      padding: 2px 4px;
+      border: 1px solid #b6b2ff;
+      border-radius: 2px;
+      font-size: 9px;
       background: white;
-      height: 26px;
-      color: #1E293B;
-      transition: all 0.2s ease;
-    }
-
-    .filter-select:focus, .filter-input:focus {
-      border-color: #0066CC;
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.1);
-    }
-
-    .filter-select {
-      width: 100px;
+      height: 20px;
     }
 
     .filter-input {
       width: 80px;
     }
 
-    /* Estadísticas compactas - En línea */
+    /* Estadísticas compactas - Consistente con el sitio */
     .stats-section {
       display: flex;
       gap: 8px;
-      padding: 0 12px;
-      border-left: 1px solid #CBD5E1;
-      flex: 0 0 auto;
-      margin-left: auto;
+      margin-bottom: 8px;
+      padding: 4px 8px;
+      background: #f8f7ff;
+      border: 1px solid #858585;
+      border-radius: 4px;
     }
 
     .stat-card {
-      background: #FFFFFF;
-      color: #1E293B;
+      background: #e3e3e3;
+      color: #202020;
       padding: 4px 8px;
-      border-radius: 6px;
+      border-radius: 4px;
       text-align: center;
-      border: 1px solid #E2E8F0;
-      min-width: 50px;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      border: 1px solid #858585;
+      min-width: 60px;
     }
 
     .stat-number {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: bold;
-      margin-bottom: 0;
-      color: #0066CC;
-      line-height: 1.2;
+      margin-bottom: 2px;
     }
 
     .stat-label {
       font-size: 8px;
-      color: #64748B;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-      line-height: 1;
+      color: #6b5bff;
     }
 
     /* Lista de cómputos - Consistente con el sitio */
     .computations-container {
-      flex: 1;
+      max-height: 350px;
       overflow-y: auto;
-      border: 1px solid #E2E8F0;
-      border-radius: 8px;
+      border: 1px solid #858585;
       background: white;
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE and Edge */
-      min-height: 0;
-    }
-
-    /* Ocultar scrollbar en WebKit (Chrome, Safari) */
-    .computations-container::-webkit-scrollbar {
-      display: none;
     }
 
     .computations-list {
@@ -8014,19 +7062,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     .computation-item {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #E2E8F0;
+      align-items: space-between;
+      border-bottom: 1px solid #858585;
       transition: all 0.2s ease;
-      font-size: 12px;
-      padding: 16px 18px;
-      gap: 24px;
+      font-size: 11px;
     }
 
     .computation-item:hover {
-      background: #EFF6FF;
-      border-left: 3px solid #0066CC;
-      padding-left: 15px;
+      background: #e3e3e3;
     }
 
     .computation-item:last-child {
@@ -8035,106 +7078,87 @@ document.addEventListener('DOMContentLoaded', () => {
 
     .computation-info {
       display: flex;
-      flex-direction: column;
-      gap: 6px;
-      flex: 1;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2px;
     }
 
     .computation-name {
       font-weight: 600;
-      font-size: 15px;
-      color: #1E293B;
+      font-size: 12px;
+      color: #202020;
       white-space: normal;
       word-wrap: break-word;
       overflow-wrap: break-word;
+      margin-right: 4px;
     }
 
     .computation-details {
-      font-size: 12px;
-      color: #64748B;
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
+      font-size: 8px;
+      color: #575757;
+      margin-right: 4px;
     }
 
     .computation-date {
-      font-size: 11px;
-      color: #94A3B8;
+      font-size: 8px;
+      color: #858585;
     }
 
     .computation-actions {
       display: flex;
-      gap: 10px;
-      flex-shrink: 0;
-      align-items: center;
+      gap: 2px;
     }
 
     .action-btn {
-      border: 1px solid #CBD5E1;
-      border-radius: 6px;
+      border: 1px solid #a0a0a0;
+      border-radius: 1px;
       cursor: pointer;
-      font-size: 11px;
-      transition: all 0.2s;
-      background: #F8FAFC;
-      color: #475569;
-      padding: 6px 12px;
-      font-weight: 500;
-    }
-
-    .action-btn:hover {
-      background: #E2E8F0;
-      border-color: #94A3B8;
+      font-size: 12px;
+      transition: all 0.1s;
+      background: #f0f0f0;
+      color: #000;
     }
 
     .btn-view {
-      background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
-      color: white;
-      border-color: #3B82F6;
-      padding: 7px 16px;
-      font-weight: 600;
-      min-width: 75px;
-      font-size: 12px;
+      width: 100%;
+      height: 20%;
+      background: #a0a0a0;
+      color: #202020;
+      border-color: #a0a0a0;
+      transition: all 0.2s ease;
     }
 
     .btn-view:hover {
-      background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
-      border-color: #2563EB;
-      box-shadow: 0 3px 8px rgba(59, 130, 246, 0.4);
-      transform: translateY(-1px);
+      background: #abcbda;
+      border-color: #003399;
     }
 
     .btn-edit {
-      background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
-      color: white;
-      border-color: #F59E0B;
-      padding: 7px 16px;
-      font-weight: 600;
-      min-width: 75px;
-      font-size: 12px;
+      width: 100%;
+      height: 20%;
+      background: #a0a0a0;
+      color: #202020;
+      border-color: #a0a0a0;
+      transition: all 0.2s ease;
     }
 
     .btn-edit:hover {
-      background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
-      border-color: #D97706;
-      box-shadow: 0 3px 8px rgba(245, 158, 11, 0.4);
-      transform: translateY(-1px);
+      background: #abcbda;
+      border-color: #003399;
     }
 
     .btn-delete {
-      background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
-      color: white;
-      border-color: #EF4444;
-      padding: 7px 16px;
-      font-weight: 600;
-      min-width: 75px;
-      font-size: 12px;
+      width: 100%;
+      height: 20%;
+      background: #a0a0a0;
+      color: #202020;
+      border-color: #a0a0a0;
+      transition: all 0.2s ease;
     }
 
     .btn-delete:hover {
-      background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
-      border-color: #DC2626;
-      box-shadow: 0 3px 8px rgba(239, 68, 68, 0.4);
-      transform: translateY(-1px);
+      background: #abcbda;
+      border-color: #003399;
     }
 
     /* Paginación compacta - Consistente con el sitio */
@@ -8142,53 +7166,47 @@ document.addEventListener('DOMContentLoaded', () => {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 12px;
-      padding: 10px 16px;
-      background: #F8FAFC;
-      border: 1px solid #E2E8F0;
-      border-radius: 8px;
-      flex-shrink: 0;
+      margin-top: 8px;
+      padding: 4px 8px;
+      background: #f8f7ff;
+      border: 1px solid #858585;
+      border-radius: 4px;
     }
 
     .pagination-info {
-      font-size: 11px;
-      color: #64748B;
-      font-weight: 500;
+      font-size: 9px;
+      color: #666;
     }
 
     .pagination-controls {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 4px;
     }
 
     .page-numbers {
       display: flex;
-      gap: 4px;
+      gap: 2px;
     }
 
     .page-number {
-      padding: 6px 12px;
-      border: 1px solid #CBD5E1;
-      border-radius: 6px;
+      padding: 2px 6px;
+      border: 1px solid #858585;
+      border-radius: 4px;
       cursor: pointer;
-      font-size: 11px;
-      background: #FFFFFF;
-      color: #475569;
-      font-weight: 500;
-      transition: all 0.2s ease;
+      font-size: 9px;
+      background: #e3e3e3;
+      color: #202020;
     }
 
     .page-number.active {
-      background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
+      background: #858585;
       color: white;
-      border-color: #0066CC;
+      border-color: #858585;
     }
 
     .page-number:hover:not(.active) {
-      background: #EFF6FF;
-      border-color: #0066CC;
-      color: #0066CC;
+      background: #e3e3e3;
     }
 
 
@@ -8646,5 +7664,231 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   </script>
+
+  <script>
+    // =============== Importador de Historia Laboral (ANSES) desde PDF ===============
+    (function(){
+      const $ = (sel) => document.querySelector(sel);
+
+      // UI hooks
+      const btnImport = document.getElementById('btnImportHL');
+      const fileHL = document.getElementById('fileHL');
+
+      if(btnImport && fileHL){
+        btnImport.addEventListener('click', ()=> fileHL.click());
+        fileHL.addEventListener('change', handleHLFile, false);
+      }
+
+      // Util: parse DD/MM/YYYY, MM/YYYY, YYYY and return Date objects (desde/hasta) según el contexto
+      function parseMonthYear(s, isDesde){
+        // s: "01/1992" or "1/1992" or "01-1992" or "01.1992" or "01 1992" or "01/92"
+        if(!s) return null;
+        const m = s.match(/(\d{1,2})[\/\.\-\s](\d{2,4})/);
+        if(!m) return null;
+        let mm = parseInt(m[1],10);
+        let yyyy = parseInt(m[2],10);
+        if(yyyy < 100) yyyy += 2000*(yyyy<50?1:0) + 1900*(yyyy>=50?1:0); // rudimentario
+        if(isDesde) return new Date(yyyy, mm-1, 1);
+        // hasta: último día del mes
+        const lastDay = new Date(yyyy, mm, 0).getDate();
+        return new Date(yyyy, mm-1, lastDay);
+      }
+
+      function toInputDate(d){
+        if(!d) return "";
+        const y=d.getFullYear();
+        const m=String(d.getMonth()+1).padStart(2,'0');
+        const day=String(d.getDate()).padStart(2,'0');
+        return `${y}-${m}-${day}`;
+      }
+
+      // Parseador principal para la sección "RESUMEN HISTORIA LABORAL"
+      function parseResumen(text){
+        const results = [];
+        // Buscar bloque de "RESUMEN HISTORIA LABORAL" hasta la siguiente sección
+        const blockRegex = /RESUMEN\s+HISTORIA\s+LABORAL([\s\S]*?)(?:RELACIÓN\s+LABORAL|APORTES\s+EN|$)/i;
+        const blockMatch = text.match(blockRegex);
+        if(!blockMatch) return results;
+        const block = blockMatch[1];
+
+        // Filas tipo: "RAZÓN SOCIAL CUIT/CUENTA DESDE HASTA" luego líneas con "EMPRESA ... 30-... 07/2000 10/2000"
+        // Normalizamos espacios múltiples -> uno
+        const lines = block.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+
+        // Heurística: línea que contenga 2 fechas (mm/aaaa mm/aaaa) y 1 CUIT/cuenta entre medio.
+        const rowRegex = /(.*?)(\d{1,2}[\/\.\-\s]\d{2,4}|\d{2}\-\d{8}\-\d)(?:\s+|\s*\t+)(\d{1,2}[\/\.\-\s]\d{2,4})\s+(\d{1,2}[\/\.\-\s]\d{2,4})$/i;
+        // Alternativa con CUIT claro: RAZÓN  CUIT  DESDE  HASTA
+        const rowRegex2 = /^(.*?)\s+(\d{2}\-\d{7,8}\-\d)\s+(\d{1,2}[\/\.\-\s]\d{2,4})\s+(\d{1,2}[\/\.\-\s]\d{2,4})$/i;
+
+        for(const raw of lines){
+          if(/RAZ[ÓO]N\s+SOCIAL/i.test(raw)) continue; // encabezado
+          let razon='', cuit='', desdeS='', hastaS='';
+          let m2 = raw.match(rowRegex2);
+          if(m2){
+            razon = m2[1].trim();
+            cuit = m2[2].trim();
+            desdeS = m2[3].trim();
+            hastaS = m2[4].trim();
+          } else {
+            let m = raw.match(rowRegex);
+            if(m){
+              razon = m[1].trim();
+              // m[2] puede ser CUIT o una fecha si el PDF juntó columnas; intentamos detectar
+              if(/\d{2}\-\d{7,8}\-\d/.test(m[2])){
+                cuit = m[2].trim();
+                desdeS = m[3].trim();
+                hastaS = m[4].trim();
+              } else {
+                // A veces el CUIT se come o no está; tratamos la columna faltante
+                cuit = '';
+                desdeS = m[2].trim();
+                hastaS = m[3].trim();
+              }
+            } else {
+              continue;
+            }
+          }
+
+          // Normalizamos razón social abreviada de ANSES
+          razon = razon.replace(/\s+/g,' ').replace(/\s{2,}/g,' ').trim();
+
+          // Mapear a tipo/caja
+          let tipo = inferTipo(razon);
+          let caja = 'ANSES';
+
+          const desde = parseMonthYear(desdeS, true);
+          const hasta = parseMonthYear(hastaS, false);
+          if(desde && hasta){
+            results.push({ razon, cuit, desde, hasta, tipo, caja });
+          }
+        }
+        return results;
+      }
+
+      function inferTipo(razon){
+        const r = (razon||'').toUpperCase();
+        if(r.includes('MONOTRI') || r.includes('MONOTRIB')) return 'Monotributista con Aportes';
+        if(r.includes('CASAS PARTICULA')) return 'Casas particulares';
+        if(r.includes('SUBSIDIO POR DESEMPLEO')) return 'Prestacion por desempleo construcción';
+        if(r.includes('CAPACITACION') && r.includes('EMPLEO')) return 'Declaración Jurada Relación de Dependencia';
+        // Por defecto, relación de dependencia común
+        return 'Común Relación de Dependencia';
+      }
+
+      // Rellena los inputs básicos
+      function fillBasics(text){
+        try{
+          const nameMatch = text.match(/APELLIDO\s+Y\s+NOMBRE:\s*([^\n\r]+?)\s+(?:ACREDITADO|CUIT|NRO|$)/i);
+          if(nameMatch) { $('#nombre').value = nameMatch[1].trim().replace(/\s+/g,' '); }
+          const cuilMatch = text.match(/CUIT\/?L?\s+VIGENTE:\s*([0-9\-]+)/i);
+          if(cuilMatch) { $('#cuil').value = cuilMatch[1].trim(); }
+        }catch(e){ /* silent */ }
+      }
+
+      // Inserta filas en la tabla de aportes (tbody#aportesBody) respetando el formato existente
+      function addAporteRow(idx, row){
+        const tbody = document.getElementById('aportesBody');
+        if(!tbody) return;
+        const tr = document.createElement('tr');
+        tr.dataset.tipo = row.tipo.includes('Insalubre') ? 'Insalubre' : (row.tipo.includes('Privilegiado')||row.tipo.includes('Especial')?'Especial':'Común');
+        tr.innerHTML = `
+          <td>${idx}</td>
+          <td><input class="cell-input" type="date" value="${toInputDate(row.desde)}"></td>
+          <td><input class="cell-input" type="date" value="${toInputDate(row.hasta)}"></td>
+          <td><input class="cell-input" type="text" value="${(row.razon||'').replace(/"/g,'&quot;')}" /></td>
+          <td>
+            <select class="cell-input">
+              <option ${row.caja==='ANSES'?'selected':''}>ANSES</option>
+              <option ${row.caja==='Provincia No Adherida'?'selected':''}>Provincia No Adherida</option>
+              <option ${row.caja==='Caja Profesional'?'selected':''}>Caja Profesional</option>
+            </select>
+          </td>
+          <td>
+            <select class="cell-input">
+              <option ${row.tipo==='Común Relación de Dependencia'?'selected':''}>Común</option>
+              <option ${row.tipo.indexOf('Insalubre')>=0?'selected':''}>Insalubre</option>
+              <option ${row.tipo.indexOf('Privilegiado')>=0?'selected':''}>Privilegiado</option>
+              <option ${row.tipo.indexOf('Especial')>=0?'selected':''}>Especial</option>
+            </select>
+          </td>
+          <td><input class="cell-input" type="number" min="0" value="0"/></td>
+          <td><input class="cell-input" type="number" min="0" value="30"/></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td class="row-actions">
+            <button type="button" class="btn">✏️</button>
+            <button type="button" class="btn">🗑️</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      }
+
+      function populateFromResumen(rows){
+        // Limpiar actual
+        const tbody = document.getElementById('aportesBody');
+        if(tbody) tbody.innerHTML = '';
+        let i=1;
+        for(const r of rows){
+          addAporteRow(i++, r);
+        }
+        // Intento simple de actualizar totales si existiera función global
+        if(typeof window.recalcTotals === 'function'){ window.recalcTotals(); }
+      }
+
+      async function handleHLFile(evt){
+        const file = evt.target.files && evt.target.files[0];
+        if(!file) return;
+        const arrayBuffer = await file.arrayBuffer();
+        if(!window['pdfjsLib']){
+          alert('No se pudo cargar pdf.js. Revisa la conexión.');
+          return;
+        }
+        const loadingTask = pdfjsLib.getDocument({data: arrayBuffer});
+        const pdf = await loadingTask.promise;
+        let fullText = '';
+        for(let p=1; p<=pdf.numPages; p++){
+          const page = await pdf.getPage(p);
+          const content = await page.getTextContent();
+          const pageText = content.items.map(it => it.str).join('\n');
+          fullText += '\n' + pageText;
+        }
+        // Normalización básica
+        fullText = fullText.replace(/\u00A0/g,' ').replace(/\s+\n/g,'\n');
+
+        fillBasics(fullText);
+        const resumenRows = parseResumen(fullText);
+        if(resumenRows.length){
+          populateFromResumen(resumenRows);
+          showCustomModal('✅ Listo', `Se importaron ${resumenRows.length} períodos desde "Resumen Historia Laboral". Revisa las filas antes de calcular.`);
+        }else{
+          showCustomModal('⚠️ No se detectó el "Resumen"', 'No pude reconocer la sección "RESUMEN HISTORIA LABORAL". Podés enviarme un ejemplo para ajustar el parser.');
+        }
+        // limpiar input para permitir reimportar
+        evt.target.value = '';
+      }
+
+      // Modal minimalista reutilizando el del sitio si existe
+      function showCustomModal(title, msg){
+        const backdrop = document.getElementById('customModalBackdrop');
+        const box = document.getElementById('customModalBox');
+        const msgBox = document.getElementById('customModalMsg');
+        const btns = document.getElementById('customModalBtns');
+        if(backdrop && box && msgBox && btns){
+          msgBox.innerHTML = `<h3 style="margin:0 0 6px 0">${title}</h3><div>${msg}</div>`;
+          btns.innerHTML = '';
+          const ok = document.createElement('button');
+          ok.className = 'btn action-btn-primary';
+          ok.textContent = 'Aceptar';
+          ok.onclick = ()=> backdrop.style.display = 'none';
+          btns.appendChild(ok);
+          backdrop.style.display = 'flex';
+        }else{
+          alert(`${title}\n\n${msg}`);
+        }
+      }
+    })();
+  </script>
+
 </body>
 </html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cálculo de Astreintes — compacto con toggles (responsive fix)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--fs-base:13px;--fs-sm:12px;--fs-h:15px;--pad:10px;--gap:8px}
+    *{box-sizing:border-box}
+    html,body{margin:0;font-family:"Roboto",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:var(--fs-base);color:#2e2e2e;background:#fff}
+    .header{display:flex;align-items:center;gap:8px;background:#ebebeb;border-bottom:1px solid #d3d3d3;padding:6px var(--pad)}
+    .header img{height:40px}
+    .header h3{font-size:var(--fs-h);font-weight:600;margin:0;flex:1}
+    .header .btn{background:#f6f6f6;border:1px solid #dcdcdc;padding:6px 10px;border-radius:6px;font-size:var(--fs-base);cursor:pointer}
+    .header .btn:hover{background:#e6f3fb;border-color:#b5d7ee}
+    main{padding:var(--pad)}
+
+    /* Secciones base */
+    .section{background:#fafafa;border:1px solid #ddd;border-radius:6px;padding:var(--pad);margin-bottom:12px}
+    .section h4{font-size:var(--fs-h);margin:0 0 8px}
+    .field-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--gap);margin-bottom:8px}
+    .field-row label{min-width:120px}
+    .input-text,.input-date,.input-number{padding:5px 7px;border:1px solid #cfcfcf;border-radius:5px;font-size:var(--fs-base);min-width:120px;flex:1}
+    .note{font-size:var(--fs-sm);color:#6a6a6a}
+    .switch{display:flex;align-items:center;gap:8px}
+    .hidden{display:none}
+    .print-only{display:none}
+    table{width:100%;border-collapse:collapse;font-size:var(--fs-base)}
+    th,td{border:1px solid #d8d8d8;padding:6px;text-align:left}
+    th{background:#f3f3f3}
+    .btn{background:#0077c9;color:#fff;border:0;padding:6px 10px;border-radius:6px;font-size:var(--fs-base);cursor:pointer}
+    .btn:hover{background:#0664a3}
+    .btn-ghost{background:transparent;color:#0077c9;border:1px solid #b5d7ee}
+    .btn-primary{background:#2ba348}
+    .btn-primary:hover{background:#238a3b}
+    .resultado h5{font-size:var(--fs-h);margin:10px 0 6px}
+    .resultado ul{margin:0 0 8px 18px}
+    .msg{margin:8px 0;padding:8px 10px;border-left:4px solid;border-radius:6px;background:#f7f7f7}
+    .msg.error{border-color:#c9302c;background:#fdecea;color:#7a1f1c}
+    .msg.success{border-color:#2ba348;background:#e9f7ee;color:#144d2a}
+
+    /* Lado a lado para Datos + Fechas */
+    .row-two{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;align-items:flex-start}
+    .row-two>.section{flex:1 1 320px;margin-bottom:0}
+
+    /* ===== Responsive fix ===== */
+    @media (max-width: 720px){
+      .row-two{flex-direction:column}
+      /* clave: al pasar a columna, el flex-basis de 320px se vuelve altura mínima -> generaba mucho espacio en blanco */
+      .row-two>.section{flex:1 1 auto}
+      .field-row label{min-width:100px}
+      .input-text,.input-date,.input-number{min-width:0}
+    }
+
+    @media (max-width: 420px){
+      :root{--fs-base:12px;--fs-sm:11px;--fs-h:14px}
+      .header h3{font-size:var(--fs-h)}
+      .header .btn{padding:5px 8px}
+      .field-row{gap:6px}
+      .field-row label{min-width:92px}
+    }
+
+    @media print{
+      .header,button{display:none!important}
+      #resultadoExclusiones{page-break-before:always}
+      .print-only{display:block}
+      body{background:#fff}
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <img alt="LEXAR" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgoP///wAAAgMBQG5lXhQAAAAASUVORK5CYII=">
+    <h3>Cálculo de Astreintes</h3>
+    <button onclick="window.location.href='dashboard.html'" class="btn btn-ghost" title="Volver al Dashboard">🏠 Inicio</button>
+    <button id="btnNuevo" class="btn">Nuevo</button>
+    <button id="btnImprimir" class="btn">Imprimir</button>
+  </header>
+
+  <!-- Encabezado para impresión -->
+  <div id="printHeader" class="print-only hidden" style="padding:10px 12px;border-bottom:1px solid #ddd;margin:0 10px 10px"></div>
+
+  <main>
+    <div class="row-two">
+      <section class="section">
+        <h4>Datos del expediente</h4>
+        <div class="field-row"><label for="caratula">Carátula</label><input id="caratula" class="input-text" type="text"/></div>
+        <div class="field-row"><label for="numeroExpediente">Expediente</label><input id="numeroExpediente" class="input-text" type="text"/></div>
+        <div class="field-row"><label for="juzgado">Juzgado</label><input id="juzgado" class="input-text" type="text"/></div>
+      </section>
+
+      <section class="section">
+        <h4>Fechas del período</h4>
+        <div class="field-row"><label for="fechaInicio">Inicio</label><input id="fechaInicio" class="input-date" type="date"/></div>
+        <div class="field-row"><label for="fechaFin">Corte</label><input id="fechaFin" class="input-date" type="date"/></div>
+      </section>
+    </div>
+
+    <section class="section">
+      <div class="switch"><input id="chkFerias" type="checkbox"/> <label for="chkFerias">Habilitar modificación de ferias</label></div>
+      <p class="note">Si no se habilita, se usan por defecto: 1 al 31 de enero, y 3er lunes de julio por 14 días.</p>
+      <div id="feriasUI" class="hidden">
+        <div class="field-row"><label for="veranoInicio">Verano desde</label><input id="veranoInicio" class="input-date" type="date"/> <label for="veranoFin" style="min-width:unset">hasta</label><input id="veranoFin" class="input-date" type="date"/></div>
+        <div class="field-row"><label for="inviernoInicio">Invierno desde</label><input id="inviernoInicio" class="input-date" type="date"/> <label for="inviernoFin" style="min-width:unset">hasta</label><input id="inviernoFin" class="input-date" type="date"/></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="switch"><input id="chkTramos" type="checkbox"/> <label for="chkTramos">Habilitar tramos</label></div>
+      <div id="tramosUI" class="hidden">
+        <h4 style="margin-top:8px">Tramos de monto diario</h4>
+        <table id="tramosTable"><thead><tr><th>Desde día</th><th>Hasta día</th><th>Monto diario</th><th></th></tr></thead><tbody></tbody></table>
+        <button id="btnAddTramo" class="btn btn-ghost" type="button">Agregar tramo</button>
+      </div>
+      <div id="montoUnicoUI" class="field-row" style="margin-top:8px">
+        <label for="montoUnico">Monto diario único</label><input id="montoUnico" class="input-number" type="number" step="0.01" placeholder="0,00"/>
+      </div>
+    </section>
+
+    <section class="section">
+      <h4>Exclusiones manuales</h4>
+      <div class="switch"><input id="chkExclusiones" type="checkbox"/> <label for="chkExclusiones">Habilitar exclusiones manuales</label></div>
+      <div id="exclusionesUI" class="hidden">
+        <table id="exclusionesTable"><thead><tr><th>Fecha</th><th>Motivo</th><th></th></tr></thead><tbody></tbody></table>
+        <button id="btnAddExclusion" class="btn btn-ghost" type="button">Agregar exclusión</button>
+      </div>
+    </section>
+
+    <section class="section">
+      <div id="msg" class="msg hidden"></div>
+      <button id="btnCalcular" class="btn btn-primary" type="button">Calcular</button>
+      <button id="btnImprimir2" class="btn" type="button">Imprimir</button>
+      <div id="resultadoResumen" class="resultado"></div>
+      <div id="resultadoExclusiones" class="resultado"></div>
+    </section>
+  </main>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+
+    function showMsg(type, text){
+      const box = $('msg');
+      box.className = 'msg ' + (type||'info');
+      box.textContent = text;
+      box.classList.remove('hidden');
+      box.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+    function clearMsg(){ const box=$('msg'); box.textContent=''; box.classList.add('hidden'); }
+
+    function calculateEasterDate(y){let a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),mo=Math.floor((h+l-7*m+114)/31),da=((h+l-7*m+114)%31)+1;return new Date(y,mo-1,da)}
+    function getNationalHolidays(y){const H=[];H.push({date:new Date(y,0,1),name:'Año Nuevo'});H.push({date:new Date(y,2,24),name:'Memoria, Verdad y Justicia'});H.push({date:new Date(y,3,2),name:'Veteranos de Malvinas'});H.push({date:new Date(y,4,1),name:'Día del Trabajador'});H.push({date:new Date(y,4,25),name:'Revolución de Mayo'});H.push({date:new Date(y,5,20),name:'Belgrano'});H.push({date:new Date(y,6,9),name:'Independencia'});H.push({date:new Date(y,11,8),name:'Inmaculada Concepción'});H.push({date:new Date(y,11,25),name:'Navidad'});[{date:new Date(y,7,17),name:'San Martín'},{date:new Date(y,9,12),name:'Diversidad Cultural'},{date:new Date(y,10,20),name:'Soberanía'},{date:new Date(y,5,17),name:'Güemes'}].forEach(it=>{const wd=it.date.getDay();let d=new Date(it.date);if(wd===2||wd===3){d.setDate(d.getDate()-(wd-1));}else if( wd===4||wd===5){d.setDate(d.getDate()+(8-wd));}H.push({date:d,name:it.name});});const eas=calculateEasterDate(y);const cm=new Date(eas);cm.setDate(cm.getDate()-48);const ct=new Date(eas);ct.setDate(ct.getDate()-47);const js=new Date(eas);js.setDate(js.getDate()-3);const vs=new Date(eas);vs.setDate(eas.getDate()-2);H.push({date:cm,name:'Carnaval'});H.push({date:ct,name:'Carnaval'});H.push({date:js,name:'Jueves Santo'});H.push({date:vs,name:'Viernes Santo'});return H}
+    function getFeriaVerano(y){return {start:new Date(y,0,1),end:new Date(y,0,31)}}
+    function getFeriaInvierno(y){const J=6;let d=new Date(y,J,1),m=0;while(true){if(d.getDay()===1){m++;if(m===3)break}d.setDate(d.getDate()+1)}const s=new Date(d),e=new Date(s);e.setDate(e.getDate()+13);return {start:s,end:e}}
+    function fDate(d){return d.toISOString().split('T')[0]}
+    function pDate(v){return v?new Date(v+'T00:00:00'):null}
+
+    function addTramoRow(fromDay='',toDay='',monto=''){
+      const tb=$('tramosTable').querySelector('tbody');
+      const tr=document.createElement('tr');
+      tr.innerHTML=`<td><input type=\"number\" min=\"1\" class=\"input-number tramo-from\" value=\"${fromDay}\"></td>
+                     <td><input type=\"number\" min=\"1\" class=\"input-number tramo-to\" value=\"${toDay}\"></td>
+                     <td><input type=\"number\" min=\"0\" step=\"0.01\" class=\"input-number tramo-monto\" value=\"${monto}\"></td>
+                     <td><button type=\"button\" class=\"btn btn-ghost btn-remove-tramo\">Eliminar</button></td>`;
+      tb.appendChild(tr);
+    }
+    function addExclusionRow(date='',motivo=''){
+      const tb=$('exclusionesTable').querySelector('tbody');
+      const tr=document.createElement('tr');
+      tr.innerHTML=`<td><input type=\"date\" class=\"input-date exclusion-date\" value=\"${date}\"></td>
+                     <td><input type=\"text\" class=\"input-text exclusion-motivo\" value=\"${motivo}\"></td>
+                     <td><button type=\"button\" class=\"btn btn-ghost btn-remove-exclusion\">Eliminar</button></td>`;
+      tb.appendChild(tr);
+    }
+
+    function initializeForm(){
+      $('tramosTable').querySelector('tbody').innerHTML='';
+      $('exclusionesTable').querySelector('tbody').innerHTML='';
+      $('chkTramos').checked=false; $('tramosUI').classList.add('hidden'); $('montoUnicoUI').classList.remove('hidden');
+      $('chkFerias').checked=false; $('feriasUI').classList.add('hidden');
+      $('chkExclusiones').checked=false; $('exclusionesUI').classList.add('hidden');
+      ['caratula','numeroExpediente','juzgado','fechaInicio','fechaFin','montoUnico'].forEach(id=>$(id).value='');
+      const y=new Date().getFullYear();
+      const v=getFeriaVerano(y), inv=getFeriaInvierno(y);
+      $('veranoInicio').value=fDate(v.start);
+      $('veranoFin').value=fDate(v.end);
+      $('inviernoInicio').value=fDate(inv.start);
+      $('inviernoFin').value=fDate(inv.end);
+      $('resultadoResumen').innerHTML='';
+      $('resultadoExclusiones').innerHTML='';
+      clearMsg();
+    }
+
+    function validateTramos(tramos){
+      const f=tramos.filter(t=>t.monto!==''&&t.fromDay!==null).sort((a,b)=>a.fromDay-b.fromDay);
+      let lastEnd=0;for(const t of f){if(t.fromDay<=lastEnd) return 'Tramos superpuestos o desordenados.';if(t.toDay&&t.toDay<t.fromDay) return '"Hasta día" no puede ser menor que "Desde día".';lastEnd=t.toDay||Infinity}return null;
+    }
+
+    function buildHolidaysMap(startDate,endDate){
+      const years=[]; for(let y=startDate.getFullYear(); y<=endDate.getFullYear(); y++) years.push(y);
+      const map={}; years.forEach(y=>{
+        getNationalHolidays(y).forEach(h=>{map[fDate(h.date)]=h.name});
+        let d=getFeriaVerano(y), x=new Date(d.start); while(x<=d.end){map[fDate(x)]='Feria judicial de verano'; x.setDate(x.getDate()+1)}
+        d=getFeriaInvierno(y); x=new Date(d.start); while(x<=d.end){map[fDate(x)]='Feria judicial de invierno'; x.setDate(x.getDate()+1)}
+      });
+      return map;
+    }
+
+    function overrideFeriaRange(map,start,end,label){ if(!start||!end) return; let d=new Date(start); while(d<=end){ map[fDate(d)]=label; d.setDate(d.getDate()+1) } }
+
+    function calcular(){
+      clearMsg();
+      const startVal=$('fechaInicio').value, endVal=$('fechaFin').value;
+      if(!startVal||!endVal){showMsg('error','Seleccione fecha de inicio y de corte.'); return}
+      const startDate=pDate(startVal), endDate=pDate(endVal);
+      if(!(startDate instanceof Date && !isNaN(startDate)) || !(endDate instanceof Date && !isNaN(endDate))){showMsg('error','Fechas inválidas.');return}
+      if(endDate<startDate){showMsg('error','La fecha de corte no puede ser anterior a la de inicio.'); return}
+
+      let holidays=buildHolidaysMap(startDate,endDate);
+      if($('chkFerias').checked){
+        holidays=buildHolidaysMap(startDate,endDate);
+        overrideFeriaRange(holidays,pDate($('veranoInicio').value),pDate($('veranoFin').value),'Feria judicial de verano');
+        overrideFeriaRange(holidays,pDate($('inviernoInicio').value),pDate($('inviernoFin').value),'Feria judicial de invierno');
+      }
+
+      const manualEnabled=$('chkExclusiones').checked; const manualExcl={};
+      if(manualEnabled){
+        $('exclusionesTable').querySelectorAll('tbody tr').forEach(r=>{
+          const dateVal=r.querySelector('.exclusion-date').value; const motivo=r.querySelector('.exclusion-motivo').value.trim()||'Exclusión manual';
+          if(dateVal) manualExcl[dateVal]=motivo;
+        });
+      }
+
+      const useTramos=$('chkTramos').checked; const tramos=[];
+      if(useTramos){
+        $('tramosTable').querySelectorAll('tbody tr').forEach(r=>{
+          const fd=r.querySelector('.tramo-from').value, td=r.querySelector('.tramo-to').value, m=r.querySelector('.tramo-monto').value;
+          const fromDay=fd?parseInt(fd):null, toDay=td?parseInt(td):null, monto=m!==''?parseFloat(m):null; if(fromDay!==null&&monto!==null) tramos.push({fromDay,toDay,monto});
+        });
+        const eMsg=validateTramos(tramos); if(eMsg){showMsg('error',eMsg); return}
+        tramos.sort((a,b)=>a.fromDay-b.fromDay);
+      } else {
+        const m=parseFloat($('montoUnico').value||'0');
+        if(!(m>0)){showMsg('error','Ingrese un monto diario único válido (> 0).'); return}
+        tramos.push({fromDay:1,toDay:null,monto:m});
+      }
+
+      let cur=new Date(startDate), dias=0, total=0, excl=[]; const det=tramos.map(t=>({tramo:t,dias:0,subtotal:0}));
+      while(cur<=endDate){
+        const s=fDate(cur), dow=cur.getDay(), weekend=(dow===6||dow===0), man=manualExcl[s], fer=holidays[s];
+        if(man){excl.push({date:s,motivo:man});}
+        else if(weekend){} else if(fer){excl.push({date:s,motivo:fer});}
+        else{dias++; let montoDia=0; for(let i=0;i<tramos.length;i++){const t=tramos[i]; if(dias>=t.fromDay && (t.toDay===null || dias<=t.toDay)){montoDia=t.monto; det[i].dias++; det[i].subtotal+=t.monto; break;}} total+=montoDia;}
+        cur.setDate(cur.getDate()+1);
+      }
+
+      let res='';
+      res+='<h5>Datos</h5><ul>' + `<li>Carátula: ${$('caratula').value||'-'}</li><li>Expediente: ${$('numeroExpediente').value||'-'}</li><li>Juzgado: ${$('juzgado').value||'-'}</li></ul>`;
+      res+='<h5>Período</h5><ul>' + `<li>Inicio: ${startVal}</li><li>Corte: ${endVal}</li></ul>`;
+      res+='<h5>Tramos/Monto</h5><ul>';
+      tramos.forEach(t=>{const r=t.toDay?`${t.fromDay}-${t.toDay}`:`desde ${t.fromDay}`; res+=`<li>Días ${r}: $${t.monto.toFixed(2)}</li>`});
+      res+='</ul>';
+      res+='<h5>Resultados</h5><ul>' + `<li>Días hábiles: ${dias}</li><li>Total astreintes: $${total.toFixed(2)}</li></ul>`;
+      res+='<h5>Detalle por tramo</h5><ul>';
+      det.forEach(d=>{const l=d.tramo.toDay?`${d.tramo.fromDay}-${d.tramo.toDay}`:`desde ${d.tramo.fromDay}`; res+=`<li>${l}: ${d.dias} días — $${d.subtotal.toFixed(2)}</li>`});
+      res+='</ul>';
+      $('resultadoResumen').innerHTML=res;
+
+      let exhtml=''; if(excl.length>0){ exhtml+='<h5>Días excluidos</h5><ul>'; excl.forEach(it=>exhtml+=`<li>${it.date}: ${it.motivo}</li>`); exhtml+='</ul>'; }
+      $('resultadoExclusiones').innerHTML=exhtml;
+      showMsg('success','Cálculo realizado. Podés revisar el resumen debajo.');
+    }
+
+    function buildPrintHeader(){
+      const h=$('printHeader');
+      const now=new Date();
+      const fmt=now.toLocaleString();
+      const car=$('caratula').value||'-';
+      const exp=$('numeroExpediente').value||'-';
+      const juz=$('juzgado').value||'-';
+      const ini=$('fechaInicio').value||'-';
+      const fin=$('fechaFin').value||'-';
+      h.innerHTML = `
+        <div style=\"display:flex;align-items:center;gap:10px;\">
+          <div><strong>LEXAR</strong></div>
+          <div style=\"flex:1\"></div>
+          <div style=\"font-size:12px;\">Impreso: ${fmt}</div>
+        </div>
+        <h2 style=\"margin:6px 0 4px;font-size:18px\">Cálculo de Astreintes</h2>
+        <div style=\"font-size:12px\">
+          <div><strong>Carátula:</strong> ${car}</div>
+          <div><strong>Expediente:</strong> ${exp}</div>
+          <div><strong>Juzgado:</strong> ${juz}</div>
+          <div><strong>Período:</strong> ${ini} → ${fin}</div>
+        </div>
+      `;
+      h.classList.remove('hidden');
+    }
+
+    function imprimir(){
+      const hasResultado = ($('resultadoResumen').innerHTML||'').trim().length>0;
+      if(!hasResultado){
+        calcular();
+        const ok = ($('resultadoResumen').innerHTML||'').trim().length>0;
+        if(!ok){ showMsg('error','Completá los campos mínimos y tocá Calcular antes de imprimir.'); return; }
+      }
+      buildPrintHeader();
+      setTimeout(()=>window.print(), 50);
+    }
+
+    document.addEventListener('DOMContentLoaded',()=>{
+      initializeForm();
+      $('btnNuevo').addEventListener('click',initializeForm);
+      $('btnImprimir').addEventListener('click',imprimir);
+      $('btnImprimir2').addEventListener('click',imprimir);
+      $('chkTramos').addEventListener('change',e=>{ $('tramosUI').classList.toggle('hidden',!e.target.checked); $('montoUnicoUI').classList.toggle('hidden',e.target.checked); clearMsg(); });
+      $('chkFerias').addEventListener('change',e=>{ $('feriasUI').classList.toggle('hidden',!e.target.checked); clearMsg(); });
+      $('chkExclusiones').addEventListener('change',e=>{ $('exclusionesUI').classList.toggle('hidden',!e.target.checked); clearMsg(); });
+      $('btnAddTramo').addEventListener('click',()=>{ addTramoRow(); clearMsg(); });
+      $('tramosTable').querySelector('tbody').addEventListener('click',e=>{ if(e.target.classList.contains('btn-remove-tramo')) {e.target.closest('tr').remove(); clearMsg();} });
+      $('btnAddExclusion').addEventListener('click',()=>{ addExclusionRow(); clearMsg(); });
+      $('exclusionesTable').querySelector('tbody').addEventListener('click',e=>{ if(e.target.classList.contains('btn-remove-exclusion')) {e.target.closest('tr').remove(); clearMsg();} });
+      $('btnCalcular').addEventListener('click',calcular);
+    });
+  </script>
+</body>
+</html>

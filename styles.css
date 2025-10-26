@@ -1,232 +1,277 @@
-/* Estilos generales */
-body {
-    font-family: 'Roboto', sans-serif;
+*{
     margin: 0;
     padding: 0;
-    background-color: #25252b;
-    width: 100%;
-    height: auto;
     box-sizing: border-box;
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
 }
 
-header {
-    background-color: #2c2c32;
-    width: calc(100% - 20px); /* Ajustar para el padding del contenedor */
+/* Cabecera general con logo */
+.header-general{
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    box-sizing: border-box;
-    color: #ffffff;
-    margin: 10px auto; /* Centrando el header */
-    border-radius: 5px;
-}
-
-.logo-principal {
-    width: 80px;
-    height: auto;
-}
-
-.titulo {
-    font-size: 15px;
-    font-weight: 400;
-}
-
-.container {
-    padding: 10px;
-}
-
-.datos {
-    padding: 10px;
-    background-color: #2c2c32;
-    line-height: 1.5;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    width: calc(100% - 20px);
-    box-sizing: border-box;
-    color: #ffffff;
-    margin: 10px auto; /* Centrando el contenedor */
-    border-radius: 5px;
-}
-
-.befenac, .edaños, .tarfecing {
-    flex: 1;
-    margin-left: 2%;
-    max-width: 25%;
-    box-sizing: border-box;
-    margin-bottom: 10px; /* Espaciado vertical entre elementos */
-}
-
-.senac {
-    display: flex;
-    max-width: 30%;
-    margin-bottom: 10px; /* Espaciado vertical entre elementos */
-}
-
-.befenac:first-child, .edaños:first-child, .senac:first-child, .tarfecing:first-child {
-    margin-left: 0;
-}
-
-label {
-    font-size: 12px;
-    font-weight: 400;
-    margin-bottom: 5px; /* Espaciado entre el label y el input */
-    display: block;
-}
-
-input[type="date"],
-input[type="text"],
-input[type="number"],
-select {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    margin-bottom: 10px; /* Espaciado vertical entre inputs */
-    font-size: 14px;
-    background-color: #f9f9f9;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-input[type="date"]:focus,
-input[type="text"]:focus,
-input[type="number"]:focus,
-select:focus {
-    border-color: #66afe9;
-    box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
-    outline: none;
-}
-
-.tareas-cuidado {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.tarea-cuidado-item {
-    flex: 1;
-    margin-right: 2%;
-    max-width: 30%;
-    box-sizing: border-box;
-    margin-bottom: 10px; /* Espaciado vertical entre elementos */
-}
-
-.tarea-cuidado-item:last-child {
-    margin-right: 0;
-}
-
-.medio {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: calc(100% - 20px);
-    height: 100%;
-    color: #ffffff;
-    margin: 10px auto; /* Centrando el contenedor */
-    border-radius: 5px;
-    background-color: #2c2c32;
-    padding: 10px;
+    background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
+    padding: 2px 0;
+    border: 1px solid #0052A3;
+    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.15);
 }
 
-.agregar-fila, .aportes {
+.header-logo{
+    width: 100px;
+    height: auto;
+    margin: 5px;
+}
+
+/* Barra de título y acciones */
+.header-astreintes{
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: #2c2c32;
-    box-sizing: border-box;
-    width: calc(100% - 20px);
-    margin: 10px auto; /* Centrando el contenedor */
-    border-radius: 5px;
+    background: linear-gradient(135deg, #F1F5F9 0%, #E2E8F0 100%);
+    padding: 2px;
+    border-bottom: 2px solid #CBD5E1;
 }
 
-#input-desde, #input-hasta {
-    width: 40%;
+.header-astreintes-title{
+    font-size: 18px;
+    font-weight: 600;
+    color: #1E293B;
+    margin-left: 10px;
+    margin-right: 20px;
 }
 
-button {
-    margin-left: 1%;
-    padding: 8px 12px;
-    background-color: #4CAF50;
-    color: white;
+.header-title-button{
+    background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
     border: none;
-    border-radius: 5px;
+    padding: 8px 12px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    font-size: 14px;
+    font-weight: 500;
+    color: #475569;
+    transition: all 0.3s ease;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
 }
 
-button:hover {
-    background-color: #45a049;
+.header-title-button:hover{
+    background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+    border: 1px solid #0066CC;
+    color: #0066CC;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 102, 204, 0.15);
 }
 
-.carga-titulo, .titulo-tabla {
-    font-size: 12px;
+/* Secciones y campos */
+.main-astreintes {
+    padding: 20px;
+    background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+    min-height: 100vh;
+}
+
+.section {
+    margin-bottom: 20px;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 20px;
+    background: #FFFFFF;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+}
+
+.section:hover {
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.12), 0 2px 6px rgba(0, 102, 204, 0.06);
+    border-color: #CBD5E1;
+    transform: translateY(-2px);
+}
+
+.section h4 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #1E293B;
+    font-weight: 700;
+    border-bottom: 2px solid #E2E8F0;
+    padding-bottom: 8px;
+}
+
+.field-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #F8FAFC;
+    border-radius: 8px;
+    border: 1px solid #E2E8F0;
+}
+
+.field-group label {
+    min-width: 130px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.input-text,
+.input-date,
+.input-number {
+    padding: 10px 12px;
+    border: 1px solid #CBD5E1;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1E293B;
+    flex: 1;
+    min-width: 120px;
+    background: #FFFFFF;
+    transition: all 0.3s ease;
+}
+
+.input-text:focus,
+.input-date:focus,
+.input-number:focus {
+    outline: none;
+    border-color: #0066CC;
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    transform: translateY(-1px);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+    font-size: 14px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.table th,
+.table td {
+    border: 1px solid #E2E8F0;
+    padding: 12px 8px;
+    text-align: left;
     font-weight: 500;
 }
 
-.tabla-aportes {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+.table th {
+    background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-#tabla-info {
-    border-collapse: collapse;
-    font-size: 12px;
-    width: 80%;
-    box-sizing: border-box;
-    margin: 10px auto; /* Centrando la tabla */
+.table td {
+    background: #FFFFFF;
+    color: #1E293B;
 }
 
-#tabla-info th,
-#tabla-info td {
-    padding: 0.4%;
-    text-align: left;
-    box-sizing: border-box;
+.table tr:nth-child(even) td {
+    background: #F8FAFC;
 }
 
-#tabla-info th {
-    background-color: #2c2c32;
+.table tr:hover td {
+    background: #EFF6FF;
+    transition: all 0.2s ease;
 }
 
-/* Media Queries para pantallas pequeñas */
-@media (max-width: 768px) {
-    .datos, .medio, .agregar-fila, .aportes {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+.button {
+    background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 16px;
+    margin-top: 8px;
+    margin-right: 8px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 102, 204, 0.2);
+}
 
-    .befenac, .edaños, .tarfecing {
-        max-width: 100%;
-        margin-left: 0;
-        margin-bottom: 10px;
-    }
+.button:hover {
+    background: linear-gradient(135deg, #0052A3 0%, #003D7A 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+}
 
-    .senac {
-        max-width: 100%;
-        flex-direction: column;
-        margin-bottom: 10px;
-    }
+.button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 102, 204, 0.2);
+}
 
-    .tarea-cuidado-item {
-        max-width: 100%;
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
+.button-primary {
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+}
 
-    #input-desde, #input-hasta {
-        width: 100%;
-    }
+.button-primary:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
 
-    .tabla-aportes {
-        width: 100%;
-        overflow-x: auto;
-    }
+.resultado {
+    margin-top: 20px;
+    font-size: 14px;
+    padding: 20px;
+    background: #FFFFFF;
+    border-radius: 12px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
 
-    #tabla-info {
-        width: 100%;
+.resultado h5 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #1E293B;
+    font-weight: 700;
+    border-bottom: 2px solid #E2E8F0;
+    padding-bottom: 8px;
+}
+
+.resultado ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 15px;
+    color: #475569;
+    font-weight: 500;
+}
+
+.note {
+    font-size: 13px;
+    color: #64748B;
+    margin-bottom: 10px;
+    font-style: italic;
+    background: #F8FAFC;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border-left: 4px solid #0066CC;
+}
+
+/* Estilos de impresión: mantiene el resumen en la primera página y permite que la lista de excluidos se corte */
+@media print {
+    /* Asegura que los datos de cálculo y secciones no se dividan en diferentes páginas */
+    #resultadoResumen {
+        page-break-inside: avoid;
+    }
+    .section, .main-astreintes {
+        page-break-inside: avoid;
+    }
+    /* La lista de días excluidos comenzará en una nueva hoja */
+    #resultadoExclusiones {
+        page-break-before: always;
+    }
+    /* Oculta cabecera y botones en la impresión para dejar solo la información relevante */
+    .header-general,
+    .header-astreintes {
+        display: none !important;
+    }
+    button {
+        display: none !important;
     }
 }
