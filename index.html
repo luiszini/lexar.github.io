@@ -1895,40 +1895,49 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
       const validacionConstruccion = validarConstruccion();
       const cumpleConstruccion = validacionConstruccion.cumple;
       
-      // Filtrar aportes en régimen insalubre (excluyendo beneficios generados y moratorias)
-      let aportesInsalubres = state.aportes.filter(p => 
-        !p.esCredito && 
-        !p.esMoratoria && 
-        p.tipo && 
-        (p.tipo.includes('Insalubre') || p.tipo.includes('riesgoso') || p.tipo.includes('insalubre') || 
-         p.tipo.includes('riesgosas') || p.tipo.includes('penoso') || p.tipo.includes('Minería') ||
-         p.tipo.includes('Laminación') || p.tipo.includes('Forja') || p.tipo.includes('Construcción') ||
-         p.tipo.includes('agrario') || p.tipo.includes('Amarradores') || p.tipo.includes('Dragado') ||
-         p.tipo.includes('ferrobarcos') || p.tipo.includes('Petróleo'))
-      );
+      console.log('=== INICIO CÁLCULO COMPENSACIÓN INSALUBRE ===');
+      console.log('Sexo:', sexo);
+      console.log('Cumple construcción:', cumpleConstruccion);
       
-      // Si cumple requisito de construcción, agregar todos los servicios comunes como insalubres
-      if(cumpleConstruccion){
-        const aportesComunes = state.aportes.filter(p => 
-          !p.esCredito && 
-          !p.esMoratoria && 
-          p.tipo === 'Común Relación de Dependencia'
-        );
-        aportesInsalubres = [...aportesInsalubres, ...aportesComunes];
-        console.log('Cumple requisito construcción: servicios comunes tratados como insalubres');
+      // Procesar todos los aportes y verificar cuáles requieren menos de 30 años
+      let aportesInsalubres = [];
+      
+      for(const p of state.aportes){
+        // Ignorar créditos y moratorias
+        if(p.esCredito || p.esMoratoria) continue;
+        if(!p.tipo || !p.desde || !p.hasta) continue;
+        
+        // Para servicios comunes, verificar si cumple construcción
+        let tipoParaEvaluar = p.tipo;
+        if(cumpleConstruccion && p.tipo === 'Común Relación de Dependencia'){
+          tipoParaEvaluar = 'Industria de la Construcción';
+        }
+        
+        // Obtener requisitos para este tipo de servicio
+        const reqs = getRequirementsFor(tipoParaEvaluar, sexo, p.hasta);
+        
+        // Si requiere 25 o 27 años, es régimen especial con compensación
+        if(reqs.ap === 25 || reqs.ap === 27){
+          aportesInsalubres.push({
+            aporte: p,
+            tipoOriginal: p.tipo,
+            tipoEvaluado: tipoParaEvaluar,
+            reqs: reqs
+          });
+          console.log(`✓ Aporte con compensación: ${p.tipo} (${tipoParaEvaluar}) - requiere ${reqs.ap} años`);
+        }
       }
       
-      console.log('Aportes insalubres encontrados:', aportesInsalubres);
+      console.log(`Total aportes con compensación encontrados: ${aportesInsalubres.length}`);
       
-      for(const aporte of aportesInsalubres){
-        // Para servicios comunes que se tratan como insalubres, usar reglas de construcción
-        const tipoAporte = (cumpleConstruccion && aporte.tipo === 'Común Relación de Dependencia') ? 'Industria de la Construcción' : aporte.tipo;
-        const reqs = getRequirementsFor(tipoAporte, sexo, aporte.hasta);
-        console.log(`Aporte insalubre: ${aporte.tipo} -> ${tipoAporte}, reqs:`, reqs, 'ymd:', aporte.ymd);
+      // Calcular la compensación para cada aporte
+      for(const item of aportesInsalubres){
+        const aporte = item.aporte;
+        const reqs = item.reqs;
         
         // Aplicar compensación según los aportes requeridos
         if(reqs.ap === 25){
-          // Multiplicar por 1.2 cuando se requieren 25 años
+          // Multiplicar por 1.2 cuando se requieren 25 años (20% adicional)
           const diasOriginales = aporte.ymd.y * 360 + aporte.ymd.m * 30 + aporte.ymd.d;
           const diasCompensados = Math.floor(diasOriginales * 1.2);
           const diasExtra = diasCompensados - diasOriginales;
@@ -1937,10 +1946,10 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
           const m = Math.floor((diasExtra % 360) / 30);
           const d = diasExtra % 30;
           
-          console.log(`Compensación 25 años: ${diasOriginales} -> ${diasCompensados}, extra: ${diasExtra}, ymd: ${y}a ${m}m ${d}d`);
+          console.log(`  Comp. 25 años: ${aporte.ymd.y}a ${aporte.ymd.m}m ${aporte.ymd.d}d x 1.2 = +${y}a ${m}m ${d}d`);
           compensacionTotal = sumYMD(compensacionTotal, {y,m,d});
         } else if(reqs.ap === 27){
-          // Multiplicar por 1.11 cuando se requieren 27 años
+          // Multiplicar por 1.11 cuando se requieren 27 años (11% adicional)
           const diasOriginales = aporte.ymd.y * 360 + aporte.ymd.m * 30 + aporte.ymd.d;
           const diasCompensados = Math.floor(diasOriginales * 1.11);
           const diasExtra = diasCompensados - diasOriginales;
@@ -1949,12 +1958,13 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
           const m = Math.floor((diasExtra % 360) / 30);
           const d = diasExtra % 30;
           
-          console.log(`Compensación 27 años: ${diasOriginales} -> ${diasCompensados}, extra: ${diasExtra}, ymd: ${y}a ${m}m ${d}d`);
+          console.log(`  Comp. 27 años: ${aporte.ymd.y}a ${aporte.ymd.m}m ${aporte.ymd.d}d x 1.11 = +${y}a ${m}m ${d}d`);
           compensacionTotal = sumYMD(compensacionTotal, {y,m,d});
         }
       }
       
-      console.log('Compensación total insalubre:', compensacionTotal);
+      console.log('COMPENSACIÓN TOTAL INSALUBRE:', `${compensacionTotal.y}a ${compensacionTotal.m}m ${compensacionTotal.d}d`);
+      console.log('=== FIN CÁLCULO COMPENSACIÓN INSALUBRE ===');
       return compensacionTotal;
     }
 
