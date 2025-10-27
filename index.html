@@ -1257,9 +1257,10 @@
     }
     function sumYMD(a,b){ let y=a.y+b.y, m=a.m+b.m, d=a.d+b.d; while(d>=30){d-=30;m++} while(m>=12){m-=12;y++} return {y,m,d} }
     function cmpRanges(r1, r2){ 
-      const oneDay=86400000; 
-      // Dos rangos se superponen si: r1.desde <= r2.hasta && r2.desde <= r1.hasta
-      return (r1.desde.getTime() <= r2.hasta.getTime() + oneDay) && (r2.desde.getTime() <= r1.hasta.getTime() + oneDay); 
+      // Dos rangos se superponen si tienen al menos un día en común
+      // r1.desde <= r2.hasta && r2.desde <= r1.hasta
+      // Periodos consecutivos (uno termina 30/11 y otro comienza 01/12) NO se superponen
+      return (r1.desde.getTime() <= r2.hasta.getTime()) && (r2.desde.getTime() <= r1.hasta.getTime()); 
     }
     function subtractRanges(base, blockers){
       let pieces=[{desde:new Date(base.desde), hasta:new Date(base.hasta)}];
