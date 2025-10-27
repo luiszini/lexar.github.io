@@ -1095,6 +1095,7 @@
   <button id="btnAutoMoratoria" type="button" class="btn btn-main btn-success">🔁 Cargar moratoria</button>
   <button id="btnQuitarMoratoria" type="button" class="btn btn-main btn-danger">🧹 Quitar moratorias</button>
   <button id="btnImportarPDF" type="button" class="btn btn-main btn-warning">📄 Importar Historia ANSES</button>
+  <button id="btnVerificarSuperposiciones" type="button" class="btn btn-main" style="background-color:#f59e0b;color:white;margin-left:8px">🔍 Verificar superposiciones</button>
   <button id="btnRestoreD475" type="button" class="btn btn-info" style="margin-left:8px">♻️ Restaurar D.475/21</button>
   <button id="btnRestoreEX" type="button" class="btn btn-info" style="margin-left:6px">♻️ Restaurar Art. 19</button>
     </div>
@@ -1636,6 +1637,61 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
         if(cmpRanges({desde:p.desde,hasta:p.hasta}, nuevo)) return true;
       }
       return false;
+    }
+    
+    function encontrarSolapamientos(nuevo, ignorarId){
+      const solapados = [];
+      for(const p of state.aportes){
+        if(ignorarId && p.id===ignorarId) continue;
+        if(!p.desde || !p.hasta) continue;
+        if(p.esCredito) continue;
+        if(cmpRanges({desde:p.desde,hasta:p.hasta}, nuevo)) {
+          solapados.push(p);
+        }
+      }
+      return solapados;
+    }
+    
+    function verificarTodasLasSuperposiciones(){
+      const conflictos = [];
+      const procesados = new Set();
+      
+      for(let i = 0; i < state.aportes.length; i++){
+        const p1 = state.aportes[i];
+        if(!p1.desde || !p1.hasta || p1.esCredito) continue;
+        
+        for(let j = i + 1; j < state.aportes.length; j++){
+          const p2 = state.aportes[j];
+          if(!p2.desde || !p2.hasta || p2.esCredito) continue;
+          
+          const key = `${Math.min(p1.id, p2.id)}-${Math.max(p1.id, p2.id)}`;
+          if(procesados.has(key)) continue;
+          
+          if(cmpRanges({desde:p1.desde,hasta:p1.hasta}, {desde:p2.desde,hasta:p2.hasta})){
+            conflictos.push({p1, p2});
+            procesados.add(key);
+          }
+        }
+      }
+      
+      return conflictos;
+    }
+    
+    async function mostrarSuperposiciones(){
+      const conflictos = verificarTodasLasSuperposiciones();
+      
+      if(conflictos.length === 0){
+        await showModal('✅ No se detectaron superposiciones en los períodos cargados.');
+        return;
+      }
+      
+      const detalles = conflictos.map((c, idx) => {
+        const num1 = state.aportes.findIndex(x => x.id === c.p1.id) + 1;
+        const num2 = state.aportes.findIndex(x => x.id === c.p2.id) + 1;
+        return `${idx + 1}. Fila #${num1}: ${fmtDMY2(c.p1.desde)} a ${fmtDMY2(c.p1.hasta)} (${c.p1.razon || 'Sin razón'})\n   ⚠️ SE SUPERPONE CON\n   Fila #${num2}: ${fmtDMY2(c.p2.desde)} a ${fmtDMY2(c.p2.hasta)} (${c.p2.razon || 'Sin razón'})`;
+      }).join('\n\n');
+      
+      await showModal(`⚠️ Se detectaron ${conflictos.length} superposición(es):\n\n${detalles}\n\nPor favor, corrige estos períodos para evitar conflictos.`);
     }
 
     async function pedirAutoFix(nuevo){
@@ -4019,8 +4075,13 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
           if(!d||!h||h<d){ await showModal('Fechas inválidas'); return }
           
           // Verificar solapamiento excluyendo el período que se está editando
-          if(tieneSolapamiento({desde:d,hasta:h}, p.id)){
-            await showModal('Las nuevas fechas se superponen con otros períodos.'); return;
+          const solapados = encontrarSolapamientos({desde:d,hasta:h}, p.id);
+          if(solapados.length > 0){
+            const detalles = solapados.map(s => 
+              `• ${fmtDMY2(s.desde)} a ${fmtDMY2(s.hasta)} - ${s.razon || 'Sin razón social'}`
+            ).join('\n');
+            await showModal(`Las nuevas fechas se superponen con los siguientes períodos:\n\n${detalles}\n\nPor favor, ajusta las fechas para evitar superposición.`); 
+            return;
           }
           
           p.desde=d; p.hasta=h; p.razon=getVal('input[data-field="razon"]');
@@ -4064,6 +4125,7 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
       document.getElementById('btnAutoMoratoria').addEventListener('click', (e)=>{ e.preventDefault(); cargarMoratoriaAuto(); });
       document.getElementById('btnQuitarMoratoria').addEventListener('click', (e)=>{ e.preventDefault(); quitarMoratorias(); });
       document.getElementById('btnImportarPDF').addEventListener('click', (e)=>{ e.preventDefault(); importarHistoriaLaboralANSES(); });
+      document.getElementById('btnVerificarSuperposiciones').addEventListener('click', (e)=>{ e.preventDefault(); mostrarSuperposiciones(); });
   document.getElementById('btnRestoreD475').addEventListener('click', (e)=>{ e.preventDefault(); state.computedDisabled.D475=false; syncComputedRows(); render(); });
   document.getElementById('btnRestoreEX').addEventListener('click', (e)=>{ e.preventDefault(); state.computedDisabled.EX=false; syncComputedRows(); render(); });
     document.getElementById('btnCalcular').addEventListener('click', (e)=>{ 
