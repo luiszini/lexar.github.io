@@ -1101,9 +1101,33 @@
     </div>
 
 
+    <!-- Panel de acciones masivas -->
+    <div id="panelAccionesMasivas" style="display:none; margin-bottom:12px; padding:12px; background:#f0f9ff; border:2px solid #0ea5e9; border-radius:8px;">
+      <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+        <span style="font-weight:bold; color:#0369a1;">
+          <span id="contadorSeleccionadas">0</span> fila(s) seleccionada(s)
+        </span>
+        <button id="btnCambiarTipoMasivo" type="button" class="btn btn-info" title="Cambiar tipo de servicio">
+          📝 Cambiar tipo
+        </button>
+        <button id="btnCambiarCajaMasivo" type="button" class="btn btn-info" title="Cambiar caja">
+          🏦 Cambiar caja
+        </button>
+        <button id="btnEliminarMasivo" type="button" class="btn btn-danger" title="Eliminar seleccionadas">
+          🗑️ Eliminar seleccionadas
+        </button>
+        <button id="btnDeseleccionarTodo" type="button" class="btn btn-secondary" title="Deseleccionar todas">
+          ❌ Deseleccionar todo
+        </button>
+      </div>
+    </div>
+
     <table>
       <thead>
         <tr>
+          <th style="width:40px">
+            <input type="checkbox" id="chkSeleccionarTodo" title="Seleccionar/Deseleccionar todo" style="cursor:pointer">
+          </th>
           <th>#</th>
           <th>Fecha desde</th>
           <th>Fecha hasta</th>
@@ -1118,6 +1142,7 @@
           <th>Acciones</th>
         </tr>
         <tr class="newrow">
+          <td></td>
           <td>➕</td>
           <td><input id="new-desde" class="cell-input" type="date"/></td>
           <td><input id="new-hasta" class="cell-input" type="date"/></td>
@@ -1148,6 +1173,7 @@
       <tbody id="aportesBody"></tbody>
       <tfoot>
         <tr>
+          <td></td>
           <td colspan="8">Total aportes</td>
           <td id="totY">0</td>
           <td id="totM">0</td>
@@ -1283,7 +1309,7 @@
     }
 
   // ================= Estado =================
-  const state = { aportes: [], seq: 1, computedDisabled: { D475:false, EX:false } }
+  const state = { aportes: [], seq: 1, computedDisabled: { D475:false, EX:false }, seleccionadas: new Set() }
   
   // Variable para rastrear el cómputo que se está editando
   let editingComputationId = null;
@@ -1562,6 +1588,7 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
         if(p._editing){
           tr.classList.add('editing');
           tr.innerHTML = `
+            <td><input type="checkbox" class="chk-fila" data-id="${p.id}" ${state.seleccionadas.has(p.id)?'checked':''} ${p.esCredito?'disabled':''} style="cursor:pointer"/></td>
             <td>${i+1}</td>
             <td><input class="cell-input" type="date" value="${toInputDate(p.desde)}" data-field="desde"/></td>
             <td><input class="cell-input" type="date" value="${toInputDate(p.hasta)}" data-field="hasta"/></td>
@@ -1586,6 +1613,7 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
             </td>`;
         } else {
           tr.innerHTML = `
+            <td><input type="checkbox" class="chk-fila" data-id="${p.id}" ${state.seleccionadas.has(p.id)?'checked':''} ${p.esCredito?'disabled':''} style="cursor:pointer"/></td>
             <td>${i+1}</td>
             <td>${fmtDMY4(p.desde)}</td>
             <td>${fmtDMY4(p.hasta)}</td>
@@ -1625,6 +1653,9 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
       
       // Detectar automáticamente regímenes especiales y activar/desactivar prorrateo
       activarProrrateoAutomatico();
+      
+      // Actualizar estado del panel de edición masiva
+      actualizarPanelMasivo();
     }
 
     function periodoYMD(desde, hasta){ return diff360(desde, hasta) }
@@ -1693,6 +1724,216 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
       }).join('\n\n');
       
       await showModal(`⚠️ Se detectaron ${conflictos.length} superposición(es):\n\n${detalles}\n\nPor favor, corrige estos períodos para evitar conflictos.`);
+    }
+    
+    // ============ Edición masiva ==========
+    function actualizarPanelMasivo(){
+      const panel = $('#panelAccionesMasivas');
+      const contador = $('#contadorSeleccionadas');
+      const chkTodo = $('#chkSeleccionarTodo');
+      
+      // Contar solo las filas seleccionadas que no son créditos
+      const seleccionadas = state.aportes.filter(p => !p.esCredito && state.seleccionadas.has(p.id));
+      const totalSeleccionables = state.aportes.filter(p => !p.esCredito).length;
+      
+      contador.textContent = seleccionadas.length;
+      
+      // Mostrar/ocultar panel
+      if(seleccionadas.length > 0){
+        panel.style.display = 'block';
+      } else {
+        panel.style.display = 'none';
+      }
+      
+      // Actualizar estado del checkbox "Seleccionar todo"
+      if(totalSeleccionables > 0 && seleccionadas.length === totalSeleccionables){
+        chkTodo.checked = true;
+        chkTodo.indeterminate = false;
+      } else if(seleccionadas.length > 0){
+        chkTodo.checked = false;
+        chkTodo.indeterminate = true;
+      } else {
+        chkTodo.checked = false;
+        chkTodo.indeterminate = false;
+      }
+    }
+    
+    function toggleSeleccionFila(id){
+      if(state.seleccionadas.has(id)){
+        state.seleccionadas.delete(id);
+      } else {
+        state.seleccionadas.add(id);
+      }
+      render();
+    }
+    
+    function seleccionarTodo(estado){
+      if(estado){
+        // Seleccionar todas las filas que no son créditos
+        state.aportes.forEach(p => {
+          if(!p.esCredito){
+            state.seleccionadas.add(p.id);
+          }
+        });
+      } else {
+        // Deseleccionar todas
+        state.seleccionadas.clear();
+      }
+      render();
+    }
+    
+    async function cambiarTipoMasivo(){
+      if(state.seleccionadas.size === 0){
+        await showModal('No hay filas seleccionadas.');
+        return;
+      }
+      
+      // Crear un modal personalizado con el selector de tipo
+      const modalHtml = `
+        <div style="padding:20px">
+          <h3 style="margin-top:0">Cambiar tipo de servicio</h3>
+          <p>Se cambiarán <strong>${state.seleccionadas.size}</strong> fila(s) seleccionada(s).</p>
+          <label style="display:block; margin-bottom:8px">Nuevo tipo de servicio:</label>
+          <select id="nuevoTipoMasivo" class="cell-input" style="width:100%; padding:8px">
+            ${SERVICE_TYPES.map(v=>`<option value="${v}">${v}</option>`).join('')}
+          </select>
+          <div style="margin-top:20px; display:flex; gap:10px; justify-content:flex-end">
+            <button id="btnCancelarTipo" class="btn btn-secondary">Cancelar</button>
+            <button id="btnConfirmarTipo" class="btn btn-primary">Aplicar cambios</button>
+          </div>
+        </div>
+      `;
+      
+      const modal = document.createElement('div');
+      modal.className = 'modal';
+      modal.style.display = 'block';
+      modal.innerHTML = `<div class="modal-content" style="max-width:500px">${modalHtml}</div>`;
+      document.body.appendChild(modal);
+      
+      const sexo = $('#sexo').value;
+      
+      return new Promise((resolve) => {
+        $('#btnConfirmarTipo').onclick = () => {
+          const nuevoTipo = $('#nuevoTipoMasivo').value;
+          const cantidad = state.seleccionadas.size;
+          
+          // Aplicar el cambio a todas las filas seleccionadas
+          state.aportes.forEach(p => {
+            if(state.seleccionadas.has(p.id)){
+              p.tipo = nuevoTipo;
+              // Actualizar requisitos
+              const reqs = getRequirementsFor(nuevoTipo, sexo);
+              p.edadReq = reqs.edad;
+              p.apReq = reqs.ap;
+            }
+          });
+          
+          state.seleccionadas.clear();
+          render();
+          historial.guardarEstado();
+          modal.remove();
+          showModal(`Tipo de servicio actualizado en ${cantidad} fila(s).`);
+          resolve(true);
+        };
+        
+        $('#btnCancelarTipo').onclick = () => {
+          modal.remove();
+          resolve(false);
+        };
+        
+        modal.onclick = (e) => {
+          if(e.target === modal){
+            modal.remove();
+            resolve(false);
+          }
+        };
+      });
+    }
+    
+    async function cambiarCajaMasivo(){
+      if(state.seleccionadas.size === 0){
+        await showModal('No hay filas seleccionadas.');
+        return;
+      }
+      
+      // Crear un modal personalizado con el selector de caja
+      const modalHtml = `
+        <div style="padding:20px">
+          <h3 style="margin-top:0">Cambiar caja</h3>
+          <p>Se cambiarán <strong>${state.seleccionadas.size}</strong> fila(s) seleccionada(s).</p>
+          <label style="display:block; margin-bottom:8px">Nueva caja:</label>
+          <select id="nuevaCajaMasivo" class="cell-input" style="width:100%; padding:8px">
+            <option>ANSES</option>
+            <option>Provincia No Adherida</option>
+            <option>Caja Profesional</option>
+          </select>
+          <div style="margin-top:20px; display:flex; gap:10px; justify-content:flex-end">
+            <button id="btnCancelarCaja" class="btn btn-secondary">Cancelar</button>
+            <button id="btnConfirmarCaja" class="btn btn-primary">Aplicar cambios</button>
+          </div>
+        </div>
+      `;
+      
+      const modal = document.createElement('div');
+      modal.className = 'modal';
+      modal.style.display = 'block';
+      modal.innerHTML = `<div class="modal-content" style="max-width:500px">${modalHtml}</div>`;
+      document.body.appendChild(modal);
+      
+      return new Promise((resolve) => {
+        $('#btnConfirmarCaja').onclick = () => {
+          const nuevaCaja = $('#nuevaCajaMasivo').value;
+          const cantidad = state.seleccionadas.size;
+          
+          // Aplicar el cambio a todas las filas seleccionadas
+          state.aportes.forEach(p => {
+            if(state.seleccionadas.has(p.id)){
+              p.caja = nuevaCaja;
+            }
+          });
+          
+          state.seleccionadas.clear();
+          render();
+          historial.guardarEstado();
+          modal.remove();
+          showModal(`Caja actualizada en ${cantidad} fila(s).`);
+          resolve(true);
+        };
+        
+        $('#btnCancelarCaja').onclick = () => {
+          modal.remove();
+          resolve(false);
+        };
+        
+        modal.onclick = (e) => {
+          if(e.target === modal){
+            modal.remove();
+            resolve(false);
+          }
+        };
+      });
+    }
+    
+    async function eliminarMasivo(){
+      if(state.seleccionadas.size === 0){
+        await showModal('No hay filas seleccionadas.');
+        return;
+      }
+      
+      const ok = await showConfirmModal(
+        `¿Está seguro de que desea eliminar ${state.seleccionadas.size} fila(s) seleccionada(s)?`, 
+        'Eliminar', 
+        'Cancelar'
+      );
+      
+      if(!ok) return;
+      
+      // Eliminar las filas seleccionadas
+      state.aportes = state.aportes.filter(p => !state.seleccionadas.has(p.id));
+      state.seleccionadas.clear();
+      render();
+      historial.guardarEstado();
+      await showModal('Filas eliminadas exitosamente.');
     }
 
     async function pedirAutoFix(nuevo){
@@ -4139,6 +4380,23 @@ function getRequirementsConstruccion(sexo, fechaAporte = null){
       document.getElementById('btnVerificarSuperposiciones').addEventListener('click', (e)=>{ e.preventDefault(); mostrarSuperposiciones(); });
   document.getElementById('btnRestoreD475').addEventListener('click', (e)=>{ e.preventDefault(); state.computedDisabled.D475=false; syncComputedRows(); render(); });
   document.getElementById('btnRestoreEX').addEventListener('click', (e)=>{ e.preventDefault(); state.computedDisabled.EX=false; syncComputedRows(); render(); });
+  
+  // Event listeners para edición masiva
+  document.getElementById('chkSeleccionarTodo').addEventListener('change', (e)=>{ seleccionarTodo(e.target.checked); });
+  document.getElementById('btnCambiarTipoMasivo').addEventListener('click', (e)=>{ e.preventDefault(); cambiarTipoMasivo(); });
+  document.getElementById('btnCambiarCajaMasivo').addEventListener('click', (e)=>{ e.preventDefault(); cambiarCajaMasivo(); });
+  document.getElementById('btnEliminarMasivo').addEventListener('click', (e)=>{ e.preventDefault(); eliminarMasivo(); });
+  document.getElementById('btnDeseleccionarTodo').addEventListener('click', (e)=>{ e.preventDefault(); state.seleccionadas.clear(); render(); });
+  
+  // Event delegation para checkboxes de filas
+  document.getElementById('aportesBody').addEventListener('change', (e)=>{
+    if(e.target.classList.contains('chk-fila')){
+      const id = parseInt(e.target.getAttribute('data-id'), 10);
+      if(!isNaN(id)){
+        toggleSeleccionFila(id);
+      }
+    }
+  });
     document.getElementById('btnCalcular').addEventListener('click', (e)=>{ 
       console.log('Botón Calcular Derecho clickeado');
       e.preventDefault(); 
